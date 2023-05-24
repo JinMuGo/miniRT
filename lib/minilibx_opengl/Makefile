@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 19:51:48 by jgo               #+#    #+#              #
-#    Updated: 2023/05/24 19:57:22 by jgo              ###   ########.fr        #
+#    Updated: 2023/05/24 20:21:18 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,21 +32,26 @@ HEAD	:=	mlx_int.h \
 			mlx_png.h \
 			mlx.h
 
-all:
+all bonus:
+	$(Q)$(call color_printf,$(CYAN),$(NOM),🎯 starting compile $(NOM))
 	$(MAKE) $(NOM)
 	$(Q)$(MAKE) files="$(NOM)" src_dir=`pwd` dst_dir=$(TOPDIR)/lib link_files
 	$(Q)$(MAKE) files="$(HEAD)" src_dir=`pwd` dst_dir=$(TOPDIR)/includes link_files
+	$(Q)$(call color_printf,$(GREEN),$(NOM),🔰 done!)
 
 $(NOM):: $(OBJ)
+	$(Q)$(call color_printf,$(GREEN),$(NOM),📚 archive object)
 	ar -r $(NOM) $(OBJ)
 	ranlib $(NOM)
 
 clean:
 	$(Q)$(MAKE) files="$(NOM)" src_dir=`pwd` dst_dir=$(TOPDIR)/lib unlink_files
 	$(Q)$(MAKE) files="$(HEAD)" src_dir=`pwd` dst_dir=$(TOPDIR)/includes unlink_files
+	$(Q)$(call color_printf,$(RED),$(NOM),🗑️  remove Objects && Dependency file)
 	rm -f $(OBJ) *~
 
 fclean: clean
+	$(Q)$(call color_printf,$(RED),$(NOM),🗑️  remove $(NOM))
 	rm -f $(NOM) 
 
-re: clean all
+re: all bonus clean fclean re $(NOM)
