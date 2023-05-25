@@ -6,15 +6,15 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 19:51:48 by jgo               #+#    #+#              #
-#    Updated: 2023/05/24 20:21:18 by jgo              ###   ########.fr        #
+#    Updated: 2023/05/25 15:39:11 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
 		TOPDIR = $(abspath ../../)
 endif
-include $(TOPDIR)/make_config/Rules.mk
-include $(TOPDIR)/make_config/ColorRules.mk
+include $(TOPDIR)/make_config/com/ColorRules.mk
+include $(TOPDIR)/make_config/lib/Rules.mk
 
 NOM		=	libmlx.a
 SRC		=	mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c

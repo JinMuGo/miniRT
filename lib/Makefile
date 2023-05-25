@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:42:33 by jgo               #+#    #+#              #
-#    Updated: 2023/05/24 19:46:00 by jgo              ###   ########.fr        #
+#    Updated: 2023/05/25 15:38:53 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ ifndef TOPDIR
 		TOPDIR = $(abspath ..)
 endif
 
-include $(TOPDIR)/make_config/Rules.mk
-include $(TOPDIR)/make_config/ColorRules.mk
+include $(TOPDIR)/make_config/com/ColorRules.mk
+include $(TOPDIR)/make_config/lib/Rules.mk
 
 LIBS := libft minilibx_opengl
 
