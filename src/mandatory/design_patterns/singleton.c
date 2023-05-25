@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:31:18 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/25 19:24:06 by jgo              ###   ########.fr       */
+/*   Updated: 2023/05/25 19:41:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static inline void	_init_mlx_assets(t_mlx *mlx)
 
 t_meta	*singleton(void)
 {
-	static t_meta	*meta;
+	static t_meta	*_meta;
 
-	if (meta != NULL)
-		return (meta);
-	meta = ft_calloc(1, sizeof(t_meta));
-	_init_mlx_assets(&meta->mlx);
-	return (meta);
+	if (_meta != NULL)
+		return (_meta);
+	_meta = ft_calloc(1, sizeof(t_meta));
+	_init_mlx_assets(&_meta->mlx);
+	return (_meta);
 }
