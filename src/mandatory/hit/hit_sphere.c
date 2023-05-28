@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:40:14 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 16:43:41 by jgo              ###   ########.fr       */
+/*   Updated: 2023/05/28 17:50:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ bool	hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	rec->p = ray_at(ray, root);
 	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius);
+	rec->albedo = world->albedo;
 	// 정규화된 법선 벡터.
 	set_face_normal(ray, rec);
 	// rec의 법선벡터와 광선의 방향벡터를 비교해서 앞면인지 뒷면인지 bool 값으로 저장.

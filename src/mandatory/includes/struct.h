@@ -6,15 +6,15 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 23:37:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/05/28 21:25:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# include "minirt.h"
 # include "enum.h"
+# include "minirt.h"
 
 typedef struct s_vec3		t_vec3;
 typedef struct s_vec3		t_point3;
@@ -25,6 +25,8 @@ typedef struct s_canvas		t_canvas;
 typedef struct s_sphere		t_sphere;
 typedef struct s_hit_record	t_hit_record;
 typedef struct s_object		t_object;
+typedef struct s_light		t_light;
+typedef struct s_scene		t_scene;
 
 typedef struct s_mlx		t_mlx;
 typedef struct s_img		t_img;
@@ -76,6 +78,7 @@ struct						s_hit_record
 	double					tmax;
 	double t; // 광선의 원점과 교점 사이의 거리.
 	bool					front_face;
+	t_color3				albedo;
 };
 
 struct						s_object
@@ -83,6 +86,25 @@ struct						s_object
 	t_object_type			type;
 	void					*element;
 	void					*next;
+	t_color3				albedo;
+};
+
+struct						s_light
+{
+	t_point3				origin;
+	t_color3				light_color;
+	double					bright_ratio;
+};
+
+struct						s_scene
+{
+	t_canvas				canvas;
+	t_camera				camera;
+	t_object				*world;
+	t_object				*light;
+	t_color3				ambient; // 8.4에서 설명할 요소
+	t_ray					ray;
+	t_hit_record			rec;
 };
 
 struct						s_img

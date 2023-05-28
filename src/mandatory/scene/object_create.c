@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:26:51 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 16:45:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/05/28 17:49:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 /* * * * 수정 * * * */
 #include "scene.h"
 
-t_object	*object(t_object_type type, void *element)
+t_object	*object(t_object_type type, void *element, t_color3 albedo)
 {
 	t_object	*new;
 
@@ -23,6 +23,7 @@ t_object	*object(t_object_type type, void *element)
 	new->type = type;
 	new->element = element;
 	new->next = NULL;
+	new->albedo = albedo;
 	return (new);
 }
 
@@ -37,4 +38,16 @@ t_sphere	*sphere(t_point3 center, double radius)
 	sp->radius2 = radius * radius;
 	return (sp);
 }
-/* * * * 수정 끝 * * * */
+
+t_light	*light_point(t_point3 light_origin, t_color3 light_color,
+		double bright_ratio)
+{
+	t_light *light;
+
+	if (!(light = (t_light *)malloc(sizeof(t_light))))
+		return (NULL);
+	light->origin = light_origin;
+	light->light_color = light_color;
+	light->bright_ratio = bright_ratio;
+	return (light);
+}
