@@ -6,13 +6,25 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:26:51 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 09:17:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/05/28 16:45:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 /* * * * 수정 * * * */
 #include "scene.h"
+
+t_object	*object(t_object_type type, void *element)
+{
+	t_object	*new;
+
+	if (!(new = (t_object *)malloc(sizeof(t_object))))
+		return (NULL);
+	new->type = type;
+	new->element = element;
+	new->next = NULL;
+	return (new);
+}
 
 t_sphere	*sphere(t_point3 center, double radius)
 {

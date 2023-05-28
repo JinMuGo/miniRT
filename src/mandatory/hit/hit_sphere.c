@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:40:14 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 08:59:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/05/28 16:43:41 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "trace.h"
 #include "utils.h"
 
-bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
+bool	hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec)
 {
 	t_vec3 oc; //방향벡터로 나타낸 구의 중심.
 	//a, half_b, c는 각각 t에 관한 2차 방정식의 계수
@@ -25,6 +25,7 @@ bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	double discriminant; //판별식
 	double sqrtd;
 	double root;
+	t_sphere *sp = world->element;
 
 	oc = vminus(ray->orig, sp->center);
 	// a = vdot(ray->dir, ray->dir);
