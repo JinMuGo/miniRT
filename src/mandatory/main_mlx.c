@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 23:27:06 by jgo              ###   ########.fr       */
+/*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
+/*   Updated: 2023/05/25 18:25:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include "minirt.h"
+#include "defs.h"
+#include "design_patterns.h"
+#include "utils.h"
 
-typedef enum e_object_type	t_object_type;
-
-enum						e_win
+int	main(int ac, char **av)
 {
-	WIN_WIDTH = 1280,
-	WIN_HEIGHT = 720
-};
+	t_meta	*meta;
 
-enum						e_object_type
-{
-	SP
-};
-
-#endif
+	(void)ac;
+	(void)av;
+	meta = singleton();
+	hooks(meta);
+	mlx_put_image_to_window(\
+		meta->mlx.mlx, meta->mlx.win, meta->mlx.img.img, 0, 0);
+	mlx_loop(meta->mlx.mlx);
+	return (EXIT_SUCCESS);
+}

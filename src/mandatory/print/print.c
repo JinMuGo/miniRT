@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 23:27:06 by jgo              ###   ########.fr       */
+/*   Created: 2023/05/27 11:07:03 by jgo               #+#    #+#             */
+/*   Updated: 2023/05/27 22:58:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include "print.h"
 
-typedef enum e_object_type	t_object_type;
-
-enum						e_win
+// [0,1] 로 되어있는 rgb 값을 각각 [0,255]에 맵핑 해서 출력.
+void    write_color(t_color3 pixel_color)
 {
-	WIN_WIDTH = 1280,
-	WIN_HEIGHT = 720
-};
-
-enum						e_object_type
-{
-	SP
-};
-
-#endif
+    printf("%d %d %d\n", (int)(255.999 * pixel_color.x),
+                        (int)(255.999 * pixel_color.y),
+                        (int)(255.999 * pixel_color.z));
+}

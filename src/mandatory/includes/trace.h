@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   trace.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 23:27:06 by jgo              ###   ########.fr       */
+/*   Created: 2023/05/27 13:56:36 by jgo               #+#    #+#             */
+/*   Updated: 2023/05/28 09:00:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#ifndef TRACE_H
+# define TRACE_H
 
-typedef enum e_object_type	t_object_type;
+# include "struct.h"
+# include "utils.h"
 
-enum						e_win
-{
-	WIN_WIDTH = 1280,
-	WIN_HEIGHT = 720
-};
+// trace/ray/
+t_ray		ray(t_point3 orig, t_vec3 dir);
+t_point3	ray_at(t_ray *ray, double t);
+t_ray		ray_primary(t_camera *cam, double u, double v);
+t_color3	ray_color(t_ray *ray, t_sphere *sphere);
 
-enum						e_object_type
-{
-	SP
-};
-
+// trace/hit/
+bool		hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec);
+void		set_face_normal(t_ray *r, t_hit_record *rec);
 #endif
