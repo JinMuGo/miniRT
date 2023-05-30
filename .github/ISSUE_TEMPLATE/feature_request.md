@@ -1,14 +1,33 @@
-## 요약
-(이슈에 대한 간단한 요약을 적어주세요)
+---
+name: Feature request
+about: Suggest an idea for this project
+title: "[Feature]:"
+labels: ""
+assignees: ""
+---
 
-## 기능 설명
-(요청하는 기능에 대한 자세한 설명을 적어주세요)
+### **Package Scope**
 
-## 관련 문제 또는 배경
-(요청하는 기능과 관련된 문제 또는 배경 정보를 제공해주세요)
+<!--
+  Is this feature added to an existing package?
+  Or make a new one?
+-->
 
-## 예시
-(요청하는 기능이 어떻게 동작해야 하는지 예시를 제공해주세요)
+-   [ ] Add to an existing package
+-   [ ] New package
 
-## 추가 정보
-(기능 요청에 대한 추가적인 정보나 맥락이 필요한 경우 여기에 적어주세요)
+<!-- Write the package name here -->
+
+Package name:
+
+### **Overview**
+
+<!-- A clear and concise description about the feature -->
+
+### **Describe the solution you'd like**
+
+<!-- A clear and concise description of what you want to happen -->
+
+### **Additional context**
+
+<!-- Add any other context or screenshots about the feature request here -->
