@@ -5,29 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/23 13:42:33 by jgo               #+#    #+#              #
-#    Updated: 2023/06/05 20:16:55 by jgo              ###   ########.fr        #
+#    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
+#    Updated: 2023/06/05 20:19:36 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
-		TOPDIR = $(abspath ..)
+		TOPDIR = $(abspath ../../../)
 endif
 
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/lib/Rules.mk
 
-LIBS := libft libtensor minilibx_opengl
+SRCS :=
 
-$(LIBS):
-	$(MAKE) -C $@
+NAME :=	libvector.a
 
-all bonus:
-	$(Q)$(call color_printf,$(YELLOW),$(PROJECT_NAME),🎯 Start compiling)
-	$(MAKE) $(LIBS)
-	$(Q)$(call color_printf,$(GREEN),$(PROJECT_NAME),✨ compiled!)
+OBJS := $(SRCS:.c=.o)
+DEPS := $(SRCS:.c=.d)
+-include $(DEPS)
 
-fclean clean re:
-	$(Q)$(foreach dir, $(LIBS), $(MAKE) -C $(dir) $@;)
-
-.PHONY: all clean fclean re bonus $(LIBS)
+include $(TOPDIR)/make_config/lib/SubLibsRecipes.mk
