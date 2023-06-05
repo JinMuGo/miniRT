@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enum.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 17:45:52 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/05 16:44:47 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@ enum						e_win
 
 enum						e_object_type
 {
+	AMB,
+	CAM,
+	LIGHT,
 	SP,
+	PL,
+	CY,
 	LIGHT_POINT
 };
 
