@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/05 17:12:38 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/05 19:53:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "minirt.h"
 
 typedef struct s_vec3		t_vec3;
+typedef struct s_vec4		t_vec4;
 typedef struct s_vec3		t_point3;
 typedef struct s_vec3		t_color3;
 typedef struct s_ray		t_ray;
@@ -31,7 +32,7 @@ typedef struct s_scene		t_scene;
 typedef struct s_rgb		t_rgb;
 typedef struct s_ambient	t_ambient;
 typedef struct s_camera		t_camera;
-typedef struct s_light		t_light;
+typedef struct s_spot_light	t_spot_light;
 typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
@@ -46,6 +47,22 @@ struct						s_vec3
 	double					y;
 	double					z;
 };
+
+struct						s_vec4
+{
+	double					x;
+	double					y;
+	double					z;
+	double					w;
+};
+
+struct						s_rgb
+{
+	int						r;
+	int						g;
+	int						b;
+};
+
 
 struct						s_ray
 {
@@ -97,7 +114,7 @@ struct						s_object
 	t_color3				albedo;
 };
 
-struct						s_light
+struct						s_spot_light
 {
 	t_point3				origin;
 	t_color3				light_color;
@@ -136,15 +153,8 @@ struct						s_meta
 	t_mlx					mlx;
 	t_ambient				ambient;
 	t_camera				camera;
-	t_light					light;
-	t_list					objs;
-};
-
-struct						s_rgb
-{
-	int						r;
-	int						g;
-	int						b;
+	t_list					*spot_lights;
+	t_list					*objs;
 };
 
 struct						s_ambient
