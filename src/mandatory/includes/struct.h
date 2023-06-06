@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 21:25:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/06 18:21:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ typedef struct s_object		t_object;
 typedef struct s_light		t_light;
 typedef struct s_scene		t_scene;
 
-typedef struct s_mlx		t_mlx;
-typedef struct s_img		t_img;
+typedef struct s_mlx_assets	t_mlx_assets;
 typedef struct s_meta		t_meta;
 
 struct						s_vec3
@@ -107,25 +106,15 @@ struct						s_scene
 	t_hit_record			rec;
 };
 
-struct						s_img
+struct						s_mlx_assets
 {
-	void					*img;
-	char					*addr;
-	int						bpp;
-	int						line;
-	int						endian;
-};
-
-struct						s_mlx
-{
-	void					*mlx;
-	void					*win;
-	t_img					img;
+	mlx_t					*mlx;
+	mlx_image_t				*img;
 };
 
 struct						s_meta
 {
-	t_mlx					mlx;
+	t_mlx_assets			mlx_assets;
 };
 
 #endif
