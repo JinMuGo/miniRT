@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/05 14:55:23 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/06 17:30:06 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ endif
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
-SRCS :=	singleton.c
+SRCS :=	parser.c \
+	parser_error.c \
+	ft_split_whitespace.c
+
 NAME := parser.a
 
 OBJS := $(SRCS:.c=.o)

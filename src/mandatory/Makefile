@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
+#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/05/27 23:23:50 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/06 17:32:43 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,7 @@ include 	$(TOPDIR)/make_config/com/ColorRules.mk
 
 NAME	:=	$(PROJECT_NAME)
 
-DIRS	:=	design_patterns \
-			hit \
-			print \
-			ray \
-			scene \
-			utils
+DIRS	:=	parser
 
 LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
@@ -33,14 +28,9 @@ HEADS	:=	color.h \
 			defs.h \
 			design_patterns.h \
 			enum.h \
-			events.h \
-			key_map.h \
 			minirt.h \
-			print.h \
-			scene.h \
 			struct.h \
-			trace.h \
-			utils.h
+			parser.h
 
 SRCS	:=	main.c
 

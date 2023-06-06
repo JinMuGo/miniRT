@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/05 19:53:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/06 17:34:19 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_canvas		t_canvas;
 // typedef struct s_sphere		t_sphere;
 typedef struct s_hit_record	t_hit_record;
 typedef struct s_object		t_object;
-// typedef struct s_light		t_light;
+typedef struct s_light		t_light;
 typedef struct s_scene		t_scene;
 
 typedef struct s_rgb		t_rgb;
@@ -81,12 +81,12 @@ struct						s_ray
 // 	t_point3 left_bottom; // 왼쪽 아래 코너점
 // };
 
-struct						s_canvas
-{
-	int width;           //canvas width
-	int height;          //canvas height;
-	double aspect_ratio; //종횡비
-};
+// struct						s_canvas
+// {
+// 	int width;           //canvas width
+// 	int height;          //canvas height;
+// 	double aspect_ratio; //종횡비
+// };
 
 // struct						s_sphere
 // {
@@ -95,42 +95,42 @@ struct						s_canvas
 // 	double					radius2;
 // };
 
-struct						s_hit_record
-{
-	t_point3 p;    // 교점의 좌표
-	t_vec3 normal; // 교점에서의 법선
-	double					tmin;
-	double					tmax;
-	double t; // 광선의 원점과 교점 사이의 거리.
-	bool					front_face;
-	t_color3				albedo;
-};
+// struct						s_hit_record
+// {
+// 	t_point3 p;    // 교점의 좌표
+// 	t_vec3 normal; // 교점에서의 법선
+// 	double					tmin;
+// 	double					tmax;
+// 	double t; // 광선의 원점과 교점 사이의 거리.
+// 	bool					front_face;
+// 	t_color3				albedo;
+// };
 
-struct						s_object
-{
-	t_object_type			type;
-	void					*element;
-	void					*next;
-	t_color3				albedo;
-};
+// struct						s_object
+// {
+// 	t_object_type			type;
+// 	void					*element;
+// 	void					*next;
+// 	t_color3				albedo;
+// };
 
-struct						s_spot_light
+struct						s_light
 {
 	t_point3				origin;
 	t_color3				light_color;
 	double					bright_ratio;
 };
 
-struct						s_scene
-{
-	t_canvas				canvas;
-	t_camera				camera;
-	t_object				*world;
-	t_object				*light;
-	t_color3				ambient; // 8.4에서 설명할 요소
-	t_ray					ray;
-	t_hit_record			rec;
-};
+// struct						s_scene
+// {
+// 	t_canvas				canvas;
+// 	t_camera				camera;
+// 	t_object				*world;
+// 	t_object				*light;
+// 	t_color3				ambient; // 8.4에서 설명할 요소
+// 	t_ray					ray;
+// 	t_hit_record			rec;
+// };
 
 struct						s_img
 {
@@ -148,15 +148,6 @@ struct						s_mlx
 	t_img					img;
 };
 
-struct						s_meta
-{
-	t_mlx					mlx;
-	t_ambient				ambient;
-	t_camera				camera;
-	t_list					*spot_lights;
-	t_list					*objs;
-};
-
 struct						s_ambient
 {
 	t_object_type			type;
@@ -172,7 +163,7 @@ struct						s_camera
 	int						fov;
 };
 
-struct						s_light
+struct						s_spot_light
 {
 	t_object_type			type;
 	t_point3				light_point;
@@ -204,6 +195,15 @@ struct						s_cylinder
 	double					diameter;
 	double					height;
 	t_rgb					rgb;
+};
+
+struct						s_meta
+{
+	t_mlx					mlx;
+	t_ambient				ambient;
+	t_camera				camera;
+	t_list					*spot_lights;
+	t_list					*objs;
 };
 
 #endif
