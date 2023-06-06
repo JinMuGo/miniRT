@@ -6,7 +6,7 @@
 	path = make_config
 	url = https://github.com/jgodv/make_config
 	branch = miniRT
-[submodule "external/MLX42"]
-	path = external/MLX42
+[submodule "ext/MLX42"]
+	path = ext/MLX42
 	url = https://github.com/codam-coding-college/MLX42
 	branch = master
