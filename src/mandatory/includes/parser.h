@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/05 19:48:56 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
+/*   Updated: 2023/06/05 14:56:54 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#ifndef PARSER_H
+# define PARSER_H
 
-typedef enum e_object_type	t_object_type;
 
-enum						e_win
-{
-	WIN_WIDTH = 1280,
-	WIN_HEIGHT = 720
-};
-
-enum						e_object_type
-{
-	AMB,
-	CAM,
-	LIGHT,
-	SP,
-	PL,
-	CY
-//LIGHT_POINT
-};
 
 #endif
