@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 16:45:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/06 18:51:44 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vec3		vmin(t_vec3 vec1, t_vec3 vec2);
 void		oadd(t_object **list, t_object *new);
 t_object	*olast(t_object *list);
 
-int			destroy(t_meta *meta);
-void		hooks(t_meta *meta);
+void		destroy(const t_meta *meta);
+void		hooks(void *param);
 
 #endif

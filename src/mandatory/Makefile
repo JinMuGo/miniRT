@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/06 17:32:43 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/07 13:17:16 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ HEADS	:=	color.h \
 			struct.h \
 			parser.h
 
-SRCS	:=	main.c
+SRCS	:=	main_mlx.c
 
 OBJS	:=	$(SRCS:.c=.o)
 DEPS 	:=	$(SRCS:.c=.d)

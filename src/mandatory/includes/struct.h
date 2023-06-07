@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/06 17:34:19 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/07 13:17:32 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_object		t_object;
 typedef struct s_light		t_light;
 typedef struct s_scene		t_scene;
 
+typedef struct s_mlx_assets	t_mlx_assets;
 typedef struct s_rgb		t_rgb;
 typedef struct s_ambient	t_ambient;
 typedef struct s_camera		t_camera;
@@ -132,20 +133,19 @@ struct						s_light
 // 	t_hit_record			rec;
 // };
 
-struct						s_img
+struct						s_mlx_assets
 {
-	void					*img;
-	char					*addr;
-	int						bpp;
-	int						line;
-	int						endian;
+	mlx_t					*mlx;
+	mlx_image_t				*img;
 };
 
-struct						s_mlx
+struct						s_meta
 {
-	void					*mlx;
-	void					*win;
-	t_img					img;
+	t_mlx_assets			mlx_assets;
+	t_ambient				ambient;
+	t_camera				camera;
+	t_list					*spot_lights;
+	t_list					*objs;
 };
 
 struct						s_ambient
