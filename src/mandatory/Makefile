@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/06 18:42:36 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/07 17:04:12 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,6 @@ include 	$(TOPDIR)/make_config/com/ColorRules.mk
 NAME	:=	$(PROJECT_NAME)
 
 DIRS	:=	design_patterns \
-			hit \
-			print \
-			ray \
-			scene \
 			utils
 
 LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
@@ -33,16 +29,11 @@ HEADS	:=	color.h \
 			defs.h \
 			design_patterns.h \
 			enum.h \
-			events.h \
-			key_map.h \
 			minirt.h \
-			print.h \
-			scene.h \
 			struct.h \
-			trace.h \
 			utils.h
 
-SRCS	:=	main_mlx.c
+SRCS	:=	main.c
 
 OBJS	:=	$(SRCS:.c=.o)
 DEPS 	:=	$(SRCS:.c=.d)
