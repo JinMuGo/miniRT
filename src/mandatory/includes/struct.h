@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 13:17:32 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/07 15:07:09 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,15 +139,6 @@ struct						s_mlx_assets
 	mlx_image_t				*img;
 };
 
-struct						s_meta
-{
-	t_mlx_assets			mlx_assets;
-	t_ambient				ambient;
-	t_camera				camera;
-	t_list					*spot_lights;
-	t_list					*objs;
-};
-
 struct						s_ambient
 {
 	t_object_type			type;
@@ -199,7 +190,7 @@ struct						s_cylinder
 
 struct						s_meta
 {
-	t_mlx					mlx;
+	t_mlx_assets			mlx_assets;
 	t_ambient				ambient;
 	t_camera				camera;
 	t_list					*spot_lights;
