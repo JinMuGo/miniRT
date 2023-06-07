@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/05/27 23:23:50 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/06 18:42:36 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ HEADS	:=	color.h \
 			trace.h \
 			utils.h
 
-SRCS	:=	main.c
+SRCS	:=	main_mlx.c
 
 OBJS	:=	$(SRCS:.c=.o)
 DEPS 	:=	$(SRCS:.c=.d)

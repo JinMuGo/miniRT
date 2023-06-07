@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/25 19:24:18 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/06 18:51:55 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,10 @@
 #include "defs.h"
 #include "utils.h"
 
-static inline int	_key_press(int key, t_meta *meta)
+void	hooks(void *param)
 {
-	if (key == KEY_ESC)
+	const t_meta *meta = param;
+
+	if (mlx_is_key_down(meta->mlx_assets.mlx, MLX_KEY_ESCAPE))
 		destroy(meta);
-	return (0);
-}
-
-static inline int	_destroy_notify(t_meta *meta)
-{
-	destroy(meta);
-	return (0);
-}
-
-void	hooks(t_meta *meta)
-{
-	mlx_hook(meta->mlx.win, KEY_PRESS, 0, _key_press, meta);
-	mlx_hook(meta->mlx.win, DESTROY_NOTIFY, 0, _destroy_notify, meta);
 }
