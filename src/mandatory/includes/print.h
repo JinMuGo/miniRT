@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:03:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 22:58:20 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/07 17:04:28 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "stdio.h"
 # include "struct.h"
 
-void    write_color(t_color3 pixel_color);
+void	write_color(t_color3 pixel_color);
 
 #endif
