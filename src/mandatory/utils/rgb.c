@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/07 19:13:48 by sanghwal         ###   ########seoul.kr  */
+/*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
+/*   Updated: 2023/06/07 18:11:45 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "defs.h"
 
-void	parser(char *file);
-void	parser_error(char *str);
-char	**ft_split_whitespace(char const *s);
-t_rgb	parse_rgb(char *str);
+t_rgb	rgb_init(int r, int g, int b)
+{
+	const t_rgb rgb = {r, g, b};
 
-
-double	check_to_double(char *str);
-
-#endif
+	return (rgb);
+}
