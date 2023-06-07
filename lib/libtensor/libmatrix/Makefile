@@ -5,24 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/06 12:56:36 by jgo               #+#    #+#              #
-#    Updated: 2023/06/07 16:58:09 by jgo              ###   ########.fr        #
+#    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
+#    Updated: 2023/06/05 20:19:09 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
-		TOPDIR = $(abspath ../../)
+		TOPDIR = $(abspath ../../../)
 endif
+
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/lib/Rules.mk
 
-NAME := libtensor.a
+SRCS :=
 
-HEAD := vector.h
+NAME :=	libmatrix.a
 
-DIRS := libvector
-
-LIBS := $(addsuffix .a, $(addprefix libs/, $(DIRS)))
+OBJS := $(SRCS:.c=.o)
+DEPS := $(SRCS:.c=.d)
 -include $(DEPS)
 
-include $(TOPDIR)/make_config/lib/Recipes.mk
+include $(TOPDIR)/make_config/lib/SubLibsRecipes.mk
