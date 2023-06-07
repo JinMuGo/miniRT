@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mlx.c                                         :+:      :+:    :+:   */
+/*   vec3_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/06 18:50:20 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/07 16:20:25 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/07 16:39:40 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "defs.h"
-#include "design_patterns.h"
-#include "utils.h"
+#include "vector.h"
 
-int	main(int ac, char **av)
+double	vec3_square_length(t_vec3 vec3)
 {
-	t_meta	*meta;
+	return (vec3.x * vec3.x + vec3.y * vec3.y + vec3.z * vec3.z);
+}
 
-	(void)ac;
-	(void)av;
-	meta = singleton();
-	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
-	mlx_loop_hook(meta->mlx_assets.mlx, hooks, meta);
-	mlx_loop(meta->mlx_assets.mlx);
-	return (EXIT_SUCCESS);
+double	vec3_length(t_vec3 vec3)
+{
+	return (sqrt(vec3_square_length(vec3)));
+}
+
+t_vec3	vec3_unit(t_vec3 vec3)
+{
+	const double	length = vec3_length(vec3);
+
+	return (vec3_init(vec3.x / length, vec3.y / length, vec3.z / length));
 }

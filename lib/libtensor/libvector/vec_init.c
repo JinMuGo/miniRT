@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   canvas.c                                           :+:      :+:    :+:   */
+/*   vec_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 17:22:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 22:58:07 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/07 13:48:39 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/07 16:19:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
+#include "vector.h"
 
-t_canvas    canvas(int  width, int height)
+t_vec3	vec3_init(double x, double y, double z)
 {
-    t_canvas canvas;
+	const t_vec3	vec3 = {x, y, z};
 
-    canvas.width = width;
-    canvas.height = height;
-    canvas.aspect_ratio = (double)width / (double)height;
-    return (canvas);
+	return (vec3);
+}
+
+t_vec4	vec4_init(double x, double y, double z, double w)
+{
+	const t_vec4	vec4 = {x, y, z, w};
+
+	return (vec4);
 }

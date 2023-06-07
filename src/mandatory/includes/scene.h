@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:22:17 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/06 17:30:53 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/07 17:27:51 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 t_canvas	canvas(int width, int height);
 t_camera	camera(t_canvas *canvas, t_point3 origin);
-t_object    *object(t_object_type type, void *element, t_color3 albedo);
+t_object	*object(t_object_type type, void *element, t_color3 albedo);
 t_sphere	*sphere(t_point3 center, double radius);
 t_light		*light_point(t_point3 light_origin, t_color3 light_color,
 				double bright_ratio);

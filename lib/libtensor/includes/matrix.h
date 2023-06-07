@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object_utils.c                                     :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 23:33:10 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 23:33:26 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/07 13:51:12 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/07 16:45:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
-#include "utils.h"
+#ifndef MATRIX_H
+# define MATRIX_H
 
-void	oadd(t_object **list, t_object *new)
-{
-	t_object	*cur;
-
-	if (*list == NULL)
-	{
-		*list = new;
-		return ;
-	}
-	cur = *list;
-	while (cur->next)
-		cur = cur->next;
-	cur->next = new;
-}
-
-t_object	*olast(t_object *list)
-{
-	if (list == NULL)
-		return (NULL);
-	while (list->next)
-		list = list->next;
-	return (list);
-}
+#endif

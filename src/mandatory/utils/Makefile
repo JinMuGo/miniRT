@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/07 15:29:40 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/07 17:25:49 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,7 @@ include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	destroy.c \
-		hooks.c \
-		vec3_utils.c \
-		object_utils.c \
+		hooks.c
 
 NAME := utils.a
 

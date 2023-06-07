@@ -6,15 +6,12 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 21:43:50 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/07 17:20:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONST_H
 # define CONST_H
-
-# include "events.h"
-# include "key_map.h"
 
 # define EPSILON 1e-6
 

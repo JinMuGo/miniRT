@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 11:07:03 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 22:58:07 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/07 13:53:14 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/07 16:45:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "print.h"
+#ifndef VECTOR_H
+# define VECTOR_H
 
-// [0,1] 로 되어있는 rgb 값을 각각 [0,255]에 맵핑 해서 출력.
-void    write_color(t_color3 pixel_color)
+# include <math.h>
+
+typedef struct s_vec3	t_vec3;
+typedef struct s_vec4	t_vec4;
+
+struct					s_vec3
 {
-    printf("%d %d %d\n", (int)(255.999 * pixel_color.x),
-                        (int)(255.999 * pixel_color.y),
-                        (int)(255.999 * pixel_color.z));
-}
+	double				x;
+	double				y;
+	double				z;
+};
+
+struct					s_vec4
+{
+	double				x;
+	double				y;
+	double				z;
+	double				w;
+};
+
+t_vec3	vec3_init(double x, double y, double z);
+t_vec4	vec4_init(double x, double y, double z, double w);
+
+#endif

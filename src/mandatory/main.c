@@ -5,46 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 11:07:29 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/06 17:35:24 by sanghwal         ###   ########seoul.kr  */
+/*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/07 17:26:08 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "print.h"
-#include "scene.h"
-#include "struct.h"
-#include "trace.h"
+#include "defs.h"
+#include "design_patterns.h"
 #include "utils.h"
 #include "parser.h"
 
-// t_scene	*scene_init(void)
-// {
-// 	t_scene		*scene;
-// 	t_object	*world;
-// 	t_object	*lights;
-
-// 	double ka; // 8.4 에서 설명
-// 	// malloc 할당 실패 시, 실습에서는 return NULL로 해두었지만, 적절한 에러 처리가 필요하다.
-// 	if (!(scene = (t_scene *)malloc(sizeof(t_scene))))
-// 		return (NULL);
-// 	scene->canvas = canvas(400, 300);
-// 	scene->camera = camera(&scene->canvas, point3(0, 0, 0));
-// 	world = object(SP, sphere(point3(-2, 0, -5), 2), color3(0.5, 0, 0));
-// 	// world 에 구1 추가
-// 	oadd(&world, object(SP, sphere(point3(0, -1000, 0), 995), color3(1, 1, 1)));
-// 	// world 에 구2 추가
-// 	oadd(&world, object(SP, sphere(point3(2, 0, -5), 2), color3(0, 0.5, 0)));
-// 	// world 에 구3 추가
-// 	scene->world = world;
-// 	lights = object(LIGHT_POINT, light_point(point3(0, 20, 0), color3(1, 1, 1),
-// 				0.5), color3(0, 0, 0)); // 더미 albedo
-// 	scene->light = lights;
-// 	ka = 0.1;                                   // 8.4 에서 설명
-// 	scene->ambient = vmult(color3(1, 1, 1), ka); // 8.4 에서 설명
-// 	return (scene);
-// }
-
-int	main(void)
+int	main(int ac, char **av)
 {
+	t_meta	*meta;
+
+	(void)ac;
+	(void)av;
+	meta = singleton();
+	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
+	mlx_loop_hook(meta->mlx_assets.mlx, hooks, meta);
+	mlx_loop(meta->mlx_assets.mlx);
+	return (EXIT_SUCCESS);
 }

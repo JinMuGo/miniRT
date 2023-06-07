@@ -5,26 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/05/28 16:50:29 by jgo              ###   ########.fr        #
+#    Created: 2022/07/06 12:56:36 by jgo               #+#    #+#              #
+#    Updated: 2023/06/07 16:58:09 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
-		TOPDIR = $(abspath ../../../)
+		TOPDIR = $(abspath ../../)
 endif
-
 include $(TOPDIR)/make_config/com/ColorRules.mk
-include $(TOPDIR)/make_config/src/Rules.mk
+include $(TOPDIR)/make_config/lib/Rules.mk
 
-SRCS :=	hit_sphere.c \
-		normal.c \
-		hit.c
+NAME := libtensor.a
 
-NAME := hit.a
+HEAD := vector.h
 
-OBJS := $(SRCS:.c=.o)
-DEPS := $(SRCS:.c=.d)
+DIRS := libvector
+
+LIBS := $(addsuffix .a, $(addprefix libs/, $(DIRS)))
 -include $(DEPS)
 
-include $(TOPDIR)/make_config/src/SubLibsRecipes.mk
+include $(TOPDIR)/make_config/lib/Recipes.mk
