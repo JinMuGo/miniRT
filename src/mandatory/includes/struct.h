@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 17:29:23 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 16:40:08 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ struct						s_camera
 	t_object_type			type;
 	t_point3				view_point;
 	t_vec3					normal_vec3;
-	int						fov;
+	double					fov;
 };
 
 struct						s_spot_light

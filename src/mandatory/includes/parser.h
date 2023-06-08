@@ -6,12 +6,14 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 15:41:38 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 16:36:26 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+
+#include "defs.h"
 
 void		parser(char *file);
 char		**ft_split_whitespace(char const *s);

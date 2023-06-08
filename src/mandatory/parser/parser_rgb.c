@@ -6,11 +6,10 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:07:55 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 15:26:32 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 16:36:47 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
 #include "utils.h"
 #include "parser.h"
 
