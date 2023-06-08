@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:07:55 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/07 19:18:30 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 13:23:35 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,9 @@ static int	get_rgb(char *str, int *i)
 	j = 0;
 	while (len > 0)
 		tmp[j++] = str[(*i) - (len--)];
-	return ((int)check_to_double(tmp));
+	return ((int)(check_to_double(tmp) + 0.5));
 }
 
-// , 2개만
-// 비어있는 부분을 판단해야한다.
-// 255,,255/,,255/,255,/255,,
-// i=3 len=3
 t_rgb	parse_rgb(char *str)
 {
 	t_rgb	rgb;
