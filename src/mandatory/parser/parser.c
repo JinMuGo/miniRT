@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:59:02 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/07 17:29:41 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 14:51:26 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 // static void	parser_router(char **temp)
 // {
 // 	if (!ft_strcmp(temp[0], "A"))
-// 		init_ambient(temp);
+// 		parse_ambient(temp);
 // 	else if (!ft_strcmp(temp[0], "C"))
-// 		init_camera(temp);
+// 		parse_camera(temp);
 // 	else if (!ft_strcmp(temp[0], "L"))
 // 		init_light(temp);
 // 	else if (!ft_strcmp(temp[0], "sp"))

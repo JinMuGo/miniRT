@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_rgb.c                                       :+:      :+:    :+:   */
+/*   parse_point_vec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 17:07:55 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 15:26:32 by sanghwal         ###   ########seoul.kr  */
+/*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
+/*   Updated: 2023/06/08 15:24:57 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs.h"
-#include "utils.h"
 #include "parser.h"
 
-static int	get_rgb(char *str, int *i)
+static double	get_point(char *str, int *i)
 {
 	int		len;
 	char	*tmp;
@@ -35,21 +34,37 @@ static int	get_rgb(char *str, int *i)
 	j = 0;
 	while (len > 0)
 		tmp[j++] = str[(*i) - (len--)];
-	return ((int)(check_to_double(tmp) + 0.5));
+	return (check_to_double(tmp));
 }
 
-t_rgb	parse_rgb(char *str)
+t_point3	parse_point3(char *str)
 {
-	t_rgb	rgb;
+	t_point3	point;
+	int			i;
+
+	if (!check_comma(str))
+		parser_error("Invaild information in point\n");
+	i = 0;
+	point.x = get_point(str, &i);
+	i++;
+	point.y = get_point(str, &i);
+	i++;
+	point.z = get_point(str, &i);
+	return (point);
+}
+
+t_vec3	parse_vec3(char *str)
+{
+	t_vec3	vec;
 	int		i;
 
 	if (!check_comma(str))
-		parser_error("Invaild information in RGB");
+		parser_error("Invaild information in vector\n");
 	i = 0;
-	rgb.r = get_rgb(str, &i);
+	vec.x = get_point(str, &i);
 	i++;
-	rgb.g = get_rgb(str, &i);
+	vec.y = get_point(str, &i);
 	i++;
-	rgb.b = get_rgb(str, &i);
-	return (rgb);
+	vec.z = get_point(str, &i);
+	return (vec);
 }

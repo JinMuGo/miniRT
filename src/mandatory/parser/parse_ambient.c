@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_ambient.c                                      :+:      :+:    :+:   */
+/*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:55:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 14:49:11 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 15:31:57 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	vaildation_ambient(t_ambient amb)
 {
 	if (amb.type != AMB)
 		return (false);
-	if (!check_range_0_to_1(amb.ratio))
+	if (!check_0_to_1(amb.ratio))
 		return (false);
 	if (!check_rgb(amb.rgb))
 		return (false);

@@ -6,22 +6,29 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 13:55:55 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 15:41:38 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-void	parser(char *file);
-char	**ft_split_whitespace(char const *s);
-void	parse_ambient(char **line);
-t_rgb	parse_rgb(char *str);
+void		parser(char *file);
+char		**ft_split_whitespace(char const *s);
+void		parse_ambient(char **line);
+void		parse_camera(char **line);
 
-double	check_to_double(char *str);
-bool	check_minus1_to_1(double data);
-bool	check_rgb(t_rgb rgb);
-bool	check_0_to_1(double data);
+t_rgb		parse_rgb(char *str);
+t_point3	parse_point3(char *str);
+t_vec3		parse_vec3(char *str);
 
-void	parser_error(char *str);
+double		check_to_double(char *str);
+
+bool		check_minus1_to_1(double data);
+bool		check_0_to_1(double data);
+bool		check_0_to_180(double data);
+bool		check_rgb(t_rgb rgb);
+bool		check_comma(char *str);
+
+void		parser_error(char *str);
 #endif

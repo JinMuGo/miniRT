@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:29:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 14:09:06 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 15:34:16 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,27 @@ bool	check_rgb(t_rgb rgb)
 
 bool	check_minus1_to_1(double data)
 {
-	return (data > -1.0 && data < 1.0);
+	return (data >= -1.0 && data <= 1.0);
+}
+
+bool	check_0_to_180(double data)
+{
+	return (data >= 0 && data <= 180);
+}
+
+bool	check_comma(char *str)
+{
+	int	com_cnt;
+	int	i;
+
+	i = -1;
+	com_cnt = 0;
+	while (str[++i])
+	{
+		if (str[i] == ',')
+			com_cnt++;
+	}
+	if (com_cnt > 2)
+		return (false);
+	return (true);
 }

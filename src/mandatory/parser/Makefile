@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/08 14:49:32 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/08 15:50:00 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	parser.c \
-	parser_error.c \
 	ft_split_whitespace.c \
-	parser_utils.c \
-	parser_rgb.c \
+	parse_ambient.c \
+	parse_camera.c
+	parse_point_vec.c
 	parser_atod.c \
-	parse_ambient.c
+	parser_error.c \
+	parser_rgb.c \
+	parser_utils.c \
 
 NAME := parser.a
 
