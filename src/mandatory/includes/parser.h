@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 14:49:59 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 13:55:55 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ char	**ft_split_whitespace(char const *s);
 void	parse_ambient(char **line);
 t_rgb	parse_rgb(char *str);
 
-
 double	check_to_double(char *str);
+bool	check_minus1_to_1(double data);
+bool	check_rgb(t_rgb rgb);
+bool	check_0_to_1(double data);
 
 void	parser_error(char *str);
 #endif
