@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/08 16:40:08 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 16:51:37 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ typedef struct s_meta		t_meta;
 
 struct						s_rgb
 {
-	int						r;
-	int						g;
-	int						b;
+	double					r;
+	double					g;
+	double					b;
 };
 
 struct						s_mlx_assets

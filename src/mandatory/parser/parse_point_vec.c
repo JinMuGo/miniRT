@@ -6,13 +6,13 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 16:36:38 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 17:12:37 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static double	get_point(char *str, int *i)
+double	get_point(char *str, int *i)
 {
 	int		len;
 	char	*tmp;

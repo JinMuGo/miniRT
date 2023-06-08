@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:13:07 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/07 19:13:17 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/08 17:02:16 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static double	integer_part(char *str, int len)
 	while (i < len)
 	{
 		temp_s[i] = str[i];
-		i++;	
+		i++;
 	}
 	temp_d = (double)ft_atoi(temp_s);
 	free(temp_s);
@@ -56,5 +56,7 @@ double	atod(char *str)
 		return (integer_part(str, ft_strlen(str)));
 	temp1 = integer_part(str, dot - str);
 	temp2 = fractional_part(dot + 1);
+	if (temp1 < 0)
+		temp2 *= -1;
 	return (temp1 + temp2);
 }
