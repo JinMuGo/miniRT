@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/07 19:14:11 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/08 14:49:32 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS :=	parser.c \
 	ft_split_whitespace.c \
 	parser_utils.c \
 	parser_rgb.c \
-	parser_atod.c
+	parser_atod.c \
+	parse_ambient.c
 
 NAME := parser.a
 
