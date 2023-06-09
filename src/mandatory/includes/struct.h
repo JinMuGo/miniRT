@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/09 14:10:13 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/07 18:02:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "minirt.h"
 
 typedef struct s_mlx_assets	t_mlx_assets;
+typedef struct s_light		t_light;
 typedef struct s_rgb		t_rgb;
 typedef struct s_ambient	t_ambient;
 typedef struct s_camera		t_camera;
@@ -26,6 +27,7 @@ typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
 typedef struct s_vec3		t_point3;
 typedef struct s_meta		t_meta;
+
 
 struct						s_rgb
 {
@@ -94,7 +96,7 @@ struct						s_meta
 	t_mlx_assets			mlx_assets;
 	t_ambient				ambient;
 	t_camera				camera;
-	t_list					*spot_lights;
+	t_light					*spot_lights;
 	t_list					*objs;
 };
 
