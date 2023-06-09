@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 17:05:53 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 17:20:27 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,9 @@ bool		check_rgb(t_rgb rgb);
 bool		check_comma(char *str);
 
 void		parser_error(char *str);
+
+void		print_ambient(t_meta *meta);
+void		print_camera(t_meta *meta);
+void		print_light(t_meta *meta);
+void		print_objs(t_meta *meta);
 #endif

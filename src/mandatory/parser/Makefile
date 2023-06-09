@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/09 17:06:08 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/09 17:20:57 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS :=	parser.c \
 	parser_error.c \
 	parser_rgb.c \
 	parser_utils.c \
+	parser_print.c
 
 NAME := parser.a
 
