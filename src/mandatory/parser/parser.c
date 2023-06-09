@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:59:02 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 16:36:53 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 13:56:24 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@
 // static void	parser_router(char **temp)
 // {
 // 	if (!ft_strcmp(temp[0], "A"))
-// 		parse_ambient(temp);
+// 		parser_ambient(temp);
 // 	else if (!ft_strcmp(temp[0], "C"))
-// 		parse_camera(temp);
+// 		parser_camera(temp);
 // 	else if (!ft_strcmp(temp[0], "L"))
-// 		init_light(temp);
+// 		parser_light(temp);
 // 	else if (!ft_strcmp(temp[0], "sp"))
-// 		init_sphere(temp);
+// 		parser_sphere(temp);
 // 	else if (!ft_strcmp(temp[0], "pl"))
-// 		init_plane(temp);
+// 		parser_plane(temp);
 // 	else if (!ft_strcmp(temp[0], "cy"))
-// 		init_cylinder(temp);
+// 		parser_cylinder(temp);
 // 	else
 // 		parser_error("Invalid identifier\n");
 // }
