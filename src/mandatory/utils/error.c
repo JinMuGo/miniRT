@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 11:03:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 17:27:45 by sanghwal         ###   ########seoul.kr  */
+/*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/09 20:07:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_H
-# define PRINT_H
+#include "minirt.h"
+#include "defs.h"
 
-# include "stdio.h"
-# include "struct.h"
+static inline void	print_error_msg(char *msg)
+{
+	printf("miniRT: %s\n", msg);
+}
 
-void	write_color(t_color3 pixel_color);
-
-#endif
+bool	error_handler(t_error_type type)
+{
+	if (type == ARGS_ERR)
+		print_error_msg(ERR_ARGS);
+	return (EXIT_FAILURE);
+}

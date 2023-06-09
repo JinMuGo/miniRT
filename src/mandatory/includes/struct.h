@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 18:02:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/09 19:29:58 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_light		t_light;
 typedef struct s_rgb		t_rgb;
 typedef struct s_ambient	t_ambient;
 typedef struct s_camera		t_camera;
+typedef struct s_spot_light	t_spot_light;
 typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
@@ -30,9 +31,9 @@ typedef struct s_meta		t_meta;
 
 struct						s_rgb
 {
-	int						r;
-	int						g;
-	int						b;
+	double					r;
+	double					g;
+	double					b;
 };
 
 struct						s_mlx_assets
@@ -53,10 +54,10 @@ struct						s_camera
 	t_object_type			type;
 	t_point3				view_point;
 	t_vec3					normal_vec3;
-	int						fov;
+	double					fov;
 };
 
-struct						s_light
+struct						s_spot_light
 {
 	t_object_type			type;
 	t_point3				light_point;
@@ -95,7 +96,7 @@ struct						s_meta
 	t_mlx_assets			mlx_assets;
 	t_ambient				ambient;
 	t_camera				camera;
-	t_light					*spot_lights;
+	t_list					*spot_lights;
 	t_list					*objs;
 };
 

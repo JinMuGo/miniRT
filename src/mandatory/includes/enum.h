@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 17:04:45 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/09 20:02:28 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ENUM_H
 
 typedef enum e_object_type	t_object_type;
+typedef enum e_error_type	t_error_type;
 
 enum						e_win
 {
@@ -29,6 +30,11 @@ enum						e_object_type
 	SP,
 	PL,
 	CY
+};
+
+enum					e_error_type
+{
+	ARGS_ERR
 };
 
 #endif

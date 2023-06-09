@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.h                                            :+:      :+:    :+:   */
+/*   parser_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 11:03:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 17:27:45 by sanghwal         ###   ########seoul.kr  */
+/*   Created: 2023/06/06 16:41:28 by sanghwal          #+#    #+#             */
+/*   Updated: 2023/06/09 17:29:54 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_H
-# define PRINT_H
+#include "minirt.h"
+#include "parser.h"
+#include "defs.h"
+#include "design_patterns.h"
 
-# include "stdio.h"
-# include "struct.h"
+void	parser_error(char *str)
+{
+	t_meta	*meta;
 
-void	write_color(t_color3 pixel_color);
+	printf("Error\n%s", str);
 
-#endif
+	meta = singleton();
+	ft_lstclear(&meta->spot_lights, free);
+	ft_lstclear(&meta->objs, free);
+	free(meta);
+	system("leaks miniRT");
+	exit(1);
+}

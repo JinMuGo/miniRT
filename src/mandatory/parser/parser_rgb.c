@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.h                                            :+:      :+:    :+:   */
+/*   parser_rgb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 11:03:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 17:27:45 by sanghwal         ###   ########seoul.kr  */
+/*   Created: 2023/06/07 17:07:55 by sanghwal          #+#    #+#             */
+/*   Updated: 2023/06/09 13:31:18 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_H
-# define PRINT_H
+#include "utils.h"
+#include "parser.h"
 
-# include "stdio.h"
-# include "struct.h"
+t_rgb	parser_rgb(char *str)
+{
+	t_rgb	rgb;
+	int		i;
 
-void	write_color(t_color3 pixel_color);
-
-#endif
+	if (!check_comma(str))
+		parser_error("Invaild information in RGB\n");
+	i = 0;
+	rgb.r = get_point(str, &i);
+	i++;
+	rgb.g = get_point(str, &i);
+	i++;
+	rgb.b = get_point(str, &i);
+	return (rgb);
+}

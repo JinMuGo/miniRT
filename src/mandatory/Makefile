@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
+#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/07 17:04:12 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/07 17:26:37 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ include 	$(TOPDIR)/make_config/com/ColorRules.mk
 NAME	:=	$(PROJECT_NAME)
 
 DIRS	:=	design_patterns \
-			utils
+			utils \
+			parser
 
 LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
@@ -31,7 +32,8 @@ HEADS	:=	color.h \
 			enum.h \
 			minirt.h \
 			struct.h \
-			utils.h
+			utils.h \
+			parser.h
 
 SRCS	:=	main.c
 
