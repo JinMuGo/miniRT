@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 18:02:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/09 19:29:58 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ struct						s_meta
 	t_mlx_assets			mlx_assets;
 	t_ambient				ambient;
 	t_camera				camera;
-	t_light					*spot_lights;
+	t_list					*spot_lights;
 	t_list					*objs;
 };
 
