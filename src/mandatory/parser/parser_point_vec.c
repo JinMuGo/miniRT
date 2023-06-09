@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_point_vec.c                                  :+:      :+:    :+:   */
+/*   parser_point_vec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 13:30:20 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 18:11:56 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ double	get_point(char *str, int *i)
 	int		len;
 	char	*tmp;
 	int		j;
+	double	res;
 
 	if (str[*i] == '\0')
 		return (0);
@@ -33,7 +34,9 @@ double	get_point(char *str, int *i)
 	j = 0;
 	while (len > 0)
 		tmp[j++] = str[(*i) - (len--)];
-	return (check_to_double(tmp));
+	res = check_to_double(tmp);
+	free(tmp);
+	return (res);
 }
 
 t_point3	parser_point3(char *str)

@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:33:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 15:07:51 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 18:54:01 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	parser_light(char **line)
 	if (!vaildation_light(light))
 	{
 		free(light);
+		ft_free_all_arr(line);
 		parser_error("Invaild light\n");
 	}
 	meta = singleton();

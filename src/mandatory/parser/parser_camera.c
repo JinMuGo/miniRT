@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 13:31:46 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 18:53:48 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	parser_camera(char **line)
 	cam.normal_vec3 = parser_vec3(line[2]);
 	cam.fov = check_to_double(line[3]);
 	if (!vaildation_camera(cam))
+	{
+		ft_free_all_arr(line);
 		parser_error("Invaild camera\n");
+	}
 	meta = singleton();
 	meta->camera = cam;
 }

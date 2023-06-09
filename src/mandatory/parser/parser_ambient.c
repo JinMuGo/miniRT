@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:55:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 13:31:37 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 18:53:15 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	parser_ambient(char **line)
 	amb.ratio = check_to_double(line[1]);
 	amb.rgb = parser_rgb(line[2]);
 	if (!vaildation_ambient(amb))
+	{
+		ft_free_all_arr(line);
 		parser_error("Invaild ambient\n");
+	}
 	meta = singleton();
 	meta->ambient = amb;
 }

@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 16:14:47 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 18:54:05 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	parser_plane(char **line)
 	if (!vaildation_plane(plane))
 	{
 		free(plane);
+		ft_free_all_arr(line);
 		parser_error("Invaild sphere\n");
 	}
 	meta = singleton();

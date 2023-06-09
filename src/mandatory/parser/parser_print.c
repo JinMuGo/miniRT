@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:18:42 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 17:22:46 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 18:19:40 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void print_light(t_meta *meta) {
 		printf("Light point: %f, %f, %f\n", light->light_point.x, light->light_point.y, light->light_point.z);
 		printf("Ratio: %f\n", light->ratio);
 		printf("RGB: %f, %f, %f\n", light->rgb.r, light->rgb.g, light->rgb.b);
-		free(light);
 		current = current->next;
 	}
 }

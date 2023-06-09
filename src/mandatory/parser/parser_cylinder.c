@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 17:09:05 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 18:53:55 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	parser_cylinder(char **line)
 	cylinder->rgb = parser_rgb(line[5]);
 	if (!vaildation_cylinder(cylinder))
 	{
+		ft_free_all_arr(line);
 		free(cylinder);
 		parser_error("Invaild cylinder\n");
 	}
