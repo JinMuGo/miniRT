@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/09 14:54:40 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 16:14:08 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,29 +44,68 @@ void print_light(t_meta *meta) {
 	}
 }
 
+void print_objs(t_meta *meta)
+{
+	printf("===objs===\n");
+	t_list	*current = meta->objs;
+	while (current != NULL) {
+		if (((t_sphere *)current->content)->type == SP)
+		{
+			printf(">>>sphere<<<\n");
+			t_sphere *sphere = (t_sphere *)current->content;
+			printf("Center point: %f, %f, %f\n", sphere->center_point.x, sphere->center_point.y, sphere->center_point.z);
+			printf("Diameter: %f\n", sphere->diameter);
+			printf("RGB: %f, %f, %f\n", sphere->rgb.r, sphere->rgb.g, sphere->rgb.b);
+		}
+		else if (((t_plane *)current->content)->type == PL)
+		{
+			printf(">>>plane<<<\n");
+			t_plane	*plane = (t_plane *)current->content;
+			printf("Point: %f, %f, %f\n", plane->point.x, plane->point.y, plane->point.z);
+			printf("Vec3: %f, %f, %f\n", plane->normal_vec3.x, plane->normal_vec3.y, plane->normal_vec3.z);
+			printf("RGB: %f, %f, %f\n", plane->rgb.r, plane->rgb.g, plane->rgb.b);
+		}
+		current = current->next;
+	}
+}
+
 int main(void) {
-	char *str1 = "A 0.2 255,255,255";
-	char *str2 = "C -50.0,0,20 0,0,1 70";
-	char *s_light = "L -40.0,50.0,0.0 0.6 10,0,255";
+	char *s_amb = "A 0.2 255,255,255";
+	char *s_cam = "C -50.0,0,20 0,0,1 70";
+	char *s_light = "L ,,50.0 0.0 10,0,255";
+	char *s_sphere = "sp 0.0,0.0,20.6 12.6 10,0,255";
+	char *s_plane = "pl 0.0,0.0,-10.0 0.0,1.0,0.0 0,0,225";
 
-	char **temp1 = ft_split_whitespace(str1);
-	char **temp2 = ft_split_whitespace(str2);
+	char **amb_temp = ft_split_whitespace(s_amb);
+	char **cam_temp = ft_split_whitespace(s_cam);
 	char **l_temp = ft_split_whitespace(s_light);
+	char **sp_temp = ft_split_whitespace(s_sphere);
+	char **pl_temp = ft_split_whitespace(s_plane);
 
-	printf("%s\n", str1);
-	parser_ambient(temp1);
-	printf("%s\n", str2);
-	parser_camera(temp2);
+	printf("%s\n", s_amb);
+	parser_ambient(amb_temp);
+
+	printf("%s\n", s_cam);
+	parser_camera(cam_temp);
+
 	printf("%s\n", s_light);
 	parser_light(l_temp);
+
+	printf("%s\n", s_sphere);
+	parser_sphere(sp_temp);
+
+	printf("%s\n", s_plane);
+	parser_plane(pl_temp);
 
 	t_meta *meta = singleton();
 
 	print_ambient(meta);
 	print_camera(meta);
 	print_light(meta);
+	print_objs(meta);
 
 	free(meta);
+
 	return (0);
 }
 

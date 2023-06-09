@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/09 14:10:33 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/09 16:05:50 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS :=	parser.c \
 	parser_ambient.c \
 	parser_camera.c \
 	parser_lights.c \
+	parser_sphere.c \
+	parser_plane.c \
 	parser_point_vec.c \
 	parser_atod.c \
 	parser_error.c \
