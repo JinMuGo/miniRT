@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/07 17:04:12 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/08 15:38:39 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,12 @@ include 	$(TOPDIR)/make_config/com/ColorRules.mk
 NAME	:=	$(PROJECT_NAME)
 
 DIRS	:=	design_patterns \
+			scene \
 			utils
 
 LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
-HEADS	:=	color.h \
+HEADS	:=	prt_color.h \
 			const.h \
 			defs.h \
 			design_patterns.h \

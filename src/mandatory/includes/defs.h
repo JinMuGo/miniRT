@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:10:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 22:56:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/08 15:33:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include "const.h"
 # include "enum.h"
 # include "struct.h"
+# include "color.h"
 
 #endif

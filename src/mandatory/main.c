@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/08 11:53:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/09 16:49:14 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "defs.h"
 #include "design_patterns.h"
 #include "utils.h"
+#include "scene.h"
 
 static inline	void test_init(t_meta *meta)
 {
-	const t_rgb amb_rgb = {255, 255, 255};
-	const t_rgb pl_rgb = {0, 0, 255};
-	const t_rgb sp_rgb = {10, 0, 255};
-	const t_rgb cy_rgb = {10, 0, 255};
+	const t_rgba amb_rgb = rgb_init(255, 255, 255, 255);
+	const t_rgba pl_rgb = rgb_init(0, 0, 255, 255);
+	const t_rgba sp_rgb = rgb_init(10, 0, 255, 255);
+	const t_rgba cy_rgb = rgb_init(10, 0, 255, 255);
 	const t_point3 cam_point = {-50.0, 0, 20};
 	const t_point3 pl_point = {0.0, 0.0, -10.0};
 	const t_point3 sp_center_point = {0.0, 0.0, 20.6};
@@ -33,9 +34,9 @@ static inline	void test_init(t_meta *meta)
 	meta->ambient.type = AMB;
 	meta->ambient.ratio = 0.2;
 	meta->ambient.rgb = amb_rgb;
-	meta->camera.type = CAM;
-	meta->camera.view_point = cam_point;
-	meta->camera.normal_vec3 = cam_vec3;
+	meta->scene.camera.type = CAM;
+	meta->scene.camera.view_point = cam_point;
+	meta->scene.camera.normal_vec3 = cam_vec3;
 
 	meta->spot_lights = ft_malloc(sizeof(t_light));
 	meta->spot_lights->type = LIGHT;
@@ -74,6 +75,7 @@ int	main(int ac, char **av)
 	(void)av;
 	meta = singleton();
 	test_init(meta);
+	setup_scene(meta);
 	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
 	mlx_loop_hook(meta->mlx_assets.mlx, hooks, meta);
 	mlx_loop(meta->mlx_assets.mlx);
