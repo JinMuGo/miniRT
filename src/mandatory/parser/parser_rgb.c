@@ -6,14 +6,14 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:07:55 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 13:14:48 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 13:31:18 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "parser.h"
 
-t_rgb	parse_rgb(char *str)
+t_rgb	parser_rgb(char *str)
 {
 	t_rgb	rgb;
 	int		i;

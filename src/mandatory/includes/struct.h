@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/08 16:51:37 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 14:10:13 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_mlx_assets	t_mlx_assets;
 typedef struct s_rgb		t_rgb;
 typedef struct s_ambient	t_ambient;
 typedef struct s_camera		t_camera;
+typedef struct s_spot_light	t_spot_light;
 typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;

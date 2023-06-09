@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/08 16:31:34 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/09 14:10:33 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	parser.c \
 	ft_split_whitespace.c \
-	parse_ambient.c \
-	parse_camera.c \
-	parse_point_vec.c \
+	parser_ambient.c \
+	parser_camera.c \
+	parser_lights.c \
+	parser_point_vec.c \
 	parser_atod.c \
 	parser_error.c \
 	parser_rgb.c \

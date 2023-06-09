@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 17:12:37 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 13:30:20 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double	get_point(char *str, int *i)
 	return (check_to_double(tmp));
 }
 
-t_point3	parse_point3(char *str)
+t_point3	parser_point3(char *str)
 {
 	t_point3	point;
 	int			i;
@@ -52,7 +52,7 @@ t_point3	parse_point3(char *str)
 	return (point);
 }
 
-t_vec3	parse_vec3(char *str)
+t_vec3	parser_vec3(char *str)
 {
 	t_vec3	vec;
 	int		i;

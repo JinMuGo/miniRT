@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_camera.c                                     :+:      :+:    :+:   */
+/*   parser_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 16:48:29 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 13:31:46 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	vaildation_camera(t_camera cam)
 	return (true);
 }
 
-void	parse_camera(char **line)
+void	parser_camera(char **line)
 {
 	t_meta		*meta;
 	t_camera	cam;
@@ -35,8 +35,8 @@ void	parse_camera(char **line)
 	if (ft_arrlen((void **)line) != 4)
 		parser_error("Incorrect number of camera information\n");
 	cam.type = CAM;
-	cam.view_point = parse_point3(line[1]);
-	cam.normal_vec3 = parse_vec3(line[2]);
+	cam.view_point = parser_point3(line[1]);
+	cam.normal_vec3 = parser_vec3(line[2]);
 	cam.fov = check_to_double(line[3]);
 	if (!vaildation_camera(cam))
 		parser_error("Invaild camera\n");

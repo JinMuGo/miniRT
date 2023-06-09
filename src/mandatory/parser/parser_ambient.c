@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ambient.c                                    :+:      :+:    :+:   */
+/*   parser_ambient.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:55:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 16:36:31 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 13:31:37 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	vaildation_ambient(t_ambient amb)
 	return (true);
 }
 
-void	parse_ambient(char **line)
+void	parser_ambient(char **line)
 {
 	t_meta		*meta;
 	t_ambient	amb;
@@ -34,7 +34,7 @@ void	parse_ambient(char **line)
 		parser_error("Incorrect number of ambient information\n");
 	amb.type = AMB;
 	amb.ratio = check_to_double(line[1]);
-	amb.rgb = parse_rgb(line[2]);
+	amb.rgb = parser_rgb(line[2]);
 	if (!vaildation_ambient(amb))
 		parser_error("Invaild ambient\n");
 	meta = singleton();
