@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:07:55 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 16:56:31 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 13:14:48 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_rgb	parse_rgb(char *str)
 	int		i;
 
 	if (!check_comma(str))
-		parser_error("Invaild information in RGB");
+		parser_error("Invaild information in RGB\n");
 	i = 0;
 	rgb.r = get_point(str, &i);
 	i++;
