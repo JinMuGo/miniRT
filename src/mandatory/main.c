@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/09 16:14:08 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 17:17:14 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ void print_objs(t_meta *meta)
 			printf("Vec3: %f, %f, %f\n", plane->normal_vec3.x, plane->normal_vec3.y, plane->normal_vec3.z);
 			printf("RGB: %f, %f, %f\n", plane->rgb.r, plane->rgb.g, plane->rgb.b);
 		}
+		else if (((t_cylinder *)current->content)->type == CY)
+		{
+			printf(">>>cylinder<<<\n");
+			t_cylinder	*cylinder = (t_cylinder *)current->content;
+			printf("Point: %f, %f, %f\n", cylinder->center_point.x, cylinder->center_point.y, cylinder->center_point.z);
+			printf("Vec3: %f, %f, %f\n", cylinder->normal_vec3.x, cylinder->normal_vec3.y, cylinder->normal_vec3.z);
+			printf("diameter: %f\n", cylinder->diameter);
+			printf("height: %f\n", cylinder->height);
+			printf("RGB: %f, %f, %f\n", cylinder->rgb.r, cylinder->rgb.g, cylinder->rgb.b);
+		}
 		current = current->next;
 	}
 }
@@ -75,12 +85,14 @@ int main(void) {
 	char *s_light = "L ,,50.0 0.0 10,0,255";
 	char *s_sphere = "sp 0.0,0.0,20.6 12.6 10,0,255";
 	char *s_plane = "pl 0.0,0.0,-10.0 0.0,1.0,0.0 0,0,225";
+	char *s_cylinder = "cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255";
 
 	char **amb_temp = ft_split_whitespace(s_amb);
 	char **cam_temp = ft_split_whitespace(s_cam);
 	char **l_temp = ft_split_whitespace(s_light);
 	char **sp_temp = ft_split_whitespace(s_sphere);
 	char **pl_temp = ft_split_whitespace(s_plane);
+	char **cy_temp = ft_split_whitespace(s_cylinder);
 
 	printf("%s\n", s_amb);
 	parser_ambient(amb_temp);
@@ -96,6 +108,9 @@ int main(void) {
 
 	printf("%s\n", s_plane);
 	parser_plane(pl_temp);
+
+	printf("%s\n", s_cylinder);
+	parser_cylinder(cy_temp);
 
 	t_meta *meta = singleton();
 
