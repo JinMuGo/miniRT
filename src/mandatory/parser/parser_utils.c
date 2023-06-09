@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:29:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 16:51:22 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/09 15:27:42 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	check_comma(char *str)
 		if (str[i] == ',')
 			com_cnt++;
 	}
-	if (com_cnt > 2)
+	if (com_cnt != 2)
 		return (false);
 	return (true);
 }
