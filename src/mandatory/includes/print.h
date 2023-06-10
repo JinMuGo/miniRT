@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 16:10:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 08:44:43 by jgo              ###   ########.fr       */
+/*   Created: 2023/05/27 11:03:09 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/07 17:27:45 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# define DEFS_H
+#ifndef PRINT_H
+# define PRINT_H
 
-# include "const.h"
-# include "enum.h"
+# include "stdio.h"
 # include "struct.h"
-# include "color.h"
+
+void	write_color(t_color3 pixel_color);
 
 #endif

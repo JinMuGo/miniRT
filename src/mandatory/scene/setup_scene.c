@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/09 16:52:59 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 09:53:29 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static inline void	_render_background(t_meta *meta)
 		while (axis[X] < WIN_WIDTH)
 		{
 			mlx_put_pixel(meta->mlx_assets.img, axis[X], axis[Y],
-				rgb_to_color(meta->ambient.rgb));
+				rgba_to_color(meta->ambient.rgba));
 			axis[X]++;
 		}
 		axis[Y]++;

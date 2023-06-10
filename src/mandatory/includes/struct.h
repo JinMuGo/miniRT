@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/09 16:51:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 09:49:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include "minirt.h"
 
 typedef struct s_mlx_assets	t_mlx_assets;
-typedef struct s_light		t_light;
 typedef struct s_rgba		t_rgba;
 typedef struct s_ambient	t_ambient;
 typedef struct s_ray		t_ray;
 typedef struct s_canvas		t_canvas;
 typedef struct s_camera		t_camera;
 typedef struct s_scene		t_scene;
+typedef struct s_spot_light	t_spot_light;
 typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
@@ -48,14 +48,14 @@ struct						s_ambient
 {
 	t_object_type			type;
 	double					ratio;
-	t_rgba					rgb;
+	t_rgba					rgba;
 };
 
 struct						s_camera
 {
 	t_object_type			type;
 	t_point3				view_point;
-	int						fov;
+	double					fov;
 	t_vec3					normal_vec3;
 	double					pitch;
 	double					yaw;
@@ -64,12 +64,12 @@ struct						s_camera
 	t_vec3					up;
 };
 
-struct						s_light
+struct						s_spot_light
 {
 	t_object_type			type;
 	t_point3				light_point;
 	double					ratio;
-	t_rgba					rgb;
+	t_rgba					rgba;
 };
 
 struct						s_sphere
@@ -77,7 +77,7 @@ struct						s_sphere
 	t_object_type			type;
 	t_point3				center_point;
 	double					diameter;
-	t_rgba					rgb;
+	t_rgba					rgba;
 };
 
 struct						s_plane
@@ -85,7 +85,7 @@ struct						s_plane
 	t_object_type			type;
 	t_point3				point;
 	t_vec3					normal_vec3;
-	t_rgba					rgb;
+	t_rgba					rgba;
 };
 
 struct						s_cylinder
@@ -95,7 +95,7 @@ struct						s_cylinder
 	t_vec3					normal_vec3;
 	double					diameter;
 	double					height;
-	t_rgba					rgb;
+	t_rgba					rgba;
 };
 
 struct						s_ray
@@ -123,7 +123,8 @@ struct						s_meta
 	t_mlx_assets			mlx_assets;
 	t_ambient				ambient;
 	t_scene					scene;
-	t_light					*spot_lights;
+	t_camera				camera;
+	t_list					*spot_lights;
 	t_list					*objs;
 };
 

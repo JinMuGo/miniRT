@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 09:52:37 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/09 20:07:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "minirt.h"
+#include "defs.h"
 
-# include "defs.h"
+static inline void	print_error_msg(char *msg)
+{
+	printf("miniRT: %s\n", msg);
+}
 
-void		destroy(const t_meta *meta);
-void		hooks(void *param);
-
-// color.c
-t_rgba		rgba_init(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-uint32_t	rgba_to_color(t_rgba rgba);
-
-// atod.c
-double		atod(char *str);
-
-// error.c
-bool		error_handler(t_error_type type);
-
-#endif
+bool	error_handler(t_error_type type)
+{
+	if (type == ARGS_ERR)
+		print_error_msg(ERR_ARGS);
+	return (EXIT_FAILURE);
+}

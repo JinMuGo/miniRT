@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/08 16:09:07 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/10 09:44:31 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	destroy.c \
 		hooks.c \
-		color.c
+		color.c \
+		atod.c \
+		error.c
 
 NAME := utils.a
 
