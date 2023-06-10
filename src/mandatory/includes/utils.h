@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/09 20:01:46 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 09:52:37 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 
 # include "defs.h"
 
-// hooks.c
-void	destroy(const t_meta *meta);
-void	hooks(void *param);
+void		destroy(const t_meta *meta);
+void		hooks(void *param);
 
 // color.c
-double	atod(char *str);
-t_rgb	rgb_init(int r, int g, int b);
+t_rgba		rgba_init(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+uint32_t	rgba_to_color(t_rgba rgba);
+
+// atod.c
+double		atod(char *str);
 
 // error.c
-bool	error_handler(t_error_type type);
+bool		error_handler(t_error_type type);
 
 #endif

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_rgb.c                                       :+:      :+:    :+:   */
+/*   parser_rgba.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 17:07:55 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 13:31:18 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/10 10:07:59 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "parser.h"
+#include "utils.h"
 
-t_rgb	parser_rgb(char *str)
+t_rgba	parser_rgba(char *str)
 {
-	t_rgb	rgb;
-	int		i;
+	int	i;
 
 	if (!check_comma(str))
 		parser_error("Invaild information in RGB\n");
 	i = 0;
-	rgb.r = get_point(str, &i);
-	i++;
-	rgb.g = get_point(str, &i);
-	i++;
-	rgb.b = get_point(str, &i);
-	return (rgb);
+	return (rgba_init(
+			get_point(str, &i),
+			get_point(str, &i),
+			get_point(str, &i),
+			255));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:18:42 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 18:19:40 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/10 09:48:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void print_ambient(t_meta *meta) {
 	printf("===ambient===\n");
 	printf("Type: %d\n", meta->ambient.type);
 	printf("Ratio: %f\n", meta->ambient.ratio);
-	printf("RGB: %f, %f, %f\n", meta->ambient.rgb.r, meta->ambient.rgb.g, meta->ambient.rgb.b);
+	printf("RGB: %f, %f, %f\n", meta->ambient.rgba.r, meta->ambient.rgba.g, meta->ambient.rgba.b);
 }
 
 void print_camera(t_meta *meta) {
@@ -37,7 +37,7 @@ void print_light(t_meta *meta) {
 		t_spot_light *light = (t_spot_light *)current->content;
 		printf("Light point: %f, %f, %f\n", light->light_point.x, light->light_point.y, light->light_point.z);
 		printf("Ratio: %f\n", light->ratio);
-		printf("RGB: %f, %f, %f\n", light->rgb.r, light->rgb.g, light->rgb.b);
+		printf("RGB: %f, %f, %f\n", light->rgba.r, light->rgba.g, light->rgba.b);
 		current = current->next;
 	}
 }
@@ -53,7 +53,7 @@ void print_objs(t_meta *meta)
 			t_sphere *sphere = (t_sphere *)current->content;
 			printf("Center point: %f, %f, %f\n", sphere->center_point.x, sphere->center_point.y, sphere->center_point.z);
 			printf("Diameter: %f\n", sphere->diameter);
-			printf("RGB: %f, %f, %f\n", sphere->rgb.r, sphere->rgb.g, sphere->rgb.b);
+			printf("RGB: %f, %f, %f\n", sphere->rgba.r, sphere->rgba.g, sphere->rgba.b);
 		}
 		else if (((t_plane *)current->content)->type == PL)
 		{
@@ -61,7 +61,7 @@ void print_objs(t_meta *meta)
 			t_plane	*plane = (t_plane *)current->content;
 			printf("Point: %f, %f, %f\n", plane->point.x, plane->point.y, plane->point.z);
 			printf("Vec3: %f, %f, %f\n", plane->normal_vec3.x, plane->normal_vec3.y, plane->normal_vec3.z);
-			printf("RGB: %f, %f, %f\n", plane->rgb.r, plane->rgb.g, plane->rgb.b);
+			printf("RGB: %f, %f, %f\n", plane->rgba.r, plane->rgba.g, plane->rgba.b);
 		}
 		else if (((t_cylinder *)current->content)->type == CY)
 		{
@@ -71,7 +71,7 @@ void print_objs(t_meta *meta)
 			printf("Vec3: %f, %f, %f\n", cylinder->normal_vec3.x, cylinder->normal_vec3.y, cylinder->normal_vec3.z);
 			printf("diameter: %f\n", cylinder->diameter);
 			printf("height: %f\n", cylinder->height);
-			printf("RGB: %f, %f, %f\n", cylinder->rgb.r, cylinder->rgb.g, cylinder->rgb.b);
+			printf("RGB: %f, %f, %f\n", cylinder->rgba.r, cylinder->rgba.g, cylinder->rgba.b);
 		}
 		current = current->next;
 	}

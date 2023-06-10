@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 18:54:12 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/10 09:46:46 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	vaildation_sphere(t_sphere *sphere)
 {
 	if (sphere->type != SP)
 		return (false);
-	if (!check_rgb(sphere->rgb))
+	if (!check_rgba(sphere->rgba))
 		return (false);
 	return (true);
 }
@@ -34,7 +34,7 @@ void	parser_sphere(char **line)
 	sphere->type = SP;
 	sphere->center_point = parser_point3(line[1]);
 	sphere->diameter = check_to_double(line[2]);
-	sphere->rgb = parser_rgb(line[3]);
+	sphere->rgba = parser_rgba(line[3]);
 	if (!vaildation_sphere(sphere))
 	{
 		free(sphere);

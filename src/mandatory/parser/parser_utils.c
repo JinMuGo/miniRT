@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:29:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 15:27:42 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/10 09:42:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ bool	check_0_to_1(double data)
 	return (data >= 0.0 && data <= 1.0);
 }
 
-bool	check_rgb(t_rgb rgb)
+bool	check_rgba(t_rgba rgba)
 {
-	return ((rgb.r >= 0.0 && rgb.r <= 255.0) \
-		&& (rgb.g >= 0.0 && rgb.g <= 255.0) \
-		&& (rgb.b >= 0.0 && rgb.b <= 255.0));
+	return ((rgba.r >= 0.0 && rgba.r <= 255.0) \
+		&& (rgba.g >= 0.0 && rgba.g <= 255.0) \
+		&& (rgba.b >= 0.0 && rgba.b <= 255.0) \
+		&& (rgba.a >= 0.0 && rgba.a <= 255.0));
 }
 
 bool	check_minus1_to_1(double data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_lights.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:33:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 18:54:01 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/10 09:46:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	vaildation_light(t_spot_light *light)
 	if (light->type != LIGHT)
 		return (false);
 	if (!check_0_to_1(light->ratio)
-		|| !check_rgb(light->rgb))
+		|| !check_rgba(light->rgba))
 		return (false);
 	return (true);
 }
@@ -42,7 +42,7 @@ void	parser_light(char **line)
 	light->type = LIGHT;
 	light->light_point = parser_point3(line[1]);
 	light->ratio = check_to_double(line[2]);
-	light->rgb = parser_rgb(line[3]);
+	light->rgba = parser_rgba(line[3]);
 	if (!vaildation_light(light))
 	{
 		free(light);

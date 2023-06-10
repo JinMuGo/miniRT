@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 18:54:05 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/10 09:47:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	vaildation_plane(t_plane *plane)
 	if (!check_minus1_to_1(plane->normal_vec3.x)
 		|| !check_minus1_to_1(plane->normal_vec3.y)
 		|| !check_minus1_to_1(plane->normal_vec3.z)
-		|| !check_rgb(plane->rgb))
+		|| !check_rgba(plane->rgba))
 		return (false);
 	return (true);
 }
@@ -37,7 +37,7 @@ void	parser_plane(char **line)
 	plane->type = PL;
 	plane->point = parser_point3(line[1]);
 	plane->normal_vec3 = parser_vec3(line[2]);
-	plane->rgb = parser_rgb(line[3]);
+	plane->rgba = parser_rgba(line[3]);
 	if (!vaildation_plane(plane))
 	{
 		free(plane);
