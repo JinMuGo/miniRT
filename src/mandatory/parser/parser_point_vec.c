@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/10 10:04:58 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 11:09:42 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,26 @@ double	get_point(char *str, int *i)
 
 t_point3	parser_point3(char *str)
 {
-	t_point3	point;
-	int			i;
+	int	i;
 
 	if (!check_comma(str))
 		parser_error("Invaild information in point\n");
 	i = 0;
-	point.x = get_point(str, &i);
-	i++;
-	point.y = get_point(str, &i);
-	i++;
-	point.z = get_point(str, &i);
-	return (point);
+	return (vec3_init(
+			get_point(str, &i),
+			get_point(str, &i),
+			get_point(str, &i)));
 }
 
 t_vec3	parser_vec3(char *str)
 {
-	t_vec3	vec;
-	int		i;
+	int	i;
 
 	if (!check_comma(str))
 		parser_error("Invaild information in vector\n");
 	i = 0;
-	vec.x = get_point(str, &i);
-	i++;
-	vec.y = get_point(str, &i);
-	i++;
-	vec.z = get_point(str, &i);
-	return (vec);
+	return (vec3_init(
+			get_point(str, &i),
+			get_point(str, &i),
+			get_point(str, &i)));
 }
