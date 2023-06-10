@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 09:53:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 15:27:13 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static inline void	_setup_camera(t_camera *camera)
 
 static inline void	_render_background(t_meta *meta)
 {
+	const t_rgba rgba_bgr = rgba_init(42, 42, 42, 255);
 	int	axis[2];
 
 	axis[Y] = 0;
@@ -41,7 +42,7 @@ static inline void	_render_background(t_meta *meta)
 		while (axis[X] < WIN_WIDTH)
 		{
 			mlx_put_pixel(meta->mlx_assets.img, axis[X], axis[Y],
-				rgba_to_color(meta->ambient.rgba));
+				rgba_to_color(rgba_bgr));
 			axis[X]++;
 		}
 		axis[Y]++;

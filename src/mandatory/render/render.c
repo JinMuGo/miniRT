@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 15:47:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 15:41:41 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/10 15:37:40 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "defs.h"
+#include "minirt.h"
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
+//render-> obj -> each_funcion -> render(color)
+void	render(t_meta *meta)
+{
+	//if(..obj == SP)
+	// else if (..obj == PL)
+	// else if (..obj == CY)
+}
 
-# include "vector.h"
-# include "angle.h"
-# include "MLX42.h"
-# include "libft.h"
-
-#endif
