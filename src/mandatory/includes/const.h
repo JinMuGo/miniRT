@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/09 20:04:54 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 20:07:12 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "color.h"
 
 # define EPSILON 1e-6
+# define FOCAL_LENGTH 1.0
 
 # define ERR_ARGS			"❌ Incorrect number of arguments"
 # define ERR_PATH_OPEN		"❌ Unable to open the file for that path"

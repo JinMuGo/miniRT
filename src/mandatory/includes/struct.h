@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 09:49:51 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 21:19:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
 typedef struct s_vec3		t_point3;
 typedef struct s_meta		t_meta;
+typedef struct s_hit_record	t_hit_record;
 
 struct						s_rgba
 {
@@ -57,6 +58,12 @@ struct						s_camera
 	t_point3				view_point;
 	double					fov;
 	t_vec3					normal_vec3;
+	double					viewport_h;
+	double					viewport_w;
+	t_vec3					horizontal;
+	t_vec3					vertical;
+	double					focal_len;
+	t_point3				left_bottom;
 	double					pitch;
 	double					yaw;
 	t_vec3					front;
@@ -102,6 +109,17 @@ struct						s_ray
 {
 	t_point3				origin;
 	t_vec3					direction;
+};
+
+struct						s_hit_record
+{
+	t_point3				point;
+	t_vec3					normal_vec3;
+	double					t_min;
+	double					t_max;
+	double					t;
+	bool					front_face;
+	t_rgba					rgba;
 };
 
 struct						s_canvas

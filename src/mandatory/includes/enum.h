@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 08:44:56 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/10 20:06:17 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ enum						e_object_type
 	CY
 };
 
-enum		e_axis
+enum						e_axis
 {
 	X,
 	Y,
 	Z
 };
 
-enum					e_error_type
+enum						e_error_type
 {
 	ARGS_ERR
 };
