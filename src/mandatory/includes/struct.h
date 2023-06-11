@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 09:49:51 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 15:33:33 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,103 +29,134 @@ typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
 typedef struct s_vec3		t_point3;
 typedef struct s_meta		t_meta;
+typedef struct s_record		t_record;
+typedef struct s_obj		t_obj;
 
-struct						s_rgba
+struct				s_rgba
 {
-	double					r;
-	double					g;
-	double					b;
-	double					a;
+	double			r;
+	double			g;
+	double			b;
+	double			a;
 };
 
-struct						s_mlx_assets
+struct				s_mlx_assets
 {
-	mlx_t					*mlx;
-	mlx_image_t				*img;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
 };
 
-struct						s_ambient
+struct				s_ambient
 {
-	t_object_type			type;
-	double					ratio;
-	t_rgba					rgba;
+	t_object_type	type;
+	double			ratio;
+	t_rgba			rgba;
 };
 
-struct						s_camera
+struct				s_camera
 {
-	t_object_type			type;
-	t_point3				view_point;
-	double					fov;
-	t_vec3					normal_vec3;
-	double					pitch;
-	double					yaw;
-	t_vec3					front;
-	t_vec3					pos;
-	t_vec3					up;
+	t_object_type	type;
+	t_point3		view_point;
+	double			fov;
+	t_vec3			normal_vec3;
+	double			viewport_h;
+	double			viewport_w;
+	t_vec3			horizontal;
+	t_vec3			vertical;
+	double			focal_len;
+	t_point3		left_bottom;
+	double			pitch;
+	double			yaw;
+	t_vec3			front;
+	t_vec3			pos;
+	t_vec3			up;
 };
 
-struct						s_spot_light
+struct				s_spot_light
 {
-	t_object_type			type;
-	t_point3				light_point;
-	double					ratio;
-	t_rgba					rgba;
+	t_object_type	type;
+	t_point3		light_point;
+	double			ratio;
+	t_rgba			rgba;
 };
 
-struct						s_sphere
+struct				s_sphere
 {
-	t_object_type			type;
-	t_point3				center_point;
-	double					diameter;
-	t_rgba					rgba;
+	t_object_type	type;
+	t_point3		center_point;
+	double			diameter;
+	t_rgba			rgba;
 };
 
-struct						s_plane
+struct				s_plane
 {
-	t_object_type			type;
-	t_point3				point;
-	t_vec3					normal_vec3;
-	t_rgba					rgba;
+	t_object_type	type;
+	t_point3		point;
+	t_vec3			normal_vec3;
+	t_rgba			rgba;
 };
 
-struct						s_cylinder
+struct				s_cylinder
 {
-	t_object_type			type;
-	t_point3				center_point;
-	t_vec3					normal_vec3;
-	double					diameter;
-	double					height;
-	t_rgba					rgba;
+	t_object_type	type;
+	t_point3		center_point;
+	t_vec3			normal_vec3;
+	double			diameter;
+	double			height;
+	t_rgba			rgba;
 };
 
-struct						s_ray
+union				u_obj
 {
-	t_point3				origin;
-	t_vec3					direction;
+	t_sphere		sphere;
+	t_plane			plane;
+	t_cylinder		cylinder;
 };
 
-struct						s_canvas
+struct				s_ray
 {
-	int						width;
-	int						height;
-	double					aspect_ratio;
+	t_point3		origin;
+	t_vec3			direction;
 };
 
-struct						s_scene
+struct				s_record
 {
-	t_canvas				canvas;
-	t_camera				camera;
-	t_ray					ray;
+	t_point3		point;
+	t_vec3			normal_vec3;
+	bool			front_face;
+	t_rgba			rgba;
+	double			t;
 };
 
-struct						s_meta
+struct				s_canvas
 {
-	t_mlx_assets			mlx_assets;
-	t_ambient				ambient;
-	t_scene					scene;
-	t_camera				camera;
-	t_list					*spot_lights;
-	t_list					*objs;
+	int				width;
+	int				height;
+	double			aspect_ratio;
+};
+
+struct				s_scene
+{
+	t_canvas		canvas;
+	t_camera		camera;
+	t_ray			ray;
+};
+
+struct				s_obj
+{
+	t_object_type	type;
+	union u_obj		content;
+	t_obj			*next;
+};
+
+struct				s_meta
+{
+	t_mlx_assets	mlx_assets;
+	t_ambient		ambient;
+	t_scene			scene;
+	t_camera		camera;
+	t_list			*spot_lights;
+	t_obj			*objs;
 };
 
 #endif

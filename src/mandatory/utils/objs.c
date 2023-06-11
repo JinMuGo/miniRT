@@ -1,30 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_error.c                                     :+:      :+:    :+:   */
+/*   objs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 16:41:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/11 16:15:41 by sanghwal         ###   ########seoul.kr  */
+/*   Created: 2023/06/11 15:00:02 by sanghwal          #+#    #+#             */
+/*   Updated: 2023/06/11 16:10:25 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "parser.h"
 #include "defs.h"
-#include "design_patterns.h"
-#include "utils.h"
+#include "parser.h"
 
-void	parser_error(char *str)
+void	objsadd_back(t_obj **objs, t_obj *new)
 {
-	t_meta	*meta;
+	t_obj	*node;
 
-	printf("Error\n%s", str);
-	meta = singleton();
-	ft_lstclear(&meta->spot_lights, free);
-	objs_clear(&meta->objs, free);
-	free(meta);
-	system("leaks miniRT");
-	exit(1);
+	if (!new)
+		return ;
+	if (!*objs)
+	{
+		*objs = new;
+		return ;
+	}
+	node = *objs;
+	while (node->next)
+		node = node->next;
+	node->next = new;
+}
+
+void	objs_clear(t_obj **objs, void (*del)(void *))
+{
+	t_obj	*obj;
+
+	if (!*objs || !del)
+		return ;
+	while (*objs)
+	{
+		obj = (*objs)->next;
+		free(obj);
+		*objs = obj;
+	}
+	*objs = NULL;
 }
