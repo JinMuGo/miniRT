@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 18:30:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 18:43:59 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,6 @@ struct				s_cylinder
 	t_rgba			rgba;
 };
 
-union				u_obj
-{
-	t_sphere		sphere;
-	t_plane			plane;
-	t_cylinder		cylinder;
-};
-
 struct				s_ray
 {
 	t_point3		origin;
@@ -140,6 +133,13 @@ struct				s_scene
 	t_canvas		canvas;
 	t_camera		camera;
 	t_ray			ray;
+};
+
+union				u_obj
+{
+	t_sphere		sphere;
+	t_plane			plane;
+	t_cylinder		cylinder;
 };
 
 struct				s_obj

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 12:24:23 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 18:31:59 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static inline	void	calc_light()
 
 }
 
-static inline int32_t	calc_pixel(t_meta* meta, int x, int y)
+static inline int32_t	_calc_pixel(t_meta* meta, int x, int y)
 {
 	const double	ratio[2] = {x / (WIN_WIDTH - 1), y / (WIN_HEIGHT - 1)};
 	const t_ray		ray = ray_init(&meta->camera, ratio);
@@ -45,7 +45,7 @@ void	render(t_meta *meta)
 		while (canvas[X] < WIN_WIDTH)
 		{
 			mlx_put_pixel(meta->mlx_assets.img, canvas[X], canvas[Y],
-				calc_pixel(meta, canvas[X], canvas[Y]));
+				_calc_pixel(meta, canvas[X], canvas[Y]));
 			canvas[X]++;
 		}
 		canvas[Y]++;
