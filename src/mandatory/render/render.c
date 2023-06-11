@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 18:31:59 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 18:52:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include "utils.h"
 #include "render.h"
 
-static inline	void	calc_light()
-{
+//static inline	void	calc_light()
+//{
 
-}
+//}
 
 static inline int32_t	_calc_pixel(t_meta* meta, int x, int y)
 {

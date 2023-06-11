@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 18:47:26 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 20:11:44 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	render(t_meta *meta);
 
-double get_sphere_dist(t_obj *obj, const t_ray *dir, t_record *record);
+double get_sphere_dist(t_obj *obj, const t_ray *ray, t_record *record);
+t_rgba get_sphere_color(union u_obj *obj, const t_ray *ray, t_record *record);
 
 // ray
 t_ray	ray_init(t_camera *camera, const double ratio[2]);

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 18:44:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 20:27:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ static inline	t_get_obj_dist obj_dist_func_classifier(t_object_type type)
 {
 	if (type == SP)
 		return (get_sphere_dist);
+	return (NULL);
 }
 
-static inline	t_get_obj_dist obj_color_func_classifier(t_object_type type)
+static inline	t_get_obj_color obj_color_func_classifier(t_object_type type)
 {
-	//if (type == SP)
-	//	return (get_sphere_color);
+	if (type == SP)
+		return (get_sphere_color);
+	return (NULL);
 }
 
 // obj, cam.pos, ray.direction
@@ -43,12 +45,13 @@ bool find_obj_in_pixel(t_obj	*objs, const t_ray *ray, t_record *record)
 		if (calc_t && (record->t == 0 || calc_t < record->t))
 		{
 			record->t = calc_t;
+			record->obj = &obj->content;
 			type = obj->type;
 		}
 		obj = obj->next;
 	}
 	if (type == NONE)
 		return (false);
-//record->rgba = obj_color_func_classifier(type)();
+	record->rgba = obj_color_func_classifier(type)(record->obj, ray, record);
 	return (true);
 }
