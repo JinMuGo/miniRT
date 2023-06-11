@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/10 09:46:46 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 16:02:12 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,24 @@ static bool	vaildation_sphere(t_sphere *sphere)
 void	parser_sphere(char **line)
 {
 	t_meta		*meta;
-	t_sphere	*sphere;
+	t_obj		*obj;
+	t_sphere	sphere;
 
 	if (ft_arrlen((void **)line) != 4)
 		parser_error("Incorrect number of light information\n");
-	sphere = ft_malloc(sizeof(t_sphere));
-	sphere->type = SP;
-	sphere->center_point = parser_point3(line[1]);
-	sphere->diameter = check_to_double(line[2]);
-	sphere->rgba = parser_rgba(line[3]);
-	if (!vaildation_sphere(sphere))
+	sphere.type = SP;
+	sphere.center_point = parser_point3(line[1]);
+	sphere.diameter = check_to_double(line[2]);
+	sphere.rgba = parser_rgba(line[3]);
+	if (!vaildation_sphere(&sphere))
 	{
-		free(sphere);
 		ft_free_all_arr(line);
 		parser_error("Invaild sphere\n");
 	}
 	meta = singleton();
-	ft_lstadd_back(&(meta->objs), ft_lstnew(sphere));
+	obj = ft_malloc(sizeof(t_obj));
+	obj->type = SP;
+	obj->content.sphere = sphere;
+	obj->next = NULL;
+	objsadd_back(&meta->objs, obj);
 }

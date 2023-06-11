@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
+#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/05 20:19:09 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/11 15:49:25 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ include $(TOPDIR)/make_config/lib/Rules.mk
 
 SRCS :=
 
-NAME :=	libmatrix.a
+NAME :=	libangle.a
 
 OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)
