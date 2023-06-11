@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 09:52:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 16:11:04 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,9 @@ double		atod(char *str);
 
 // error.c
 bool		error_handler(t_error_type type);
+
+// objs.c
+void		objsadd_back(t_obj **objs, t_obj *new);
+void		objs_clear(t_obj **objs, void (*del)(void *));
 
 #endif

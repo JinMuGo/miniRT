@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:18:42 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/10 09:48:31 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 15:57:53 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,33 @@ void print_light(t_meta *meta) {
 void print_objs(t_meta *meta)
 {
 	printf("===objs===\n");
-	t_list	*current = meta->objs;
+	t_obj	*current = meta->objs;
 	while (current != NULL) {
-		if (((t_sphere *)current->content)->type == SP)
+		if (current->type == SP)
 		{
 			printf(">>>sphere<<<\n");
-			t_sphere *sphere = (t_sphere *)current->content;
-			printf("Center point: %f, %f, %f\n", sphere->center_point.x, sphere->center_point.y, sphere->center_point.z);
-			printf("Diameter: %f\n", sphere->diameter);
-			printf("RGB: %f, %f, %f\n", sphere->rgba.r, sphere->rgba.g, sphere->rgba.b);
+			t_sphere sphere = current->content.sphere;
+			printf("Center point: %f, %f, %f\n", sphere.center_point.x, sphere.center_point.y, sphere.center_point.z);
+			printf("Diameter: %f\n", sphere.diameter);
+			printf("RGB: %f, %f, %f\n", sphere.rgba.r, sphere.rgba.g, sphere.rgba.b);
 		}
-		else if (((t_plane *)current->content)->type == PL)
+		else if (current->type == PL)
 		{
 			printf(">>>plane<<<\n");
-			t_plane	*plane = (t_plane *)current->content;
-			printf("Point: %f, %f, %f\n", plane->point.x, plane->point.y, plane->point.z);
-			printf("Vec3: %f, %f, %f\n", plane->normal_vec3.x, plane->normal_vec3.y, plane->normal_vec3.z);
-			printf("RGB: %f, %f, %f\n", plane->rgba.r, plane->rgba.g, plane->rgba.b);
+			t_plane	plane = current->content.plane;
+			printf("Point: %f, %f, %f\n", plane.point.x, plane.point.y, plane.point.z);
+			printf("Vec3: %f, %f, %f\n", plane.normal_vec3.x, plane.normal_vec3.y, plane.normal_vec3.z);
+			printf("RGB: %f, %f, %f\n", plane.rgba.r, plane.rgba.g, plane.rgba.b);
 		}
-		else if (((t_cylinder *)current->content)->type == CY)
+		else if (current->type == CY)
 		{
 			printf(">>>cylinder<<<\n");
-			t_cylinder	*cylinder = (t_cylinder *)current->content;
-			printf("Point: %f, %f, %f\n", cylinder->center_point.x, cylinder->center_point.y, cylinder->center_point.z);
-			printf("Vec3: %f, %f, %f\n", cylinder->normal_vec3.x, cylinder->normal_vec3.y, cylinder->normal_vec3.z);
-			printf("diameter: %f\n", cylinder->diameter);
-			printf("height: %f\n", cylinder->height);
-			printf("RGB: %f, %f, %f\n", cylinder->rgba.r, cylinder->rgba.g, cylinder->rgba.b);
+			t_cylinder	cylinder = current->content.cylinder;
+			printf("Point: %f, %f, %f\n", cylinder.center_point.x, cylinder.center_point.y, cylinder.center_point.z);
+			printf("Vec3: %f, %f, %f\n", cylinder.normal_vec3.x, cylinder.normal_vec3.y, cylinder.normal_vec3.z);
+			printf("diameter: %f\n", cylinder.diameter);
+			printf("height: %f\n", cylinder.height);
+			printf("RGB: %f, %f, %f\n", cylinder.rgba.r, cylinder.rgba.g, cylinder.rgba.b);
 		}
 		current = current->next;
 	}
