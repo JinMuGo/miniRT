@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_sphere.c                                    :+:      :+:    :+:   */
+/*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 12:24:14 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/11 11:18:41 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
 
-double get_sphere_dist(t_list *obj, t_vec3 origin, t_ray dir)
+
+
+// obj, cam.pos, ray.direction
+double hit_obj(t_list	*objs, t_ray *ray, t_hit_record *record)
 {
+	t_list	*obj;
 
+	obj = objs;
+	while (obj)
+	{
+
+
+		obj = obj->next;
+	}
 }
-
-// 아직 무슨 인자가 들어가야하는지 모름. 
-// double get_sphere_color(t_list *obj, t_vec3 origin, t_ray dir)
-// {
-
-// }
