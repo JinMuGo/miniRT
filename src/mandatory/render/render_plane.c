@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 20:43:50 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 20:51:09 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double get_plane_dist(t_obj *obj, const t_ray *ray)
 	const double numer = -1.0 * vec3_inner_product(plane.normal_vec3, pc);
 	double	t;
 
-	if (denom == 0)
+	if (denom == 0 || fabs(denom) < EPSILON)
 		return (0);
 	t = numer / denom;
 	if (t < 0)
