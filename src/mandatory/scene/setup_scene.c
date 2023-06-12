@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 20:30:16 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 14:54:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ static inline void	_render_background(t_meta *meta)
 void	setup_scene(t_meta *meta)
 {
 	_setup_canvas(&meta->scene.canvas);
-	_setup_camera(&meta->scene.camera, meta->scene.canvas.aspect_ratio);
+	_setup_camera(&meta->camera, meta->scene.canvas.aspect_ratio);
 	_render_background(meta);
 }

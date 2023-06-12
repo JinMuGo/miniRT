@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 18:52:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 15:01:29 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 static inline int32_t	_calc_pixel(t_meta* meta, int x, int y)
 {
-	const double	ratio[2] = {x / (WIN_WIDTH - 1), y / (WIN_HEIGHT - 1)};
+	const double	ratio[2] = {(double)x / (WIN_WIDTH - 1), (double)y / (WIN_HEIGHT - 1)};
 	const t_ray		ray = ray_init(&meta->camera, ratio);
 	t_record		record;
 
