@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 15:51:49 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 20:24:37 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static inline	t_get_obj_dist obj_dist_func_classifier(t_object_type type)
 {
 	if (type == SP)
 		return (get_sphere_dist);
+	if (type == PL)
+		return (get_plane_dist);
 	return (NULL);
 }
 
@@ -25,6 +27,8 @@ static inline	t_get_obj_color obj_color_func_classifier(t_object_type type)
 {
 	if (type == SP)
 		return (get_sphere_color);
+	if (type == PL)
+		return (get_plane_color);
 	return (NULL);
 }
 
