@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 19:11:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 19:33:37 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ int	main(int ac, char **av)
 	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
 	mlx_loop_hook(meta->mlx_assets.mlx, hooks, meta);
 	mlx_loop(meta->mlx_assets.mlx);
-	mlx_close_window(meta->mlx_assets.mlx);
-	mlx_terminate(meta->mlx_assets.mlx);
-	ft_lstclear(&meta->spot_lights, free);
-	objs_clear(&meta->objs, free);
-	free(meta);
+	destroy(meta);
 	return (EXIT_SUCCESS);
 }
