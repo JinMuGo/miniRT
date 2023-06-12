@@ -6,11 +6,11 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:22:04 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/11 18:39:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 19:01:53 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "tensor.h"
 
 t_vec3	vec3_scalar_divide(t_vec3 vec3, double scalar)
 {

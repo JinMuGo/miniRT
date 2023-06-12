@@ -6,11 +6,11 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:22:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 15:38:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 19:01:36 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "angle.h"
+#include "tensor.h"
 
 double	degree_to_radian(double degree)
 {

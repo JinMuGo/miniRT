@@ -6,11 +6,11 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:20:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 16:39:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/12 19:01:53 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "tensor.h"
 
 double	vec3_square_length(t_vec3 vec3)
 {
