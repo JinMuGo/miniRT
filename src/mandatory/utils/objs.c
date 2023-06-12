@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:00:02 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/11 16:10:25 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/12 19:16:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	objs_clear(t_obj **objs, void (*del)(void *))
 	while (*objs)
 	{
 		obj = (*objs)->next;
-		free(obj);
+		del(*objs);
 		*objs = obj;
 	}
 	*objs = NULL;
