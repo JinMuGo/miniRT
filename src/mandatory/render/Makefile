@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/11 18:39:02 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/13 15:15:14 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ endif
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
-SRCS :=	render.c \
+SRCS :=	ray.c \
+		find.c \
+		render.c \
 		render_sphere.c \
-		ray.c \
-		find.c
+		render_options.c
 
 NAME := render.a
 

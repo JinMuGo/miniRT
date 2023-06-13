@@ -1,29 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/13 15:14:14 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/13 14:44:07 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/13 14:44:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
-
-void	render(t_meta *meta);
-
-double get_sphere_dist(t_obj *obj, const t_ray *ray);
-t_rgba get_sphere_color(union u_obj *obj, const t_ray *ray, t_record *record);
-
-// ray
-t_ray	ray_init(t_camera *camera, const double ratio[2]);
-
-// hit
-bool find_obj_in_pixel(t_obj	*objs, const t_ray *ray, t_record *record);
-
-void	draw_axis(t_meta *meta);
-
-#endif

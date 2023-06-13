@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 18:50:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/13 15:01:36 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "color.h"
 
 # define FOCAL_LENGTH 1.0
+# define AXIS_SIZE 7
+# define AXIS_OFFSET 10000
 
 # define ERR_ARGS			"❌ Incorrect number of arguments"
 # define ERR_PATH_OPEN		"❌ Unable to open the file for that path"

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 19:33:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/13 14:41:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int ac, char **av)
 	print_objs(meta);
 	setup_scene(meta);
 	render(meta);
-	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
 	mlx_loop_hook(meta->mlx_assets.mlx, hooks, meta);
 	mlx_loop(meta->mlx_assets.mlx);
 	destroy(meta);
