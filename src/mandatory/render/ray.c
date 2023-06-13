@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:44:18 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 19:26:56 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/13 18:06:09 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,16 @@ t_ray	ray_init(t_camera *camera, const double ratio[2])
 				vec3_scalar_multi(camera->vertical, 1 - ratio[Y])),
 			camera->pos));
 	return (ray);
+}
+
+t_point3	ray_at(t_ray *ray, double t)
+{
+	return (vec3_plus(ray->origin, vec3_scalar_multi(ray->direction, t)));
+}
+
+void    set_face_normal(t_ray *ray, t_record *record)
+{
+	record->front_face = vec3_inner_product(ray->direction, record->normal_vec3) < 0;
+	if (record->front_face == false)
+		vec3_scalar_multi(record->normal_vec3, -1);
 }

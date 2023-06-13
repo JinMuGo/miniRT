@@ -6,14 +6,15 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 19:00:41 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/13 18:09:46 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
+#include "render.h"
 
-double get_sphere_dist(t_obj *obj, const t_ray *ray)
+double get_sphere_dist(t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_sphere	sphere = obj->content.sphere;
 	const t_vec3	c_to_o = vec3_minus(ray->origin, sphere.center_point);

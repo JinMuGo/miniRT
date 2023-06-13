@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:20:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 19:01:53 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/13 18:06:37 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,5 @@ t_vec3	vec3_unit(t_vec3 vec3)
 
 	return (vec3_init(vec3.x / length, vec3.y / length, vec3.z / length));
 }
+
+
