@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/13 18:51:20 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/13 19:07:13 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 	record->point = ray_at(ray, record->t);
 	record->normal_vec3 = get_unit_normal_vec(
 			record->point, sphere.center_point, sphere.radius);
-	record->front_face = vec3_inner_product(ray->direction, record->normal_vec3) < 0;
-	if (record->front_face == false)
-		record->normal_vec3 = vec3_scalar_multi(record->normal_vec3, -1);
+	set_face_normal(ray, record);
 	return (obj->type);
 }
 
