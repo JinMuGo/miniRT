@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
+#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/11 18:39:02 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/13 18:50:01 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ include $(TOPDIR)/make_config/src/Rules.mk
 SRCS :=	render.c \
 		render_sphere.c \
 		ray.c \
-		find.c
+		find.c \
+		render_utils.c
 
 NAME := render.a
 
