@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/11 16:12:18 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/14 15:53:00 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static bool	vaildation_plane(t_plane *plane)
 {
 	if (plane->type != PL)
 		return (false);
-	if (!check_minus1_to_1(plane->normal_vec3.x)
-		|| !check_minus1_to_1(plane->normal_vec3.y)
-		|| !check_minus1_to_1(plane->normal_vec3.z)
-		|| !check_rgba(plane->rgba))
+	if (!check_normal_vec(plane->normal_vec3) || !check_rgba(plane->rgba))
 		return (false);
 	return (true);
 }
@@ -41,7 +38,7 @@ void	parser_plane(char **line)
 	if (!vaildation_plane(&plane))
 	{
 		ft_free_all_arr(line);
-		parser_error("Invaild sphere\n");
+		parser_error("Invaild plane\n");
 	}
 	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));

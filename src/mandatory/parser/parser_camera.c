@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 18:53:48 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/14 15:47:11 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ static bool	vaildation_camera(t_camera cam)
 {
 	if (cam.type != CAM)
 		return (false);
-	if (!check_minus1_to_1(cam.normal_vec3.x)
-		|| !check_minus1_to_1(cam.normal_vec3.y)
-		|| !check_minus1_to_1(cam.normal_vec3.z))
-		return (false);
-	if (!check_0_to_180(cam.fov))
+	if (!check_normal_vec(cam.normal_vec3) || !check_0_to_180(cam.fov))
 		return (false);
 	return (true);
 }
