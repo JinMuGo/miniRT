@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 14:03:07 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/14 20:49:03 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static inline t_get_obj_dist	obj_dist_func_classifier(t_object_type type)
 		return (get_sphere_dist);
 	if (type == PL)
 		return (get_plane_dist);
+	if (type == CY)
+		return (get_cylinder_dist);
 	return (NULL);
 }
 
@@ -29,6 +31,8 @@ static inline t_get_obj_record	obj_record_func_classifier(t_object_type type)
 		return (get_sphere_record);
 	if (type == PL)
 		return (get_plane_record);
+	if (type == CY)
+		return (get_cylinder_record);
 	return (NULL);
 }
 
@@ -38,6 +42,8 @@ static inline t_get_obj_color	obj_color_func_classifier(t_object_type type)
 		return (get_sphere_color);
 	if (type == PL)
 		return (get_plane_color);
+	if (type == CY)
+		return (get_cylinder_color);
 	return (NULL);
 }
 
