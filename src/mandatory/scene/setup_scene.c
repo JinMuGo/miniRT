@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 14:54:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/13 17:25:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,22 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 	camera->yaw = 0;
 	camera->front = camera->normal_vec3;
 	camera->pos = camera->view_point;
-	camera->up = vec3_init(0, -1, 0);
+	camera->up = vec3_init(0, 1, 0);
+	camera->z = vec3_scalar_multi(camera->normal_vec3, -1);
+	camera->x = vec3_unit(vec3_cross_product(camera->up, camera->z));
+	camera->y = vec3_unit(vec3_cross_product(camera->z, camera->x));
 	camera->viewport_w = tan(degree_to_radian(camera->fov) / 2) * FOCAL_LENGTH
 		* 2;
 	camera->viewport_h = camera->viewport_w * aspect_ratio;
-	camera->horizontal = vec3_init(camera->viewport_w, 0, 0);
-	camera->vertical = vec3_init(0, camera->viewport_h, 0);
-	camera->left_bottom = vec3_minus(vec3_minus(vec3_minus(camera->pos,
-				vec3_scalar_divide(camera->horizontal, 2)),
-			vec3_scalar_divide(camera->vertical, 2)), vec3_init(0, 0,
-			FOCAL_LENGTH));
+	camera->horizontal = vec3_scalar_multi(camera->x, camera->viewport_w);
+	camera->vertical = vec3_scalar_multi(camera->y, camera->viewport_h);
+	camera->left_bottom = vec3_minus(camera->pos, vec3_plus(vec3_plus(vec3_scalar_multi(camera->x, camera->viewport_w / 2), vec3_scalar_multi(camera->y, camera->viewport_h / 2)), camera->z));
 }
 
 static inline void	_render_background(t_meta *meta)
 {
 	const t_rgba	rgba_bgr = rgba_init(42, 42, 42, 255);
 	int				axis[2];
-
 
 	axis[Y] = 0;
 	while (axis[Y] < WIN_HEIGHT)

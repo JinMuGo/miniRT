@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 18:54:54 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/13 15:45:22 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ struct						s_camera
 {
 	t_object_type			type;
 	t_point3				view_point;
-	double					fov;
 	t_vec3					normal_vec3;
+	t_vec3					x;
+	t_vec3					y;
+	t_vec3					z;
+	double					fov;
 	double					viewport_h;
 	double					viewport_w;
 	t_vec3					horizontal;

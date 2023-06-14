@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_utils.c                                       :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 16:20:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/13 18:06:37 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/13 18:03:17 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/13 18:05:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tensor.h"
+#include "minirt.h"
+#include "defs.h"
 
-double	vec3_square_length(t_vec3 vec3)
+t_vec3	get_unit_normal_vec(t_vec3 a, t_vec3 b, double scalar)
 {
-	return (vec3.x * vec3.x + vec3.y * vec3.y + vec3.z * vec3.z);
+	return (vec3_scalar_divide(vec3_minus(a, b), scalar));
 }
-
-double	vec3_length(t_vec3 vec3)
-{
-	return (sqrt(vec3_square_length(vec3)));
-}
-
-t_vec3	vec3_unit(t_vec3 vec3)
-{
-	const double	length = vec3_length(vec3);
-
-	return (vec3_init(vec3.x / length, vec3.y / length, vec3.z / length));
-}
-
-
