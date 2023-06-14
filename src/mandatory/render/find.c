@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 12:19:38 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/14 14:03:07 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static inline t_get_obj_record	obj_record_func_classifier(t_object_type type)
 {
 	if (type == SP)
 		return (get_sphere_record);
+	if (type == PL)
+		return (get_plane_record);
 	return (NULL);
 }
 

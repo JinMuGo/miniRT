@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 12:19:29 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/14 14:11:24 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ double			get_sphere_dist(t_obj *obj, const t_ray *ray);
 t_rgba			get_sphere_color(union u_obj *obj);
 t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record);
 
-double get_plane_dist(t_obj *obj, const t_ray *ray);
-t_rgba get_plane_color(union u_obj *obj, const t_ray *ray, t_record *record);
+// plane
+double			get_plane_dist(t_obj *obj, const t_ray *ray);
+t_rgba			get_plane_color(union u_obj *obj);
+t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // ray
 t_ray			ray_init(t_camera *camera, const double ratio[2]);
