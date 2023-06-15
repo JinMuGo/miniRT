@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:14:15 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:19:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static inline t_rgba	_calc_pixel(t_meta* meta, int x, int y)
 	const t_ray		ray = ray_from_camera(&meta->camera, ratio);
 	t_record		record;
 
-	if (find_obj_in_pixel(meta->objs, &ray, &record) == false)
+	if (find_obj_in_pixel(meta->objs, (t_ray *)&ray, &record) == false)
 		return (rgba_init_int(42, 42, 42, 255));
 	return (phong_lighting(meta, &record));
 }

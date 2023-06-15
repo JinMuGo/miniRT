@@ -6,12 +6,12 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 09:25:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:17:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "defs.h"
+#include "minirt.h"
 #include "render.h"
 
 static inline t_get_obj_dist	_obj_dist_func_classifier(t_object_type type)
@@ -37,7 +37,7 @@ static inline t_get_obj_record	_obj_record_func_classifier(t_object_type type)
 }
 
 // obj, cam.pos, ray.direction
-bool	find_obj_in_pixel(t_obj	*objs, const t_ray *ray, t_record *record)
+bool	find_obj_in_pixel(t_obj *objs, t_ray *ray, t_record *record)
 {
 	t_obj			*obj;
 	double			calc_t;
@@ -52,8 +52,7 @@ bool	find_obj_in_pixel(t_obj	*objs, const t_ray *ray, t_record *record)
 		if (calc_t && (record->t == 0 || calc_t < record->t))
 		{
 			record->t = calc_t;
-			type = _obj_record_func_classifier(obj->type)(obj, (t_ray *)ray,
-					record);
+			type = _obj_record_func_classifier(obj->type)(obj, ray, record);
 		}
 		obj = obj->next;
 	}

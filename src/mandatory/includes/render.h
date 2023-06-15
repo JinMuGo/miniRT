@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:15:12 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:18:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ t_point3		ray_at(t_ray *ray, double t);
 void			set_face_normal(t_ray *ray, t_record *record);
 
 // hit
-bool			find_obj_in_pixel(t_obj *objs, const t_ray *ray,
-					t_record *record);
+bool			find_obj_in_pixel(t_obj *objs, t_ray *ray, t_record *record);
 
 // utils
 t_vec3			get_unit_normal_vec(t_vec3 a, t_vec3 b, double scalar);
