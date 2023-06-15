@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/15 09:13:50 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 14:16:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ uint32_t	rgba_to_color(t_rgba rgba)
 			_color_calc(rgba.a));
 }
 
-t_rgba	rgba_init(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
+t_rgba	rgba_init_int(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
 	const t_rgba	rgba = {
 		(double)r / 0xFF,
@@ -37,7 +37,7 @@ t_rgba	rgba_init(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 	return (rgba);
 }
 
-t_rgba rgba_init2(double r, double g, double b, double a)
+t_rgba rgba_init_double(double r, double g, double b, double a)
 {
 	const t_rgba	rgba = {r, g, b, a};
 
@@ -46,10 +46,26 @@ t_rgba rgba_init2(double r, double g, double b, double a)
 
 t_rgba	rgba_scalar_multi(t_rgba rgba, double scalar)
 {
-	return (rgba_init2(rgba.r * scalar, rgba.g * scalar, rgba.b * scalar, rgba.a));
+	return (rgba_init_double(rgba.r * scalar, rgba.g * scalar, rgba.b * scalar, rgba.a));
 }
 
 t_rgba	rgba_multi(t_rgba a, t_rgba b)
 {
-	return (rgba_init2(a.r * b.r, a.g * b.g, a.b * b.b, 1));
+	return (rgba_init_double(a.r * b.r, a.g * b.g, a.b * b.b, 1));
+}
+
+t_rgba	rgba_plus(t_rgba a, t_rgba b)
+{
+	return (rgba_init_double(a.r + b.r, a.g + b.g, a.b + b.b, 1));
+}
+
+t_rgba rgba_min(t_rgba a, t_rgba b)
+{
+	if (a.r > b.r)
+		a.r = b.r;
+	if (a.g > b.g)
+		a.g = b.g;
+	if (a.b > b.b)
+		a.b = b.b;
+	return (a);
 }

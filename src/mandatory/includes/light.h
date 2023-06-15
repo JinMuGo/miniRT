@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 16:10:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 12:29:09 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/15 12:19:04 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/15 12:45:29 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# define DEFS_H
+#ifndef LIGHT_H
+# define LIGHT_H
 
-# include "const.h"
-# include "enum.h"
-# include "struct.h"
-
-typedef double			(*t_get_obj_dist)(t_obj *, const t_ray *);
-typedef t_rgba			(*t_get_obj_color)(union u_obj *, t_meta *, t_record *);
-typedef t_object_type	(*t_get_obj_record)(t_obj *, t_ray *, t_record *);
+t_rgba	spot_light_get(t_scene *scene, t_spot_light *light, t_record *record);
 
 #endif

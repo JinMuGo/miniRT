@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/15 12:06:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 13:59:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
-	projected_point = vec3_plus(cylinder.center_point, vec3_scalar_multi(cylinder.normal_vec3, vec3_inner_product(vec3_minus(record->point, cylinder.normal_vec3), cylinder.normal_vec3)));
+	projected_point = vec3_multi(cylinder.center_point, vec3_scalar_multi(cylinder.normal_vec3, vec3_inner_product(vec3_minus(record->point, cylinder.normal_vec3), cylinder.normal_vec3)));
 	record->normal_vec3 = vec3_unit(vec3_minus(record->point, projected_point));
 	set_face_normal(ray, record);
 	return (obj->type);
 }
 
-t_rgba	get_cylinder_color(union u_obj *obj, t_meta *meta)
+t_rgba	get_cylinder_color(union u_obj *obj, t_meta *meta, t_record *record)
 {
 	const t_cylinder	cylinder = obj->cylinder;
 

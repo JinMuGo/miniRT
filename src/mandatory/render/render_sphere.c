@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 12:04:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 14:22:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "defs.h"
 #include "render.h"
 #include "utils.h"
+#include "light.h"
 
 double	get_sphere_dist(t_obj *obj, const t_ray *ray)
 {
@@ -46,12 +47,19 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 	return (obj->type);
 }
 
-t_rgba	get_sphere_color(union u_obj *obj, t_meta *meta)
+t_rgba	get_sphere_color(union u_obj *obj, t_meta *meta, t_record *record)
 {
 	const t_sphere	sphere = obj->sphere;
+	t_list *spot_light;
 	t_rgba	rgba;
 
-	rgba = rgba_multi(sphere.rgba, rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio)); // ambient
+	spot_light = meta->spot_lights;
+	rgba = rgba_plus(sphere.rgba, rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio)); // ambient
+	while (spot_light)
+	{
+		rgba = rgba_plus(rgba, spot_light_get(&meta->scene, spot_light->content, record));
+		spot_light = spot_light->next;
+	}
 
 	return (rgba);
 }

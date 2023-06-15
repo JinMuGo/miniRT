@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 09:25:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 14:19:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ static inline int32_t	_calc_pixel(t_meta* meta, int x, int y)
 	t_record		record;
 
 	if (find_obj_in_pixel(meta->objs, &ray, &record) == false)
-		return (rgba_to_color(rgba_init(42, 42, 42, 255)));
-	record.rgba = __obj_color_func_classifier(record.obj->type)(&record.obj->content, meta);
+		return (rgba_to_color(rgba_init_int(42, 42, 42, 255)));
+	record.rgba = __obj_color_func_classifier(record.obj->type)(&record.obj->content, meta, &record);
+
 	// + lighting
 	//calc_light();
-	return (rgba_to_color(record.rgba));
+	return (rgba_to_color(rgba_min(rgba_init_int(0xFF, 0xFF, 0xFF, 0xFF), record.rgba)));
 }
 
 //render-> obj -> each_funcion -> render(color)
