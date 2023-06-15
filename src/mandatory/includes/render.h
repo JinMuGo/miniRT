@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 12:29:30 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:15:12 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,19 @@ void			render(t_meta *meta);
 
 // sphere
 double			get_sphere_dist(t_obj *obj, const t_ray *ray);
-t_rgba			get_sphere_color(union u_obj *obj, t_meta *meta, t_record *record);
 t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // plane
 double			get_plane_dist(t_obj *obj, const t_ray *ray);
-t_rgba			get_plane_color(union u_obj *obj, t_meta *meta, t_record *record);
 t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // cylinder
 double			get_cylinder_dist(t_obj *obj, const t_ray *ray);
-t_rgba			get_cylinder_color(union u_obj *obj, t_meta *meta, t_record *record);
 t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // ray
-t_ray			ray_init(t_camera *camera, const double ratio[2]);
+t_ray			ray_from_camera(t_camera *camera, const double ratio[2]);
+t_ray			ray_init(t_point3 origin, t_vec3 direction);
 t_point3		ray_at(t_ray *ray, double t);
 void			set_face_normal(t_ray *ray, t_record *record);
 

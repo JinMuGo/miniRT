@@ -6,14 +6,14 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:44:18 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/13 18:06:09 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:11:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs.h"
 #include "minirt.h"
 
-t_ray	ray_init(t_camera *camera, const double ratio[2])
+t_ray	ray_from_camera(t_camera *camera, const double ratio[2])
 {
 	t_ray	ray;
 
@@ -22,6 +22,13 @@ t_ray	ray_init(t_camera *camera, const double ratio[2])
 					vec3_scalar_multi(camera->horizontal, ratio[X])),
 				vec3_scalar_multi(camera->vertical, 1 - ratio[Y])),
 			camera->pos));
+	return (ray);
+}
+
+t_ray	ray_init(t_point3 origin, t_vec3 direction)
+{
+	const t_ray ray = {origin, direction};
+
 	return (ray);
 }
 

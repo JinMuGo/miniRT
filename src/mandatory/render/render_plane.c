@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 12:30:57 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 16:37:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record)
 	record->point = ray_at(ray, record->t);
 	record->normal_vec3 = plane.normal_vec3;
 	set_face_normal(ray, record);
+	record->rgba = plane.rgba;
 	return (obj->type);
-}
-
-t_rgba	get_plane_color(union u_obj *obj, t_meta *meta, t_record *record)
-{
-	const t_plane	plane = obj->plane;
-	t_rgba	rgba;
-
-	rgba = rgba_multi(plane.rgba, rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio));
-	return (rgba);
 }

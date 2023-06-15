@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 16:30:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 16:37:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,6 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 	record->normal_vec3 = get_unit_normal_vec(
 			record->point, sphere.center_point, sphere.radius);
 	set_face_normal(ray, record);
+	record->rgba = sphere.rgba;
 	return (obj->type);
-}
-
-t_rgba	get_sphere_color(union u_obj *obj, t_meta *meta, t_record *record)
-{
-	const t_sphere	sphere = obj->sphere;
-	t_list *spot_light;
-	t_rgba	rgba;
-
-	spot_light = meta->spot_lights;
-	rgba = rgba_init_int(0, 0, 0, 255);
-	while (spot_light)
-	{
-		rgba = rgba_plus(rgba, spot_light_get(&meta->scene, spot_light->content, record));
-		spot_light = spot_light->next;
-	}
-	rgba = rgba_plus(rgba, rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio)); // ambient
-
-	return (rgba_multi(rgba, sphere.rgba));
 }

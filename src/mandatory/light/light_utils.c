@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 12:19:04 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:00:59 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/15 12:18:05 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/15 17:06:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
+#include "defs.h"
+#include "minirt.h"
+#include "utils.h"
+#include "render.h"
 
-// phong_lighting.c
-t_rgba	phong_lighting(t_meta *meta, t_record *record);
+t_vec3	reflect(t_vec3 a, t_vec3 b)
+{
+	return (vec3_minus(a, vec3_scalar_multi(b, vec3_inner_product(a, b) * 2)));
+}
 
-// lighting_utils.c
-t_vec3	reflect(t_vec3 a, t_vec3 b);
-bool	in_shadow(t_obj *objs, t_ray *light_ray, double light_len);
+bool	in_shadow(t_obj *objs, t_ray *light_ray, double light_len)
+{
+    t_record record;
 
-#endif
+    record.t = light_len;
+    return (find_obj_in_pixel(objs, light_ray, &record));
+}
