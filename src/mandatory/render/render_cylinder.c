@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/14 20:55:43 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/15 13:19:35 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static double	calculate_infinite_cylinder_t(t_cylinder cy, t_ray *ray)
 					vec3_inner_product(ray->direction, cy.normal_vec3))),
 			vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3,
 					vec3_inner_product(c_to_o, cy.normal_vec3))));
-	const double	c = ((cy.diameter / 2) * (cy.diameter / 2)) * vec3_inner_product(vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3, vec3_inner_product(c_to_o, cy.normal_vec3))), vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3, vec3_inner_product(c_to_o, cy.normal_vec3))));
+	const double	c = vec3_inner_product(vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3, vec3_inner_product(c_to_o, cy.normal_vec3))), vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3, vec3_inner_product(c_to_o, cy.normal_vec3)))) - ((cy.diameter / 2.0) * (cy.diameter / 2.0));
 	double			root[2];
 
 	if (root_formula(a, b, c, root) == false)
@@ -46,7 +46,6 @@ double	get_cylinder_dist(t_obj *obj, const t_ray *ray)
 	double				t;
 
 	t = calculate_infinite_cylinder_t(cylinder, (t_ray *)ray);
-	printf("t : %f\n", t);
 	return (t);
 }
 
