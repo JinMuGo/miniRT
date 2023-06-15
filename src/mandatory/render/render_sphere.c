@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 09:18:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 12:04:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_rgba	get_sphere_color(union u_obj *obj, t_meta *meta)
 	const t_sphere	sphere = obj->sphere;
 	t_rgba	rgba;
 
-	rgba = rgba_multi(sphere.rgba, rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio));
+	rgba = rgba_multi(sphere.rgba, rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio)); // ambient
 
 	return (rgba);
 }

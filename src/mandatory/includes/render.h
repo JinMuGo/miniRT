@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 09:24:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 12:06:36 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // cylinder
 double			get_cylinder_dist(t_obj *obj, const t_ray *ray);
-t_rgba			get_cylinder_color(union u_obj *obj);
+t_rgba			get_cylinder_color(union u_obj *obj, t_meta *meta);
 t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // ray

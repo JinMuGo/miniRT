@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/14 20:55:43 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/15 12:06:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	const t_cylinder	cylinder = obj->content.cylinder;
 	t_vec3				projected_point;
 
-	record->obj = &obj->content;
+	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 	projected_point = vec3_plus(cylinder.center_point, vec3_scalar_multi(cylinder.normal_vec3, vec3_inner_product(vec3_minus(record->point, cylinder.normal_vec3), cylinder.normal_vec3)));
 	record->normal_vec3 = vec3_unit(vec3_minus(record->point, projected_point));
@@ -63,7 +63,7 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	return (obj->type);
 }
 
-t_rgba	get_cylinder_color(union u_obj *obj)
+t_rgba	get_cylinder_color(union u_obj *obj, t_meta *meta)
 {
 	const t_cylinder	cylinder = obj->cylinder;
 
