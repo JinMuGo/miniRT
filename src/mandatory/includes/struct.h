@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/13 15:45:22 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/14 16:58:54 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ struct						s_record
 	bool					front_face;
 	double					t;
 	t_rgba					rgba;
-	union u_obj				*obj;
+	t_obj					*obj;
 };
 
 struct						s_canvas

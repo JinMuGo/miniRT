@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 20:48:23 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/15 09:24:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void			render(t_meta *meta);
 
 // sphere
 double			get_sphere_dist(t_obj *obj, const t_ray *ray);
-t_rgba			get_sphere_color(union u_obj *obj);
+t_rgba			get_sphere_color(union u_obj *obj, t_meta *meta);
 t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // plane
 double			get_plane_dist(t_obj *obj, const t_ray *ray);
-t_rgba			get_plane_color(union u_obj *obj);
+t_rgba			get_plane_color(union u_obj *obj, t_meta *meta);
 t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // cylinder

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/13 19:07:13 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/15 09:18:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
 #include "render.h"
+#include "utils.h"
 
 double	get_sphere_dist(t_obj *obj, const t_ray *ray)
 {
@@ -37,7 +38,7 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 {
 	const t_sphere	sphere = obj->content.sphere;
 
-	record->obj = &obj->content;
+	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 	record->normal_vec3 = get_unit_normal_vec(
 			record->point, sphere.center_point, sphere.radius);
@@ -45,9 +46,12 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 	return (obj->type);
 }
 
-t_rgba	get_sphere_color(union u_obj *obj)
+t_rgba	get_sphere_color(union u_obj *obj, t_meta *meta)
 {
 	const t_sphere	sphere = obj->sphere;
+	t_rgba	rgba;
 
-	return (sphere.rgba);
+	rgba = rgba_multi(sphere.rgba, rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio));
+
+	return (rgba);
 }

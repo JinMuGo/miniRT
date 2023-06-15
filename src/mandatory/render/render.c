@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 15:01:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 09:25:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 #include "utils.h"
 #include "render.h"
 
-//static inline	void	calc_light()
-//{
-
-//}
+static inline t_get_obj_color	__obj_color_func_classifier(t_object_type type)
+{
+	if (type == SP)
+		return (get_sphere_color);
+	if (type == PL)
+		return (get_plane_color);
+	if (type == CY)
+		return (get_cylinder_color);
+	return (NULL);
+}
 
 static inline int32_t	_calc_pixel(t_meta* meta, int x, int y)
 {
@@ -28,6 +34,7 @@ static inline int32_t	_calc_pixel(t_meta* meta, int x, int y)
 
 	if (find_obj_in_pixel(meta->objs, &ray, &record) == false)
 		return (rgba_to_color(rgba_init(42, 42, 42, 255)));
+	record.rgba = __obj_color_func_classifier(record.obj->type)(&record.obj->content, meta);
 	// + lighting
 	//calc_light();
 	return (rgba_to_color(record.rgba));

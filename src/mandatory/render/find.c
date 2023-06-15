@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 20:49:03 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/15 09:25:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "defs.h"
 #include "render.h"
 
-static inline t_get_obj_dist	obj_dist_func_classifier(t_object_type type)
+static inline t_get_obj_dist	_obj_dist_func_classifier(t_object_type type)
 {
 	if (type == SP)
 		return (get_sphere_dist);
@@ -25,7 +25,7 @@ static inline t_get_obj_dist	obj_dist_func_classifier(t_object_type type)
 	return (NULL);
 }
 
-static inline t_get_obj_record	obj_record_func_classifier(t_object_type type)
+static inline t_get_obj_record	_obj_record_func_classifier(t_object_type type)
 {
 	if (type == SP)
 		return (get_sphere_record);
@@ -33,17 +33,6 @@ static inline t_get_obj_record	obj_record_func_classifier(t_object_type type)
 		return (get_plane_record);
 	if (type == CY)
 		return (get_cylinder_record);
-	return (NULL);
-}
-
-static inline t_get_obj_color	obj_color_func_classifier(t_object_type type)
-{
-	if (type == SP)
-		return (get_sphere_color);
-	if (type == PL)
-		return (get_plane_color);
-	if (type == CY)
-		return (get_cylinder_color);
 	return (NULL);
 }
 
@@ -59,17 +48,16 @@ bool	find_obj_in_pixel(t_obj	*objs, const t_ray *ray, t_record *record)
 	type = NONE;
 	while (obj)
 	{
-		calc_t = obj_dist_func_classifier(obj->type)(obj, ray);
+		calc_t = _obj_dist_func_classifier(obj->type)(obj, ray);
 		if (calc_t && (record->t == 0 || calc_t < record->t))
 		{
 			record->t = calc_t;
-			type = obj_record_func_classifier(obj->type)(obj, (t_ray *)ray,
+			type = _obj_record_func_classifier(obj->type)(obj, (t_ray *)ray,
 					record);
 		}
 		obj = obj->next;
 	}
 	if (type == NONE)
 		return (false);
-	record->rgba = obj_color_func_classifier(type)(record->obj);
 	return (true);
 }
