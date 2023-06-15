@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:19:01 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:39:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 static inline t_rgba	_calc_pixel(t_meta* meta, int x, int y)
 {
-	const double	ratio[2] = {(double)x / (WIN_WIDTH - 1), (double)y / (WIN_HEIGHT - 1)};
+	const t_canvas	canvas = meta->scene.canvas;
+	const double	ratio[2] = {(double)x / (canvas.width - 1), (double)y / (canvas.height - 1)};
 	const t_ray		ray = ray_from_camera(&meta->camera, ratio);
 	t_record		record;
 
@@ -30,13 +31,14 @@ static inline t_rgba	_calc_pixel(t_meta* meta, int x, int y)
 //render-> obj -> each_funcion -> render(color)
 void	render(t_meta *meta)
 {
+	const t_canvas _canvas = meta->scene.canvas;
 	int canvas[2];
 
 	canvas[Y] = 0;
-	while (canvas[Y] < WIN_HEIGHT)
+	while (canvas[Y] < _canvas.height)
 	{
 		canvas[X] = 0;
-		while (canvas[X] < WIN_WIDTH)
+		while (canvas[X] < _canvas.width)
 		{
 			mlx_put_pixel(meta->mlx_assets.img, canvas[X], canvas[Y],
 				rgba_to_color(_calc_pixel(meta, canvas[X], canvas[Y])));

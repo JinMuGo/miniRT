@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 14:06:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:41:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "minirt.h"
 #include "utils.h"
 
-static inline void	_setup_canvas(t_canvas *canvas)
+static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 {
-	canvas->width = WIN_WIDTH;
-	canvas->height = WIN_HEIGHT;
-	canvas->aspect_ratio = (double)WIN_HEIGHT / (double)WIN_WIDTH;
+	canvas->width = width;
+	canvas->height = height;
+	canvas->aspect_ratio = (double)height / (double)width;
 }
 
 static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
@@ -39,8 +39,8 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 	camera->left_bottom = vec3_minus(camera->pos, vec3_plus(vec3_plus(vec3_scalar_multi(camera->x, camera->viewport_w / 2), vec3_scalar_multi(camera->y, camera->viewport_h / 2)), camera->z));
 }
 
-void	setup_scene(t_meta *meta)
+void	setup_scene(t_meta *meta, int width, int height)
 {
-	_setup_canvas(&meta->scene.canvas);
+	_setup_canvas(&meta->scene.canvas, width, height);
 	_setup_camera(&meta->camera, meta->scene.canvas.aspect_ratio);
 }

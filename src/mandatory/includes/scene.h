@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:22:17 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 08:45:13 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/15 17:34:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "struct.h"
 # include "utils.h"
 
-void	setup_scene(t_meta *meta);
+void	setup_scene(t_meta *meta, int width, int height);
 
 #endif
