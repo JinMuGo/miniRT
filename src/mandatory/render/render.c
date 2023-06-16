@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 15:01:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 18:07:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,38 @@
 #include "minirt.h"
 #include "utils.h"
 #include "render.h"
+#include "light.h"
 
-//static inline	void	calc_light()
-//{
-
-//}
-
-static inline int32_t	_calc_pixel(t_meta* meta, int x, int y)
+static inline t_rgba	_calc_pixel(t_meta* meta, int x, int y)
 {
-	const double	ratio[2] = {(double)x / (WIN_WIDTH - 1), (double)y / (WIN_HEIGHT - 1)};
-	const t_ray		ray = ray_init(&meta->camera, ratio);
+	const t_canvas	canvas = meta->scene.canvas;
+	const double	ratio[2] = {(double)x / (canvas.width - 1), (double)y / (canvas.height - 1)};
+	const t_ray		ray = ray_from_camera(&meta->camera, ratio);
 	t_record		record;
 
-	if (find_obj_in_pixel(meta->objs, &ray, &record) == false)
-		return (rgba_to_color(rgba_init(42, 42, 42, 255)));
-	// + lighting
-	//calc_light();
-	return (rgba_to_color(record.rgba));
+	record.t = 0;
+	if (find_obj_in_pixel(meta->objs, (t_ray *)&ray, &record))
+		return (phong_lighting(meta, &record));
+	return (rgba_init_int(42, 42, 42, 255));
 }
 
-//render-> obj -> each_funcion -> render(color)
 void	render(t_meta *meta)
 {
+	const t_canvas _canvas = meta->scene.canvas;
 	int canvas[2];
 
 	canvas[Y] = 0;
-	while (canvas[Y] < WIN_HEIGHT)
+	while (canvas[Y] < _canvas.height)
 	{
 		canvas[X] = 0;
-		while (canvas[X] < WIN_WIDTH)
+		while (canvas[X] < _canvas.width)
 		{
 			mlx_put_pixel(meta->mlx_assets.img, canvas[X], canvas[Y],
-				_calc_pixel(meta, canvas[X], canvas[Y]));
+				rgba_to_color(_calc_pixel(meta, canvas[X], canvas[Y])));
 			canvas[X]++;
 		}
 		canvas[Y]++;
 	}
+	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
 }
 

@@ -132,7 +132,7 @@ struct						s_record
 	bool					front_face;
 	double					t;
 	t_rgba					rgba;
-	union u_obj				*obj;
+	t_obj					*obj;
 };
 
 struct						s_canvas

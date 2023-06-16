@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
 #    Updated: 2023/06/16 18:13:30 by sanghwal         ###   ########seoul.kr   #
@@ -23,7 +23,7 @@ SRCS :=	render.c \
 		render_cylinder.c \
 		render_cylinder2.c \
 		ray.c \
-		find.c \
+		find_obj.c \
 		render_utils.c
 
 NAME := render.a

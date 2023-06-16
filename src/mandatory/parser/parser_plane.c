@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/14 15:53:00 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 18:16:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parser_plane(char **line)
 		parser_error("Incorrect number of plane information\n");
 	plane.type = PL;
 	plane.point = parser_point3(line[1]);
-	plane.normal_vec3 = parser_vec3(line[2]);
+	plane.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	plane.rgba = parser_rgba(line[3]);
 	if (!vaildation_plane(&plane))
 	{

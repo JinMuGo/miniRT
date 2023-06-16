@@ -13,7 +13,7 @@
 #include "defs.h"
 #include "minirt.h"
 
-t_ray	ray_init(t_camera *camera, const double ratio[2])
+t_ray	ray_from_camera(t_camera *camera, const double ratio[2])
 {
 	t_ray	ray;
 
@@ -22,6 +22,13 @@ t_ray	ray_init(t_camera *camera, const double ratio[2])
 					vec3_scalar_multi(camera->horizontal, ratio[X])),
 				vec3_scalar_multi(camera->vertical, 1 - ratio[Y])),
 			camera->pos));
+	return (ray);
+}
+
+t_ray	ray_init(t_point3 origin, t_vec3 direction)
+{
+	const t_ray ray = {origin, direction};
+
 	return (ray);
 }
 

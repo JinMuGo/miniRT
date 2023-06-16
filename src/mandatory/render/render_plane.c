@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 14:25:11 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/15 16:37:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
 #include "render.h"
+#include "utils.h"
 
 double	get_plane_dist(t_obj *obj, const t_ray *ray)
 {
@@ -34,16 +35,10 @@ t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record)
 {
 	const t_plane	plane = obj->content.plane;
 
-	record->obj = &obj->content;
+	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 	record->normal_vec3 = plane.normal_vec3;
 	set_face_normal(ray, record);
+	record->rgba = plane.rgba;
 	return (obj->type);
-}
-
-t_rgba	get_plane_color(union u_obj *obj)
-{
-	const t_plane	plane = obj->plane;
-
-	return (plane.rgba);
 }

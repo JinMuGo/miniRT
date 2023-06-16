@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   hooks.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 16:10:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 12:29:09 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/16 16:33:48 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/16 16:35:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# define DEFS_H
+#ifndef HOOKS_H
+#define HOOKS_H
 
-# include "const.h"
-# include "enum.h"
-# include "struct.h"
+void	key_hooks(mlx_key_data_t keydata, void *param);
 
-typedef double			(*t_get_obj_dist)(t_obj *, const t_ray *);
-typedef t_rgba			(*t_get_obj_color)(union u_obj *, t_meta *, t_record *);
-typedef t_object_type	(*t_get_obj_record)(t_obj *, t_ray *, t_record *);
+void	hooks(t_meta *meta);
 
 #endif

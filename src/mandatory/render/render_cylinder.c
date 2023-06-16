@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   render_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
 /*   Updated: 2023/06/16 19:13:13 by sanghwal         ###   ########seoul.kr  */
@@ -85,8 +85,9 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	const t_cylinder	cylinder = obj->content.cylinder;
 	t_vec3				projected_point;
 
-	record->obj = &obj->content;
+	record->obj = obj;
 	record->point = ray_at(ray, record->t);
+
 	if (cylinder.p_type == INF)
 		projected_point = vec3_plus(cylinder.center_point,
 				vec3_scalar_multi(cylinder.normal_vec3,
@@ -105,9 +106,11 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	return (obj->type);
 }
 
-t_rgba	get_cylinder_color(union u_obj *obj)
+t_rgba	get_cylinder_color(union u_obj *obj, t_meta *meta, t_record *record)
 {
 	const t_cylinder	cylinder = obj->cylinder;
 
+	(void)meta;
+	(void)record;
 	return (cylinder.rgba);
 }
