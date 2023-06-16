@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/14 15:47:11 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 18:16:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parser_camera(char **line)
 		parser_error("Incorrect number of camera information\n");
 	cam.type = CAM;
 	cam.view_point = parser_point3(line[1]);
-	cam.normal_vec3 = parser_vec3(line[2]);
+	cam.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	cam.fov = check_to_double(line[3]);
 	if (!vaildation_camera(cam))
 	{

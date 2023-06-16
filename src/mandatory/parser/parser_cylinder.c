@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/14 14:50:50 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 18:16:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parser_cylinder(char **line)
 		parser_error("Incorrect number of cylinder information\n");
 	cylinder.type = CY;
 	cylinder.center_point = parser_point3(line[1]);
-	cylinder.normal_vec3 = parser_vec3(line[2]);
+	cylinder.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	cylinder.diameter = check_to_double(line[3]);
 	cylinder.height = check_to_double(line[4]);
 	cylinder.rgba = parser_rgba(line[5]);
