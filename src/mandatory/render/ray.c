@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:44:18 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:11:50 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 16:06:57 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void    set_face_normal(t_ray *ray, t_record *record)
 {
 	record->front_face = vec3_inner_product(ray->direction, record->normal_vec3) < 0;
 	if (record->front_face == false)
-		vec3_scalar_multi(record->normal_vec3, -1);
+		record->normal_vec3 = vec3_scalar_multi(record->normal_vec3, -1);
 }
