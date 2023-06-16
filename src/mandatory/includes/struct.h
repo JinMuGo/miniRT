@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 14:34:27 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 19:09:24 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ struct						s_plane
 struct						s_cylinder
 {
 	t_object_type			type;
-	t_point_type			p_type;
+	t_cy_type				p_type;
 	t_point3				center_point;
 	t_vec3					normal_vec3;
 	double					diameter;

@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 20:48:23 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 19:13:56 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,19 @@ t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record);
 double			get_cylinder_dist(t_obj *obj, const t_ray *ray);
 t_rgba			get_cylinder_color(union u_obj *obj);
 t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record);
+bool			is_valid_height(double t, t_cylinder *cy, t_ray *ray);
+void			get_cylinder_coeff(t_cylinder *cy, t_ray *ray, double *coeff);
+void			get_top_bot_t(t_cylinder *cy, t_ray *ray, double *cap_inter);
+bool			is_valid_cap(
+					double t, const t_cylinder *cy, const t_ray *ray,
+					t_cy_type type);
 
 // ray
 t_ray			ray_init(t_camera *camera, const double ratio[2]);
 t_point3		ray_at(t_ray *ray, double t);
 void			set_face_normal(t_ray *ray, t_record *record);
+bool			is_valid_top(double t, const t_cylinder* cy, const t_ray* ray);
+bool			is_valid_bot(double t, const t_cylinder* cy, const t_ray* ray);
 
 // hit
 bool			find_obj_in_pixel(t_obj *objs, const t_ray *ray,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/14 14:06:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 17:25:42 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
 	camera->pitch = 0;
 	camera->yaw = 0;
+	camera->normal_vec3 = vec3_unit(camera->normal_vec3);
 	camera->front = camera->normal_vec3;
 	camera->pos = camera->view_point;
 	camera->up = vec3_init(0, 1, 0);

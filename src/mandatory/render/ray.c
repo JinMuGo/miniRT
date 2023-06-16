@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:44:18 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/13 18:06:09 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 17:43:29 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void    set_face_normal(t_ray *ray, t_record *record)
 {
 	record->front_face = vec3_inner_product(ray->direction, record->normal_vec3) < 0;
 	if (record->front_face == false)
-		vec3_scalar_multi(record->normal_vec3, -1);
+		record->normal_vec3 = vec3_scalar_multi(record->normal_vec3, -1);
 }

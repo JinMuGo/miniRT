@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/14 20:48:08 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/16 18:13:30 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS :=	render.c \
 		render_sphere.c \
 		render_plane.c \
 		render_cylinder.c \
+		render_cylinder2.c \
 		ray.c \
 		find.c \
 		render_utils.c
