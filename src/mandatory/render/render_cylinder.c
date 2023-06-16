@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/16 10:41:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 19:13:13 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,70 @@
 #include "defs.h"
 #include "render.h"
 
-static double	calculate_infinite_cylinder_t(t_cylinder cy, t_ray *ray)
+static double	calculate_infinite_cylinder_t(t_cylinder *cy, t_ray *ray)
 {
-	const t_vec3	c_to_o = vec3_minus(ray->origin, cy.center_point);
-	const double	a = vec3_inner_product(vec3_minus(ray->direction,
-				vec3_scalar_multi(cy.normal_vec3,
-					vec3_inner_product(ray->direction, cy.normal_vec3))),
-			vec3_minus(ray->direction,
-				vec3_scalar_multi(cy.normal_vec3,
-					vec3_inner_product(ray->direction, cy.normal_vec3))));
-	const double	b = 2.0 * vec3_inner_product(vec3_minus(ray->direction,
-				vec3_scalar_multi(cy.normal_vec3,
-					vec3_inner_product(ray->direction, cy.normal_vec3))),
-			vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3,
-					vec3_inner_product(c_to_o, cy.normal_vec3))));
-	const double	c = ((cy.diameter / 2) * (cy.diameter / 2)) * vec3_inner_product(vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3, vec3_inner_product(c_to_o, cy.normal_vec3))), vec3_minus(c_to_o, vec3_scalar_multi(cy.normal_vec3, vec3_inner_product(c_to_o, cy.normal_vec3))));
+	double			coeff[3];
 	double			root[2];
+	bool			root0_vaild;
+	bool			root1_vaild;
 
-	if (root_formula(a, b, c, root) == false)
+	get_cylinder_coeff(cy, ray, coeff);
+	if (root_formula(coeff[A], coeff[B], coeff[C], root) == false)
 		return (0);
-	if (root[0] > 0)
+	root0_vaild = is_valid_height(root[0], cy, ray);
+	root1_vaild = is_valid_height(root[1], cy, ray);
+	if (!root0_vaild && !root1_vaild)
+		return (0);
+	if (root[0] > 0 && root0_vaild)
 		return (root[0]);
-	if (root[1] > 0)
+	if (root[1] > 0 && root1_vaild)
 		return (root[1]);
+	return (0);
+}
+
+static double	calculate_cap_cylinder_t(t_cylinder *cy, t_ray *ray)
+{
+	double	cap_inter[2];
+	bool	top_valid;
+	bool	bottom_valid;
+
+	get_top_bot_t(cy, ray, cap_inter);
+	top_valid = is_valid_cap(cap_inter[TOP], cy, ray, TOP);
+	bottom_valid = is_valid_cap(cap_inter[BOT], cy, ray, BOT);
+	if (top_valid && (!bottom_valid || cap_inter[TOP] < cap_inter[BOT]))
+	{
+		cy->p_type = TOP;
+		return (cap_inter[TOP]);
+	}
+	else if (bottom_valid)
+	{
+		cy->p_type = BOT;
+		return (cap_inter[BOT]);
+	}
 	return (0);
 }
 
 double	get_cylinder_dist(t_obj *obj, const t_ray *ray)
 {
-	const t_cylinder	cylinder = obj->content.cylinder;
-	double				t;
+	t_cylinder	*cylinder;
+	double		infinite_t;
+	double		cap_t;
 
-	t = calculate_infinite_cylinder_t(cylinder, (t_ray *)ray);
-	printf("t : %f\n", t);
-	return (t);
+	cylinder = &(obj->content.cylinder);
+	cylinder->normal_vec3 = vec3_unit(cylinder->normal_vec3);
+	infinite_t = calculate_infinite_cylinder_t(cylinder, (t_ray *)ray);
+	cylinder->p_type = INF;
+	cap_t = calculate_cap_cylinder_t(cylinder, (t_ray *)ray);
+
+	if ((infinite_t > 0 && cap_t <= 0)
+		|| (infinite_t > 0 && cap_t > 0 && infinite_t <= cap_t))
+	{
+		cylinder->p_type = INF;
+		return (infinite_t);
+	}
+	else if (cap_t > 0)
+		return (cap_t);
+	return (0);
 }
 
 t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
@@ -57,7 +87,20 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
-	projected_point = vec3_multi(cylinder.center_point, vec3_scalar_multi(cylinder.normal_vec3, vec3_inner_product(vec3_minus(record->point, cylinder.normal_vec3), cylinder.normal_vec3)));
+
+	if (cylinder.p_type == INF)
+		projected_point = vec3_plus(cylinder.center_point,
+				vec3_scalar_multi(cylinder.normal_vec3,
+					vec3_inner_product(vec3_minus(record->point,
+							cylinder.normal_vec3),
+						cylinder.normal_vec3)));
+	if (cylinder.p_type == TOP)
+		projected_point = vec3_plus(cylinder.center_point,
+				vec3_scalar_multi(cylinder.normal_vec3,
+					cylinder.height / 2));
+	if (cylinder.p_type == BOT)
+		projected_point = vec3_minus(cylinder.center_point,
+				vec3_scalar_multi(cylinder.normal_vec3, cylinder.height / 2));
 	record->normal_vec3 = vec3_unit(vec3_minus(record->point, projected_point));
 	set_face_normal(ray, record);
 	return (obj->type);

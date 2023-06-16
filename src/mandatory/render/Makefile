@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/16 17:17:41 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/16 18:13:30 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS :=	render.c \
 		render_sphere.c \
 		render_plane.c \
 		render_cylinder.c \
+		render_cylinder2.c \
 		ray.c \
 		find_obj.c \
 		render_utils.c
