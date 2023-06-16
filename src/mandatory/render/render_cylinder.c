@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/16 19:13:13 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 19:57:55 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,8 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	if (cylinder.p_type == BOT)
 		projected_point = vec3_minus(cylinder.center_point,
 				vec3_scalar_multi(cylinder.normal_vec3, cylinder.height / 2));
-	record->normal_vec3 = vec3_unit(vec3_minus(record->point, projected_point));
+	record->normal_vec3 = vec3_unit(vec3_minus(record->point, cylinder.center_point));
 	set_face_normal(ray, record);
+	record->rgba = cylinder.rgba;
 	return (obj->type);
-}
-
-t_rgba	get_cylinder_color(union u_obj *obj, t_meta *meta, t_record *record)
-{
-	const t_cylinder	cylinder = obj->cylinder;
-
-	(void)meta;
-	(void)record;
-	return (cylinder.rgba);
 }
