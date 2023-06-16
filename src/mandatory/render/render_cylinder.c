@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/15 13:59:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 10:41:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ t_rgba	get_cylinder_color(union u_obj *obj, t_meta *meta, t_record *record)
 {
 	const t_cylinder	cylinder = obj->cylinder;
 
+	(void)meta;
+	(void)record;
 	return (cylinder.rgba);
 }

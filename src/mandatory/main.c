@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:38:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 10:45:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void check_leaks(void)
 void	resize_hook(int32_t width, int32_t height, void *param)
 {
 	const t_meta *meta = param;
-	printf("width %d height %d\n", width, height);
 
 	setup_scene(meta, width, height);
 	render(meta);

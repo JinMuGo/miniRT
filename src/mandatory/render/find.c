@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:17:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 10:59:12 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ bool	find_obj_in_pixel(t_obj *objs, t_ray *ray, t_record *record)
 	double			calc_t;
 	t_object_type	type;
 
-	record->t = 0;
 	obj = objs;
 	type = NONE;
 	while (obj)

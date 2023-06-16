@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:36:32 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:20:06 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 10:58:12 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static inline t_rgba	_spot_light_get(t_meta *meta, t_spot_light *light, t_record
 	light_dir = vec3_minus(light->light_point, record->point);
 	light_len = vec3_length(light_dir);
 	light_ray =	ray_init(vec3_plus(record->point, vec3_scalar_multi(record->normal_vec3, EPSILON)), light_dir);
-	//if (in_shadow(meta->objs, &light_ray, light_len))
-	//	return (rgba_init_int(0, 0, 0, 255));
+	if (in_shadow(meta->objs, &light_ray, light_len))
+		return (rgba_init_int(0, 0, 0, 255));
 	light_dir = vec3_unit(light_dir);
 	kd = fmax(vec3_inner_product(record->normal_vec3, light_dir), 0.0);
 	diffuse = rgba_scalar_multi(light->rgba, kd);
