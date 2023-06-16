@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 10:59:28 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 18:07:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static inline t_rgba	_calc_pixel(t_meta* meta, int x, int y)
 	return (rgba_init_int(42, 42, 42, 255));
 }
 
-//render-> obj -> each_funcion -> render(color)
 void	render(t_meta *meta)
 {
 	const t_canvas _canvas = meta->scene.canvas;
@@ -47,5 +46,6 @@ void	render(t_meta *meta)
 		}
 		canvas[Y]++;
 	}
+	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
 }
 

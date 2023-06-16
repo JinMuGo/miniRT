@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 14:17:09 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/16 16:30:18 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "defs.h"
 
 void		destroy(t_meta *meta);
-void		hooks(void *param);
 
 // color.c
 t_rgba		rgba_init_int(uint32_t r, uint32_t g, uint32_t b, uint32_t a);

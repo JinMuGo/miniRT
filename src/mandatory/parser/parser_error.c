@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:41:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/11 16:15:41 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 16:25:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ void	parser_error(char *str)
 	ft_lstclear(&meta->spot_lights, free);
 	objs_clear(&meta->objs, free);
 	free(meta);
-	system("leaks miniRT");
 	exit(1);
 }
