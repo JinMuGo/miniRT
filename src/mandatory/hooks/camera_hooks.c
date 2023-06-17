@@ -6,24 +6,20 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:18:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 17:40:03 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/17 19:37:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
 
-void __update_camera_forward(t_camera *camera, double pitch, double yaw)
+static inline void _update_camera_forward(t_camera *camera, const double pitch, const double yaw)
 {
-    double pitch_rad = degree_to_radian(pitch);
-    double yaw_rad = degree_to_radian(yaw);
-    double forward_x = cos(yaw_rad) * cos(pitch_rad);
-    double forward_y = sin(pitch_rad);
-    double forward_z = sin(yaw_rad) * cos(pitch_rad);
+    const double pitch_rad = degree_to_radian(pitch);
+    const double yaw_rad = degree_to_radian(yaw);
+	const t_vec3 vec3 = vec3_init(cos(yaw_rad) * cos(pitch_rad), sin(pitch_rad), sin(yaw_rad) * cos(pitch_rad));
 
-    // 업데이트된 forward 벡터를 적용
-    camera->forward = vec3_init(forward_x, forward_y, forward_z);
-    camera->forward = vec3_unit(camera->forward);
+    camera->forward = vec3;
 }
 
 void	camera_key_hooks(mlx_key_data_t keydata, t_meta *meta)
@@ -60,7 +56,7 @@ void	camera_cursor_hooks(const double pos[2], t_meta* meta)
 		meta->camera.pitch = 45.0f;
 	if (meta->camera.pitch < -89.0f)
 		meta->camera.pitch = -45.0f;
-	__update_camera_forward(&meta->camera, meta->camera.pitch, meta->camera.yaw);
+	_update_camera_forward(&meta->camera, meta->camera.pitch, meta->camera.yaw);
 	meta->hooks.prev_pos[X] = pos[X];
 	meta->hooks.prev_pos[Y] = pos[Y];
 }
