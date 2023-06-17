@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   vec4_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 16:33:48 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 17:23:58 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/17 15:20:11 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/17 15:22:13 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
-# define HOOKS_H
+#include "tensor.h"
 
-void	key_hooks(mlx_key_data_t keydata, void *param);
-void	camera_key_hooks(mlx_key_data_t keydata, t_meta *meta);
-void	camera_cursor_hooks(const double pos[2], t_meta *meta);
-
-void	hooks(t_meta *meta);
-
-#endif
+t_vec3	vec4_to_vec3(t_vec4 from)
+{
+	return (vec3_init(from.x, from.y, from.z));
+}
