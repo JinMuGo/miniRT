@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 18:00:15 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/17 15:26:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "parser.h"
 #include "render.h"
 #include "hooks.h"
-
 
 int	main(int ac, char **av)
 {

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 11:52:16 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/17 16:21:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
 	const t_vec3 tmp = vec3_init(0, 1, 0);
 
-	camera->pitch = 0;
-	camera->yaw = 0;
-	camera->normal_vec3 = vec3_unit(camera->normal_vec3);
-	camera->pos = camera->view_point;
-	camera->forward = vec3_scalar_multi(camera->normal_vec3, -1);
 	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
 	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
 	camera->viewport_w = tan(degree_to_radian(camera->fov) / 2) * FOCAL_LENGTH
