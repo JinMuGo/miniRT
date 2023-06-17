@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 17:25:42 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/17 11:52:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 
 static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
+	const t_vec3 tmp = vec3_init(0, 1, 0);
+
 	camera->pitch = 0;
 	camera->yaw = 0;
 	camera->normal_vec3 = vec3_unit(camera->normal_vec3);
-	camera->front = camera->normal_vec3;
 	camera->pos = camera->view_point;
-	camera->up = vec3_init(0, 1, 0);
-	camera->z = vec3_scalar_multi(camera->normal_vec3, -1);
-	camera->x = vec3_unit(vec3_cross_product(camera->up, camera->z));
-	camera->y = vec3_unit(vec3_cross_product(camera->z, camera->x));
+	camera->forward = vec3_scalar_multi(camera->normal_vec3, -1);
+	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
+	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
 	camera->viewport_w = tan(degree_to_radian(camera->fov) / 2) * FOCAL_LENGTH
 		* 2;
 	camera->viewport_h = camera->viewport_w * aspect_ratio;
-	camera->horizontal = vec3_scalar_multi(camera->x, camera->viewport_w);
-	camera->vertical = vec3_scalar_multi(camera->y, camera->viewport_h);
-	camera->left_bottom = vec3_minus(camera->pos, vec3_plus(vec3_plus(vec3_scalar_multi(camera->x, camera->viewport_w / 2), vec3_scalar_multi(camera->y, camera->viewport_h / 2)), camera->z));
+	camera->horizontal = vec3_scalar_multi(camera->right, camera->viewport_w);
+	camera->vertical = vec3_scalar_multi(camera->up, camera->viewport_h);
+	camera->left_bottom = vec3_minus(camera->pos, vec3_plus(vec3_plus(vec3_scalar_multi(camera->right, camera->viewport_w / 2), vec3_scalar_multi(camera->up, camera->viewport_h / 2)), camera->forward));
 }
 
 void	setup_scene(t_meta *meta, int width, int height)
