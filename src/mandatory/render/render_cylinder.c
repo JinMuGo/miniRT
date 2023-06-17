@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/16 19:57:55 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/17 16:39:40 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ double	get_cylinder_dist(t_obj *obj, const t_ray *ray)
 	double		cap_t;
 
 	cylinder = &(obj->content.cylinder);
-	cylinder->normal_vec3 = vec3_unit(cylinder->normal_vec3);
+	// cylinder->normal_vec3 = vec3_unit(cylinder->normal_vec3);
 	infinite_t = calculate_infinite_cylinder_t(cylinder, (t_ray *)ray);
 	cylinder->p_type = INF;
 	cap_t = calculate_cap_cylinder_t(cylinder, (t_ray *)ray);
@@ -80,28 +80,29 @@ double	get_cylinder_dist(t_obj *obj, const t_ray *ray)
 	return (0);
 }
 
+static void	get_infi_normal_vec3(t_cylinder cylinder, t_record *record)
+{
+	t_vec3 ph = vec3_minus(record->point, cylinder.center_point);
+	t_vec3 proj_h = vec3_scalar_multi(cylinder.normal_vec3,
+		vec3_inner_product(ph, cylinder.normal_vec3) / vec3_inner_product(cylinder.normal_vec3, cylinder.normal_vec3));
+	t_vec3 proj_h_to_c = vec3_minus(ph, proj_h);
+	record->normal_vec3 = vec3_unit(proj_h_to_c);
+}
+
+
 t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 {
 	const t_cylinder	cylinder = obj->content.cylinder;
-	t_vec3				projected_point;
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 
 	if (cylinder.p_type == INF)
-		projected_point = vec3_plus(cylinder.center_point,
-				vec3_scalar_multi(cylinder.normal_vec3,
-					vec3_inner_product(vec3_minus(record->point,
-							cylinder.normal_vec3),
-						cylinder.normal_vec3)));
+		get_infi_normal_vec3(cylinder, record);
 	if (cylinder.p_type == TOP)
-		projected_point = vec3_plus(cylinder.center_point,
-				vec3_scalar_multi(cylinder.normal_vec3,
-					cylinder.height / 2));
+		record->normal_vec3 = cylinder.normal_vec3;
 	if (cylinder.p_type == BOT)
-		projected_point = vec3_minus(cylinder.center_point,
-				vec3_scalar_multi(cylinder.normal_vec3, cylinder.height / 2));
-	record->normal_vec3 = vec3_unit(vec3_minus(record->point, cylinder.center_point));
+		record->normal_vec3 = vec3_scalar_multi(cylinder.normal_vec3, -1);
 	set_face_normal(ray, record);
 	record->rgba = cylinder.rgba;
 	return (obj->type);
