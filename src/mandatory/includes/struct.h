@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 19:09:24 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/17 10:57:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ struct						s_camera
 	t_object_type			type;
 	t_point3				view_point;
 	t_vec3					normal_vec3;
-	t_vec3					x;
-	t_vec3					y;
-	t_vec3					z;
+	t_vec3					forward;
+	t_vec3					up;
+	t_vec3					right;
 	double					fov;
 	double					viewport_h;
 	double					viewport_w;
@@ -78,9 +78,7 @@ struct						s_camera
 	t_point3				left_bottom;
 	double					pitch;
 	double					yaw;
-	t_vec3					front;
 	t_vec3					pos;
-	t_vec3					up;
 };
 
 struct						s_spot_light
