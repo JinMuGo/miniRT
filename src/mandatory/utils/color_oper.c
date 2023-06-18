@@ -6,12 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:58:12 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 18:00:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 20:09:41 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
+#include "utils.h"
 
 t_rgba	rgba_scalar_multi(t_rgba rgba, double scalar)
 {
