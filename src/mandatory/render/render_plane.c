@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:15:03 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:29:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ double	get_plane_dist(t_obj *obj, const t_ray *ray)
 
 	if (denom == 0 || fabs(denom) < EPSILON)
 		return (0);
-	denom = 1.0 / denom;
-	t = numer * denom;
+	t = numer * (1.0 / denom);
 	if (t < 0)
 		return (0);
 	return (t);
