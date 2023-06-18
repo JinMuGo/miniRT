@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 19:13:56 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/18 15:30:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool			is_valid_cap(
 					t_cy_type type);
 
 // ray
-t_ray			ray_from_camera(t_camera *camera, const double ratio[2]);
+t_ray	ray_from_camera(t_camera *camera, const double u, const double v);
 t_ray			ray_init(t_point3 origin, t_vec3 direction);
 t_point3		ray_at(t_ray *ray, double t);
 void			set_face_normal(t_ray *ray, t_record *record);

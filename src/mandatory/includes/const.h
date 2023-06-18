@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 17:03:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 15:45:56 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define FOCAL_LENGTH 1.0
 # define LUMEN 3
+# define SAMPLES_PER_PIXEL 10
 
 # define ERR_ARGS			"❌ Incorrect number of arguments"
 # define ERR_PATH_OPEN		"❌ Unable to open the file for that path"
