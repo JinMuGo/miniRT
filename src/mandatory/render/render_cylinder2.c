@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:10:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/16 19:15:37 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/18 16:06:40 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ bool	is_valid_cap(
 				vec3_scalar_multi(cy->normal_vec3, cy->height / 2));
 	t_to_q = vec3_minus(ray_at((t_ray *)ray, t), cap_center);
 	dot = vec3_inner_product(t_to_q, cy->normal_vec3);
-	if (dot != 0)
-		return (false);
 	len = vec3_length(vec3_minus(cap_center, ray_at((t_ray *)ray, t)));
-	if (dot == 0 && len >= 0 && len <= cy->diameter / 2)
+	if (fabs(dot) < EPSILON && len >= 0 && len <= cy->diameter / 2.0)
 		return (true);
 	return (false);
 }
