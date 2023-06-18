@@ -5,45 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/16 16:34:44 by jgo              ###   ########.fr        #
+#    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
+#    Updated: 2023/06/18 20:07:09 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
-	TOPDIR	:= $(abspath ../../)
+		TOPDIR = $(abspath ../../../)
 endif
 
-include		$(TOPDIR)/make_config/src/Rules.mk
-include 	$(TOPDIR)/make_config/com/ColorRules.mk
+include $(TOPDIR)/make_config/com/ColorRules.mk
+include $(TOPDIR)/make_config/src/Rules.mk
 
-NAME	:=	$(PROJECT_NAME)
+SRCS :=	destroy.c \
+		color.c \
+		color_oper.c \
+		atod.c \
+		objs.c \
+		error.c \
+		number.c
 
-DIRS	:=	design_patterns \
-			scene \
-			utils \
-			parser \
-			render \
-			light \
-			hooks
+NAME := utils.a
 
-LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
+OBJS := $(SRCS:.c=.o)
+DEPS := $(SRCS:.c=.d)
+-include $(DEPS)
 
-HEADS	:=	prt_color.h \
-			const.h \
-			defs.h \
-			design_patterns.h \
-			enum.h \
-			minirt.h \
-			struct.h \
-			utils.h \
-			parser.h \
-			hooks.h
-
-SRCS	:=	main.c
-
-OBJS	:=	$(SRCS:.c=.o)
-DEPS 	:=	$(SRCS:.c=.d)
-
--include	$(DEPS)
-include		$(TOPDIR)/make_config/src/Recipes.mk
+include $(TOPDIR)/make_config/src/SubLibsRecipes.mk
