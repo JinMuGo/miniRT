@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/16 18:16:45 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:55:20 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parser_cylinder(char **line)
 	t_obj		*obj;
 
 	if (ft_arrlen((void **)line) != 6)
-		parser_error("Incorrect number of cylinder information\n");
+		error_handler(CY_ERR);
 	cylinder.type = CY;
 	cylinder.center_point = parser_point3(line[1]);
 	cylinder.normal_vec3 = vec3_unit(parser_vec3(line[2]));
@@ -40,7 +40,7 @@ void	parser_cylinder(char **line)
 	if (!vaildation_cylinder(&cylinder))
 	{
 		ft_free_all_arr(line);
-		parser_error("Invaild cylinder\n");
+		error_handler(CY_ERR);
 	}
 	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));

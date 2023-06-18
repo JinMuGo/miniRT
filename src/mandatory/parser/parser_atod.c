@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:29:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/09 13:14:00 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/18 20:07:30 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ double	check_to_double(char *str)
 	while (++i < len)
 	{
 		if (!ft_isdigit(str[i]) && ft_strncmp(&str[i], ".", 1))
-			parser_error("Invaild information check_double()\n");
+			error_handler(POINT_ERR);
 		if (!ft_strncmp(&str[i], ".", 1))
 			dot_cnt++;
 	}
 	if (dot_cnt > 1)
-		parser_error("Invaild information\n");
+		error_handler(POINT_ERR);
 	return (atod(str));
 }

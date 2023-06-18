@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 16:59:43 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:12:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ struct						s_record
 {
 	t_point3				point;
 	t_vec3					normal_vec3;
-	bool					front_face;
 	double					t;
 	t_rgba					rgba;
 	t_obj					*obj;

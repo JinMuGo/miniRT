@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 15:39:49 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:58:27 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,40 +38,9 @@ t_rgba	rgba_init_int(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 	return (rgba);
 }
 
-t_rgba rgba_init_double(double r, double g, double b, double a)
+t_rgba	rgba_init_double(double r, double g, double b, double a)
 {
 	const t_rgba	rgba = {r, g, b, a};
 
 	return (rgba);
-}
-
-t_rgba	rgba_scalar_multi(t_rgba rgba, double scalar)
-{
-	return (rgba_init_double(rgba.r * scalar, rgba.g * scalar, rgba.b * scalar, rgba.a));
-}
-
-t_rgba	rgba_scalar_divide(t_rgba rgba, double scalar)
-{
-	return (rgba_init_double(rgba.r / scalar, rgba.g / scalar, rgba.b / scalar, rgba.a));
-}
-
-t_rgba	rgba_multi(t_rgba a, t_rgba b)
-{
-	return (rgba_init_double(a.r * b.r, a.g * b.g, a.b * b.b, 1));
-}
-
-t_rgba	rgba_plus(t_rgba a, t_rgba b)
-{
-	return (rgba_init_double(a.r + b.r, a.g + b.g, a.b + b.b, 1));
-}
-
-t_rgba rgba_min(t_rgba a, t_rgba b)
-{
-	if (a.r > b.r)
-		a.r = b.r;
-	if (a.g > b.g)
-		a.g = b.g;
-	if (a.b > b.b)
-		a.b = b.b;
-	return (a);
 }

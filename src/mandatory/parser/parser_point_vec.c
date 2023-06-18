@@ -3,39 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parser_point_vec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/10 11:09:42 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 20:38:35 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "utils.h"
 
 double	get_point(char *str, int *i)
 {
-	int		len;
 	char	*tmp;
-	int		j;
+	int		start;
 	double	res;
 
 	if (str[*i] == '\0')
 		return (0);
-	len = 0;
+	start = *i;
+	res = 0;
 	while (str[*i] != ',' && str[*i] != '\0')
-	{
-		len++;
 		(*i)++;
+	if (*i != start)
+	{
+		tmp = ft_substr(str, start, *i - start);
+		res = check_to_double(tmp);
+		free(tmp);
 	}
-	if (len == 0)
-		return (0);
-	tmp = ft_malloc(len + 1);
-	tmp[len] = '\0';
-	j = 0;
-	while (len > 0)
-		tmp[j++] = str[(*i) - (len--)];
-	res = check_to_double(tmp);
-	free(tmp);
 	(*i)++;
 	return (res);
 }
@@ -45,7 +40,7 @@ t_point3	parser_point3(char *str)
 	int	i;
 
 	if (!check_comma(str))
-		parser_error("Invaild information in point\n");
+		error_handler(POINT_ERR);
 	i = 0;
 	return (vec3_init(
 			get_point(str, &i),
@@ -58,7 +53,7 @@ t_vec3	parser_vec3(char *str)
 	int	i;
 
 	if (!check_comma(str))
-		parser_error("Invaild information in vector\n");
+		error_handler(VEC_ERR);
 	i = 0;
 	return (vec3_init(
 			get_point(str, &i),

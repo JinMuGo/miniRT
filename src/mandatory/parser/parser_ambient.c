@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_ambient.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:55:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/10 09:45:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 20:10:22 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	parser_ambient(char **line)
 	t_ambient	amb;
 
 	if (ft_arrlen((void **)line) != 3)
-		parser_error("Incorrect number of ambient information\n");
+		error_handler(AMB_ERR);
 	amb.type = AMB;
 	amb.ratio = check_to_double(line[1]);
 	amb.rgba = parser_rgba(line[2]);
-	if (!vaildation_ambient(amb))
+	meta = singleton();
+	if (!vaildation_ambient(amb) || meta->ambient.type == AMB)
 	{
 		ft_free_all_arr(line);
-		parser_error("Invaild ambient\n");
+		error_handler(AMB_ERR);
 	}
-	meta = singleton();
 	meta->ambient = amb;
 }

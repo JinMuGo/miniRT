@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:20:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 16:00:14 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 18:01:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ t_vec3	vec3_unit(t_vec3 vec3)
 {
 	const double	length = vec3_length(vec3);
 
-	return (vec3_init(vec3.x / length, vec3.y / length, vec3.z / length));
+	return (vec3_init(
+			vec3.x * (1.0 / length),
+			vec3.y * (1.0 / length),
+			vec3.z * (1.0 / length)));
 }
 
 t_vec3	vec3_scale(t_vec3 vec3, float s)
 {
 	return (vec3_init(vec3.x * s, vec3.y * s, vec3.z * s));
 }
-

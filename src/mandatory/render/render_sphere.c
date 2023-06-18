@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 16:37:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:18:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
-	record->normal_vec3 = get_unit_normal_vec(
-			record->point, sphere.center_point, sphere.radius);
+	record->normal_vec3 = vec3_scalar_divide(\
+				vec3_minus(record->point, sphere.center_point), sphere.radius);
 	set_face_normal(ray, record);
 	record->rgba = sphere.rgba;
 	return (obj->type);
