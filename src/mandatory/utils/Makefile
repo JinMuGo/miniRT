@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/11 15:23:06 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/18 15:40:22 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	destroy.c \
-		hooks.c \
 		color.c \
 		atod.c \
 		objs.c \
-		error.c
+		error.c \
+		number.c
 
 NAME := utils.a
 

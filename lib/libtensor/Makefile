@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 12:56:36 by jgo               #+#    #+#              #
-#    Updated: 2023/06/07 16:58:09 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/17 14:54:29 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,12 @@ include $(TOPDIR)/make_config/lib/Rules.mk
 
 NAME := libtensor.a
 
-HEAD := vector.h
+HEAD := tensor.h
 
-DIRS := libvector
+DIRS := libvector \
+		libangle \
+		libequation \
+		libmatrix
 
 LIBS := $(addsuffix .a, $(addprefix libs/, $(DIRS)))
 -include $(DEPS)

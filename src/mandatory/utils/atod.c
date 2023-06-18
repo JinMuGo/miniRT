@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atod.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:13:07 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/08 17:02:16 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/18 16:30:55 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,15 @@ double	atod(char *str)
 	double	temp1;
 	double	temp2;
 	char	*dot;
+	int		sign;
 
 	dot = ft_strchr(str, '.');
+	sign = 1;
+	if (str[0] == '-')
+		sign = -1;
 	if (dot == NULL || *(dot + 1) == '\0')
 		return (integer_part(str, ft_strlen(str)));
-	temp1 = integer_part(str, dot - str);
+	temp1 = integer_part(str, dot - str) * sign;
 	temp2 = fractional_part(dot + 1);
-	if (temp1 < 0)
-		temp2 *= -1;
-	return (temp1 + temp2);
+	return ((temp1 + temp2) * sign);
 }

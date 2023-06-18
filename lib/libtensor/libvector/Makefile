@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/07 16:44:31 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/17 15:26:02 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ include $(TOPDIR)/make_config/lib/Rules.mk
 
 SRCS := vec_init.c \
 		vec3_oper.c \
-		vec3_utils.c
+		vec3_oper2.c \
+		vec3_utils.c \
+		vec4_oper.c \
+		vec4_utils.c
 
 NAME :=	libvector.a
 

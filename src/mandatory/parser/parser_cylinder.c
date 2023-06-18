@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/11 16:03:37 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 18:16:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static bool	vaildation_cylinder(t_cylinder *cylinder)
 {
 	if (cylinder->type != CY)
 		return (false);
-	if (!check_minus1_to_1(cylinder->normal_vec3.x)
-		|| !check_minus1_to_1(cylinder->normal_vec3.y)
-		|| !check_minus1_to_1(cylinder->normal_vec3.z)
-		|| !check_rgba(cylinder->rgba))
+	if (!check_normal_vec(cylinder->normal_vec3) || !check_rgba(cylinder->rgba))
 		return (false);
 	return (true);
 }
@@ -36,7 +33,7 @@ void	parser_cylinder(char **line)
 		parser_error("Incorrect number of cylinder information\n");
 	cylinder.type = CY;
 	cylinder.center_point = parser_point3(line[1]);
-	cylinder.normal_vec3 = parser_vec3(line[2]);
+	cylinder.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	cylinder.diameter = check_to_double(line[3]);
 	cylinder.height = check_to_double(line[4]);
 	cylinder.rgba = parser_rgba(line[5]);

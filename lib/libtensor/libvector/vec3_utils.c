@@ -6,11 +6,11 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:20:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/07 16:39:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/17 16:00:14 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "tensor.h"
 
 double	vec3_square_length(t_vec3 vec3)
 {
@@ -28,3 +28,9 @@ t_vec3	vec3_unit(t_vec3 vec3)
 
 	return (vec3_init(vec3.x / length, vec3.y / length, vec3.z / length));
 }
+
+t_vec3	vec3_scale(t_vec3 vec3, float s)
+{
+	return (vec3_init(vec3.x * s, vec3.y * s, vec3.z * s));
+}
+

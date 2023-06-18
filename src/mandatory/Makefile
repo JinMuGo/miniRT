@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/10 08:44:39 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/16 16:34:44 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,10 @@ NAME	:=	$(PROJECT_NAME)
 DIRS	:=	design_patterns \
 			scene \
 			utils \
-			parser
+			parser \
+			render \
+			light \
+			hooks
 
 LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
@@ -34,7 +37,8 @@ HEADS	:=	prt_color.h \
 			minirt.h \
 			struct.h \
 			utils.h \
-			parser.h
+			parser.h \
+			hooks.h
 
 SRCS	:=	main.c
 

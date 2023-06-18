@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 09:53:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/17 16:21:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,29 @@
 #include "minirt.h"
 #include "utils.h"
 
-static inline void	_setup_canvas(t_canvas *canvas)
+static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 {
-	canvas->width = WIN_WIDTH;
-	canvas->height = WIN_HEIGHT;
-	canvas->aspect_ratio = (double)WIN_HEIGHT / (double)WIN_WIDTH;
+	canvas->width = width;
+	canvas->height = height;
+	canvas->aspect_ratio = (double)height / (double)width;
 }
 
-static inline void	_setup_camera(t_camera *camera)
+static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
-	camera->pitch = 0;
-	camera->yaw = 0;
-	camera->front = vec3_init(0, -1, 0);
-	camera->pos = vec3_init(0, 0, 3);
-	camera->up = vec3_init(0, 1, 0);
+	const t_vec3 tmp = vec3_init(0, 1, 0);
+
+	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
+	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
+	camera->viewport_w = tan(degree_to_radian(camera->fov) / 2) * FOCAL_LENGTH
+		* 2;
+	camera->viewport_h = camera->viewport_w * aspect_ratio;
+	camera->horizontal = vec3_scalar_multi(camera->right, camera->viewport_w);
+	camera->vertical = vec3_scalar_multi(camera->up, camera->viewport_h);
+	camera->left_bottom = vec3_minus(camera->pos, vec3_plus(vec3_plus(vec3_scalar_multi(camera->right, camera->viewport_w / 2), vec3_scalar_multi(camera->up, camera->viewport_h / 2)), camera->forward));
 }
 
-static inline void	_render_background(t_meta *meta)
+void	setup_scene(t_meta *meta, int width, int height)
 {
-	int	axis[2];
-
-	axis[Y] = 0;
-	while (axis[Y] < WIN_HEIGHT)
-	{
-		axis[X] = 0;
-		while (axis[X] < WIN_WIDTH)
-		{
-			mlx_put_pixel(meta->mlx_assets.img, axis[X], axis[Y],
-				rgba_to_color(meta->ambient.rgba));
-			axis[X]++;
-		}
-		axis[Y]++;
-	}
-}
-
-void	setup_scene(t_meta *meta)
-{
-	_setup_canvas(&meta->scene.canvas);
-	_setup_camera(&meta->scene.camera);
-	_render_background(meta);
+	_setup_canvas(&meta->scene.canvas, width, height);
+	_setup_camera(&meta->camera, meta->scene.canvas.aspect_ratio);
 }

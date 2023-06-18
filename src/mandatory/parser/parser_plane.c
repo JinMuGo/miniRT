@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/11 16:12:18 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/16 18:16:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ static bool	vaildation_plane(t_plane *plane)
 {
 	if (plane->type != PL)
 		return (false);
-	if (!check_minus1_to_1(plane->normal_vec3.x)
-		|| !check_minus1_to_1(plane->normal_vec3.y)
-		|| !check_minus1_to_1(plane->normal_vec3.z)
-		|| !check_rgba(plane->rgba))
+	if (!check_normal_vec(plane->normal_vec3) || !check_rgba(plane->rgba))
 		return (false);
 	return (true);
 }
@@ -36,12 +33,12 @@ void	parser_plane(char **line)
 		parser_error("Incorrect number of plane information\n");
 	plane.type = PL;
 	plane.point = parser_point3(line[1]);
-	plane.normal_vec3 = parser_vec3(line[2]);
+	plane.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	plane.rgba = parser_rgba(line[3]);
 	if (!vaildation_plane(&plane))
 	{
 		ft_free_all_arr(line);
-		parser_error("Invaild sphere\n");
+		parser_error("Invaild plane\n");
 	}
 	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));
