@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 19:34:20 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:45:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static inline void	_resize_hook(int32_t width, int32_t height, void *param)
 	render(meta);
 }
 
-static inline void	_mouse_hooks(mouse_key_t button, action_t action, modifier_key_t mods,
-		void *param)
+static inline void	_mouse_hooks(
+	mouse_key_t button, action_t action, modifier_key_t mods, void *param)
 {
 	t_meta	*meta;
 
@@ -61,8 +61,8 @@ static inline void	_mouse_hooks(mouse_key_t button, action_t action, modifier_ke
 
 static inline void	_mouse_cursor(double xpos, double ypos, void *param)
 {
-	t_meta			*meta;
 	const double	pos[2] = {xpos, ypos};
+	t_meta			*meta;
 
 	meta = param;
 	if (meta->hooks.mouse_left == false)
