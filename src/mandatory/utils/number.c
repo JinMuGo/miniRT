@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.h                                            :+:      :+:    :+:   */
+/*   number.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 16:33:48 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 17:23:58 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/18 10:56:37 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/18 12:13:56 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOKS_H
-# define HOOKS_H
+#include "defs.h"
+#include "minirt.h"
 
-void	key_hooks(mlx_key_data_t keydata, void *param);
-void	camera_key_hooks(mlx_key_data_t keydata, t_meta *meta);
-void	camera_cursor_hooks(const double pos[2], t_meta *meta);
-
-void	hooks(t_meta *meta);
-
-#endif
+double	clamp(const double x, const double min, const double max)
+{
+	if (x < min)
+		return (min);
+	else if (x > max)
+		return (max);
+	else
+		return (x);
+}

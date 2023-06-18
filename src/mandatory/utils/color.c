@@ -6,16 +6,17 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/15 14:16:19 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 15:39:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
+#include "utils.h"
 
 static inline uint32_t	_color_calc(double rgba)
 {
-	return (0xFF * rgba);
+	return (0xFF * clamp(rgba, 0.0, 0.999));
 }
 
 uint32_t	rgba_to_color(t_rgba rgba)
@@ -47,6 +48,11 @@ t_rgba rgba_init_double(double r, double g, double b, double a)
 t_rgba	rgba_scalar_multi(t_rgba rgba, double scalar)
 {
 	return (rgba_init_double(rgba.r * scalar, rgba.g * scalar, rgba.b * scalar, rgba.a));
+}
+
+t_rgba	rgba_scalar_divide(t_rgba rgba, double scalar)
+{
+	return (rgba_init_double(rgba.r / scalar, rgba.g / scalar, rgba.b / scalar, rgba.a));
 }
 
 t_rgba	rgba_multi(t_rgba a, t_rgba b)

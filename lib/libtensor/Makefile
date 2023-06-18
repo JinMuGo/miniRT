@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/06 12:56:36 by jgo               #+#    #+#              #
-#    Updated: 2023/06/12 19:01:02 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/17 14:54:29 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HEAD := tensor.h
 
 DIRS := libvector \
 		libangle \
-		libequation
+		libequation \
+		libmatrix
 
 LIBS := $(addsuffix .a, $(addprefix libs/, $(DIRS)))
 -include $(DEPS)

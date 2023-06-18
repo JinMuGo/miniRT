@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/16 16:34:56 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/17 16:29:39 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ endif
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
-SRCS :=	hooks.c
+SRCS :=	hooks.c \
+		camera_hooks.c
 
 NAME := hooks.a
 

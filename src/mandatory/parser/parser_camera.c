@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/16 18:16:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/17 16:17:22 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void	parser_camera(char **line)
 	cam.view_point = parser_point3(line[1]);
 	cam.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	cam.fov = check_to_double(line[3]);
+	cam.normal_vec3 = vec3_unit(cam.normal_vec3);
+	cam.pos = cam.view_point;
+	cam.forward = vec3_scalar_multi(cam.normal_vec3, -1);
+	cam.pitch = asin(-cam.forward.y);
+	cam.yaw = atan2(cam.forward.x, cam.forward.z);
 	if (!vaildation_camera(cam))
 	{
 		ft_free_all_arr(line);
