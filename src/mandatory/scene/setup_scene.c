@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/17 16:21:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 18:05:58 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 
 static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
-	const t_vec3 tmp = vec3_init(0, 1, 0);
+	const t_vec3	tmp = vec3_init(0, 1, 0);
 
 	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
 	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
@@ -32,7 +32,11 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 	camera->viewport_h = camera->viewport_w * aspect_ratio;
 	camera->horizontal = vec3_scalar_multi(camera->right, camera->viewport_w);
 	camera->vertical = vec3_scalar_multi(camera->up, camera->viewport_h);
-	camera->left_bottom = vec3_minus(camera->pos, vec3_plus(vec3_plus(vec3_scalar_multi(camera->right, camera->viewport_w / 2), vec3_scalar_multi(camera->up, camera->viewport_h / 2)), camera->forward));
+	camera->left_bottom = vec3_minus(camera->pos, \
+		vec3_plus(vec3_plus(\
+			vec3_scalar_multi(camera->right, camera->viewport_w / 2), \
+			vec3_scalar_multi(camera->up, camera->viewport_h / 2)), \
+			camera->forward));
 }
 
 void	setup_scene(t_meta *meta, int width, int height)
