@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/15 16:37:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:15:03 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ double	get_plane_dist(t_obj *obj, const t_ray *ray)
 {
 	const t_plane	plane = obj->content.plane;
 	const t_vec3	pc = vec3_minus(ray->origin, plane.point);
-	const double	denom = vec3_inner_product(plane.normal_vec3, ray->direction);
+	const double	denom = vec3_inner_product(\
+								plane.normal_vec3, ray->direction);
 	const double	numer = -1.0 * vec3_inner_product(plane.normal_vec3, pc);
 	double			t;
 
 	if (denom == 0 || fabs(denom) < EPSILON)
 		return (0);
-	t = numer / denom;
+	denom = 1.0 / denom;
+	t = numer * denom;
 	if (t < 0)
 		return (0);
 	return (t);

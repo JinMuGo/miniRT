@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 16:08:13 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/18 17:17:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "defs.h"
 #include "render.h"
 
-static double	calculate_infinite_cylinder_t(t_cylinder *cy, t_ray *ray)
+static double	_calculate_infinite_cylinder_t(t_cylinder *cy, t_ray *ray)
 {
 	double			coeff[3];
 	double			root[2];
@@ -35,7 +35,7 @@ static double	calculate_infinite_cylinder_t(t_cylinder *cy, t_ray *ray)
 	return (0);
 }
 
-static double	calculate_cap_cylinder_t(t_cylinder *cy, t_ray *ray)
+static double	_calculate_cap_cylinder_t(t_cylinder *cy, t_ray *ray)
 {
 	double	cap_inter[2];
 	bool	top_valid;
@@ -64,10 +64,9 @@ double	get_cylinder_dist(t_obj *obj, const t_ray *ray)
 	double		cap_t;
 
 	cylinder = &(obj->content.cylinder);
-	infinite_t = calculate_infinite_cylinder_t(cylinder, (t_ray *)ray);
+	infinite_t = _calculate_infinite_cylinder_t(cylinder, (t_ray *)ray);
 	cylinder->p_type = INF;
-	cap_t = calculate_cap_cylinder_t(cylinder, (t_ray *)ray);
-
+	cap_t = _calculate_cap_cylinder_t(cylinder, (t_ray *)ray);
 	if ((infinite_t > 0 && cap_t <= 0)
 		|| (infinite_t > 0 && cap_t > 0 && infinite_t <= cap_t))
 	{
@@ -79,7 +78,7 @@ double	get_cylinder_dist(t_obj *obj, const t_ray *ray)
 	return (0);
 }
 
-static void	get_infi_normal_vec3(t_cylinder cylinder, t_record *record)
+static void	_get_infi_normal_vec3(t_cylinder cylinder, t_record *record)
 {
 	const t_vec3	ph = vec3_minus(record->point, cylinder.center_point);
 	const t_vec3	proj_h = vec3_scalar_multi(cylinder.normal_vec3,
@@ -90,16 +89,14 @@ static void	get_infi_normal_vec3(t_cylinder cylinder, t_record *record)
 	record->normal_vec3 = vec3_unit(proj_h_to_c);
 }
 
-
 t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 {
 	const t_cylinder	cylinder = obj->content.cylinder;
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
-
 	if (cylinder.p_type == INF)
-		get_infi_normal_vec3(cylinder, record);
+		_get_infi_normal_vec3(cylinder, record);
 	if (cylinder.p_type == TOP)
 		record->normal_vec3 = cylinder.normal_vec3;
 	if (cylinder.p_type == BOT)
