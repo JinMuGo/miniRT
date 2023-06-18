@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:51:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/10 11:05:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 20:05:47 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "parser.h"
+#include "utils.h"
 
 static bool	is_rtfile(char *file)
 {
@@ -40,7 +41,7 @@ static void	parser_router(char **temp)
 	else if (!ft_strcmp(temp[0], "cy"))
 		parser_cylinder(temp);
 	else
-		parser_error("Invalid identifier\n");
+		error_handler(TYPE_ERR);
 }
 
 void	parser(char *file)
@@ -51,9 +52,9 @@ void	parser(char *file)
 
 	line = 0;
 	if (fd < 0)
-		parser_error("File can't open\n");
+		error_handler(OPEN_ERR);
 	if (!is_rtfile(file))
-		parser_error("File doesn't \".rt\" extension\n");
+		error_handler(EX_ERR);
 	line = get_next_line(fd);
 	while (line)
 	{

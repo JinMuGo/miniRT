@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/17 16:17:22 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:53:53 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parser_camera(char **line)
 	t_camera	cam;
 
 	if (ft_arrlen((void **)line) != 4)
-		parser_error("Incorrect number of camera information\n");
+		error_handler(CAM_ERR);
 	cam.type = CAM;
 	cam.view_point = parser_point3(line[1]);
 	cam.normal_vec3 = vec3_unit(parser_vec3(line[2]));
@@ -39,11 +39,11 @@ void	parser_camera(char **line)
 	cam.forward = vec3_scalar_multi(cam.normal_vec3, -1);
 	cam.pitch = asin(-cam.forward.y);
 	cam.yaw = atan2(cam.forward.x, cam.forward.z);
-	if (!vaildation_camera(cam))
+	meta = singleton();
+	if (!vaildation_camera(cam) || meta->camera.type == CAM)
 	{
 		ft_free_all_arr(line);
-		parser_error("Invaild camera\n");
+		error_handler(CAM_ERR);
 	}
-	meta = singleton();
 	meta->camera = cam;
 }

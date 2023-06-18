@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/16 18:16:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:57:53 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parser_plane(char **line)
 	t_obj	*obj;
 
 	if (ft_arrlen((void **)line) != 4)
-		parser_error("Incorrect number of plane information\n");
+		error_handler(PL_ERR);
 	plane.type = PL;
 	plane.point = parser_point3(line[1]);
 	plane.normal_vec3 = vec3_unit(parser_vec3(line[2]));
@@ -38,7 +38,7 @@ void	parser_plane(char **line)
 	if (!vaildation_plane(&plane))
 	{
 		ft_free_all_arr(line);
-		parser_error("Invaild plane\n");
+		error_handler(PL_ERR);
 	}
 	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));

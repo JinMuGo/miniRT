@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/11 19:24:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 17:59:13 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parser_sphere(char **line)
 	t_sphere	sphere;
 
 	if (ft_arrlen((void **)line) != 4)
-		parser_error("Incorrect number of light information\n");
+		error_handler(SP_ERR);
 	sphere.type = SP;
 	sphere.center_point = parser_point3(line[1]);
 	sphere.diameter = check_to_double(line[2]);
@@ -39,7 +39,7 @@ void	parser_sphere(char **line)
 	if (!vaildation_sphere(&sphere))
 	{
 		ft_free_all_arr(line);
-		parser_error("Invaild sphere\n");
+		error_handler(SP_ERR);
 	}
 	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));

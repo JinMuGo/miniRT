@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser_point_vec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/10 11:09:42 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 18:01:51 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "utils.h"
 
 double	get_point(char *str, int *i)
 {
@@ -45,7 +46,7 @@ t_point3	parser_point3(char *str)
 	int	i;
 
 	if (!check_comma(str))
-		parser_error("Invaild information in point\n");
+		error_handler(POINT_ERR);
 	i = 0;
 	return (vec3_init(
 			get_point(str, &i),
@@ -58,7 +59,7 @@ t_vec3	parser_vec3(char *str)
 	int	i;
 
 	if (!check_comma(str))
-		parser_error("Invaild information in vector\n");
+		error_handler(VEC_ERR);
 	i = 0;
 	return (vec3_init(
 			get_point(str, &i),
