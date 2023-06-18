@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 16:30:18 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 12:13:55 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ bool		error_handler(t_error_type type);
 // objs.c
 void		objsadd_back(t_obj **objs, t_obj *new);
 void		objs_clear(t_obj **objs, void (*del)(void *));
+
+// number.c
+double		clamp(const double x, const double min, const double max);
 
 #endif
