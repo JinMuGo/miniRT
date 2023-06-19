@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:20:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 18:01:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/19 09:12:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,9 @@ t_vec3	vec3_unit(t_vec3 vec3)
 t_vec3	vec3_scale(t_vec3 vec3, float s)
 {
 	return (vec3_init(vec3.x * s, vec3.y * s, vec3.z * s));
+}
+
+bool	is_vec3_same(t_vec3 a, t_vec3 b)
+{
+	return (a.x == b.x && a.y == b.y && a.z == b.z);
 }
