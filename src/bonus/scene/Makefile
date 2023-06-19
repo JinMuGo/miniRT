@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/10 09:37:06 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/19 09:54:31 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,4 +25,4 @@ OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.d)
 -include $(DEPS)
 
-include $(TOPDIR)/make_config/src/SubLibsRecipes.mk
+include $(TOPDIR)/make_config/src/BonusSubLibsRecipes.mk
