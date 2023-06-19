@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:49:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:36:30 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/19 09:13:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ double					vec3_square_length(t_vec3 vec3);
 double					vec3_length(t_vec3 vec3);
 t_vec3					vec3_unit(t_vec3 vec3);
 t_vec3					vec3_scale(t_vec3 vec3, float s);
+bool					is_vec3_same(t_vec3 a, t_vec3 b);
 
 double					degree_to_radian(double degree);
 

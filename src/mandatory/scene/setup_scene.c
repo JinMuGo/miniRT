@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 18:05:58 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/19 09:15:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,18 @@ static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 	canvas->aspect_ratio = (double)height / (double)width;
 }
 
+static inline t_vec3	_camera_judge_up_vector(t_camera *camera)
+{
+	if (is_vec3_same(camera->forward, vec3_init(0, 1, 0)))
+		return (vec3_init(0, 0, 1));
+	if (is_vec3_same(camera->forward, vec3_init(0, -1, 0)))
+		return (vec3_init(0, 0, -1));
+	return (vec3_init(0, 1, 0));
+}
+
 static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
-	const t_vec3	tmp = vec3_init(0, 1, 0);
+	const t_vec3	tmp = _camera_judge_up_vector(camera);
 
 	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
 	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
