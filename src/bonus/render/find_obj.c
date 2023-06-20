@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_obj.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 18:06:36 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/20 15:42:55 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static inline t_get_obj_dist	_obj_dist_func_classifier(t_object_type type)
 		return (get_plane_dist);
 	if (type == CY)
 		return (get_cylinder_dist);
+	// if (type == CO)
+	// 	return (get_cone_dist);
 	return (NULL);
 }
 
@@ -33,6 +35,8 @@ static inline t_get_obj_record	_obj_record_func_classifier(t_object_type type)
 		return (get_plane_record);
 	if (type == CY)
 		return (get_cylinder_record);
+	// if (type == CO)
+	// 	return (get_cone_record);
 	return (NULL);
 }
 
