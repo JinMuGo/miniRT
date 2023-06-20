@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:10:40 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/20 14:45:46 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 15:08:00 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	print_objs(t_meta *meta)
 			_print_plane(current->content.plane);
 		else if (current->type == CY)
 			_print_cylinder(current->content.cylinder);
+		else if (current->type == CO)
+			_print_cone(current->content.cone);
 		current = current->next;
 	}
 }

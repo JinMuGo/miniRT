@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/20 14:40:33 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 15:10:31 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static bool	vaildation_cone(t_cone *cone)
 {
-	if (cone->type != CY)
+	if (cone->type != CO)
 		return (false);
 	if (!check_normal_vec(cone->normal_vec3) || !check_rgba(cone->rgba))
 		return (false);
@@ -40,6 +40,7 @@ void	parser_cone(char **line)
 	if (!vaildation_cone(&cone))
 	{
 		ft_free_all_arr(line);
+		printf("cone\n");
 		error_handler(CY_ERR);
 	}
 	meta = singleton();
