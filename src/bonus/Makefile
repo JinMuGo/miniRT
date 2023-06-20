@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
+#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/16 16:34:44 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/20 15:05:05 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,4 +46,4 @@ OBJS	:=	$(SRCS:.c=.o)
 DEPS 	:=	$(SRCS:.c=.d)
 
 -include	$(DEPS)
-include		$(TOPDIR)/make_config/src/Recipes.mk
+include		$(TOPDIR)/make_config/src/BonusRecipes.mk
