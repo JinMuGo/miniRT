@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:45:43 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/20 16:43:05 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render.h"
 #include "scene.h"
 #include "utils.h"
+#include "thread.h"
 
 static inline void	_key_hooks(mlx_key_data_t keydata, void *param)
 {
@@ -26,7 +27,7 @@ static inline void	_key_hooks(mlx_key_data_t keydata, void *param)
 		destroy(meta);
 	camera_key_hooks(keydata, meta);
 	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
-	render(meta);
+	start_thread_render(meta);
 }
 
 static inline void	_resize_hook(int32_t width, int32_t height, void *param)
@@ -35,7 +36,7 @@ static inline void	_resize_hook(int32_t width, int32_t height, void *param)
 
 	meta = param;
 	setup_scene(meta, width, height);
-	render(meta);
+	start_thread_render(meta);
 }
 
 static inline void	_mouse_hooks(
@@ -69,7 +70,7 @@ static inline void	_mouse_cursor(double xpos, double ypos, void *param)
 		return ;
 	camera_cursor_hooks(pos, meta);
 	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
-	render(meta);
+	start_thread_render(meta);
 }
 
 void	hooks(t_meta *meta)

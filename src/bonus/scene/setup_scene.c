@@ -6,12 +6,12 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 18:05:58 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/21 07:11:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs.h"
 #include "minirt.h"
+#include "defs.h"
 #include "utils.h"
 
 static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
@@ -21,9 +21,18 @@ static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 	canvas->aspect_ratio = (double)height / (double)width;
 }
 
+static inline t_vec3	_camera_judge_up_vector(t_camera *camera)
+{
+	if (is_vec3_same(camera->forward, vec3_init(0, 1, 0)))
+		return (vec3_init(0, 0, 1));
+	if (is_vec3_same(camera->forward, vec3_init(0, -1, 0)))
+		return (vec3_init(0, 0, -1));
+	return (vec3_init(0, 1, 0));
+}
+
 static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
-	const t_vec3	tmp = vec3_init(0, 1, 0);
+	const t_vec3	tmp = _camera_judge_up_vector(camera);
 
 	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
 	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
@@ -39,8 +48,32 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 			camera->forward));
 }
 
+static inline void	_setup_thread_pool(t_meta *meta)
+{
+	const int	height_n = meta->scene.canvas.height / THD_NUM;
+	static bool	initialized = false;
+	int			i;
+
+	if (initialized == false)
+	{
+		meta->thd_pool.tids = ft_malloc(sizeof(pthread_t) * THD_NUM);
+		meta->thd_pool.rendrer = ft_malloc(sizeof(t_renderer) * THD_NUM);
+		initialized = true;
+	}
+	i = -1;
+	while (++i < THD_NUM)
+	{
+		meta->thd_pool.rendrer[i].x = 0;
+		meta->thd_pool.rendrer[i].y = i * height_n;
+		meta->thd_pool.rendrer[i].width = meta->scene.canvas.width;
+		meta->thd_pool.rendrer[i].height = (i + 1) * height_n;
+		meta->thd_pool.rendrer[i].meta = meta;
+	}
+}
+
 void	setup_scene(t_meta *meta, int width, int height)
 {
 	_setup_canvas(&meta->scene.canvas, width, height);
 	_setup_camera(&meta->camera, meta->scene.canvas.aspect_ratio);
+	_setup_thread_pool(meta);
 }
