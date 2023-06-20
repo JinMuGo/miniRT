@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:09:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/20 15:30:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_rgba		rgba_min(t_rgba a, t_rgba b);
 double		atod(char *str);
 
 // error.c
-bool		error_handler(t_error_type type);
+void	error_handler(t_error_type type);
 
 // objs.c
 void		objsadd_back(t_obj **objs, t_obj *new);

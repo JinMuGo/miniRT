@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:04:49 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 16:45:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "color.h"
 
-# define FOCAL_LENGTH 1.0
-# define LUMEN 3
-# define SAMPLES_PER_PIXEL 10
+# define FOCAL_LENGTH		1.0
+# define LUMEN				3
+# define SAMPLES_PER_PIXEL	10
+# define THD_NUM			6
 
 # define ERR_ARGS			"❌ Incorrect number of arguments"
 # define ERR_AMB			"❌ Invalid ambient information in file"
@@ -35,5 +36,6 @@
 # define ERR_ALLOCATE		"❌ Memory allocation failed"
 # define ERR_INVALID_EX		"❌ Invalid file Extension"
 # define ERR_INVALID_TYPE 	"❌ Invaild type in file"
+# define ERR_THD 			"❌ Error occured during pthread function"
 
 #endif

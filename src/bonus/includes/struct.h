@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:12:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/20 16:51:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_record		t_record;
 typedef struct s_obj		t_obj;
 typedef struct s_quad_coeff	t_quad_coeff;
 typedef struct s_hooks		t_hooks;
+typedef struct s_renderer t_renderer;
+typedef struct s_thd_pool t_thd_pool;
 
 struct						s_quad_coeff
 {
@@ -167,6 +169,21 @@ struct						s_hooks
 	double					prev_pos[2];
 };
 
+struct s_renderer
+{
+	int						x;
+	int						y;
+	int						width;
+	int						height;
+	t_meta					*meta;
+};
+
+struct s_thd_pool
+{
+	pthread_t				*tids;
+	t_renderer				*rendrer;
+};
+
 struct						s_meta
 {
 	t_mlx_assets			mlx_assets;
@@ -174,6 +191,7 @@ struct						s_meta
 	t_scene					scene;
 	t_camera				camera;
 	t_hooks					hooks;
+	t_thd_pool				thd_pool;
 	t_list					*spot_lights;
 	t_obj					*objs;
 };

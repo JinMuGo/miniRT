@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:54:43 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/20 15:36:39 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RENDER_H
 
 // render
-void			render(t_meta *meta);
+void			*render(void *args);
 
 // sphere
 double			get_sphere_dist(t_obj *obj, const t_ray *ray);

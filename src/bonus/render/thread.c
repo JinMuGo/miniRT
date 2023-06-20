@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 17:38:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 15:18:07 by jgo              ###   ########.fr       */
+/*   Created: 2023/06/20 14:35:56 by jgo               #+#    #+#             */
+/*   Updated: 2023/06/20 15:55:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
+#include "render.h"
 #include "utils.h"
 
-void	destroy(t_meta *meta)
+void	start_thread_render(t_meta *meta)
 {
-	mlx_close_window(meta->mlx_assets.mlx);
-	mlx_terminate(meta->mlx_assets.mlx);
-	ft_lstclear(&meta->spot_lights, free);
-	objs_clear(&meta->objs, free);
-	free(meta->thd_pool.rendrer);
-	free(meta->thd_pool.tids);
-	free(meta);
-	exit(EXIT_SUCCESS);
+	int	i;
+
+	i = -1;
+	while (++i < THD_NUM)
+	{
+		if (pthread_create(meta->thd_pool.tids + i, NULL, render, meta->thd_pool.rendrer + i))
+			return (error_handler(THD_ERR));
+	}
+	while (i >= 0)
+		pthread_join(meta->thd_pool.tids[i--], NULL);
+	printf("finish thread render!\n");
 }

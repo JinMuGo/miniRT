@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:09:57 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/20 16:55:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,23 @@ static inline t_rgba	_multi_sampling(t_meta *meta, const int x, const int y)
 	return (rgba);
 }
 
-void	render(t_meta *meta)
+void	*render(void *args)
 {
-	const t_canvas	_canvas = meta->scene.canvas;
+	t_renderer		*renderer;
 	int				scene[2];
 
-	scene[Y] = 0;
-	while (scene[Y] < _canvas.height)
+	renderer = args;
+	scene[Y] = renderer->y;
+	while (scene[Y] < renderer->height)
 	{
-		scene[X] = 0;
-		while (scene[X] < _canvas.width)
+		scene[X] = renderer->x;
+		while (scene[X] < renderer->width)
 		{
-			mlx_put_pixel(meta->mlx_assets.img, scene[X], scene[Y],
-				rgba_to_color(_multi_sampling(meta, scene[X], scene[Y])));
+			mlx_put_pixel(renderer->meta->mlx_assets.img, scene[X], scene[Y],
+				rgba_to_color(_multi_sampling(renderer->meta, scene[X], scene[Y])));
 			scene[X]++;
 		}
 		scene[Y]++;
 	}
-	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
+	return (NULL);
 }

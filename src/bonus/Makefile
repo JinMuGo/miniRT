@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/20 15:05:05 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/20 15:48:10 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ endif
 include		$(TOPDIR)/make_config/src/Rules.mk
 include 	$(TOPDIR)/make_config/com/ColorRules.mk
 
-NAME	:=	$(PROJECT_NAME)
+NAME	:=	$(BONUS_NAME)
 
 DIRS	:=	design_patterns \
 			scene \
@@ -38,7 +38,8 @@ HEADS	:=	prt_color.h \
 			struct.h \
 			utils.h \
 			parser.h \
-			hooks.h
+			hooks.h \
+			thread.h
 
 SRCS	:=	main.c
 
