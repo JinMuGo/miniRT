@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/20 15:10:31 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 16:09:21 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static bool	vaildation_cone(t_cone *cone)
 {
 	if (cone->type != CO)
 		return (false);
-	if (!check_normal_vec(cone->normal_vec3) || !check_rgba(cone->rgba))
+	if (!check_normal_vec(cone->normal_vec3) || !check_rgba(cone->rgba)
+		|| cone->radius <= 0 || cone->height <= 0)
 		return (false);
 	return (true);
 }
