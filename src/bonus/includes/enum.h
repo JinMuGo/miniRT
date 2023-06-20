@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 14:44:23 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 17:19:43 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef enum e_coeff		t_coeff;
 
 enum						e_win
 {
-	WIN_WIDTH = 1280,
-	WIN_HEIGHT = 720
+	WIN_WIDTH = 400,
+	WIN_HEIGHT = 400
 };
 
 enum						e_object_type
