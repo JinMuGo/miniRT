@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:10:40 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:19:33 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 14:45:46 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ static inline void	_print_cylinder(t_cylinder cylinder)
 	printf("height: %f\n", cylinder.height);
 	printf("RGB: %f, %f, %f\n", cylinder.rgba.r, cylinder.rgba.g,
 		cylinder.rgba.b);
+}
+
+static inline void	_print_cone(t_cone cone)
+{
+	printf(">>>cone<<<\n");
+	printf("Point: %f, %f, %f\n", cone.center_point.x,
+		cone.center_point.y, cone.center_point.z);
+	printf("Vec3: %f, %f, %f\n", cone.normal_vec3.x,
+		cone.normal_vec3.y, cone.normal_vec3.z);
+	printf("radius: %f\n", cone.radius);
+	printf("height: %f\n", cone.height);
+	printf("RGB: %f, %f, %f\n", cone.rgba.r, cone.rgba.g,
+		cone.rgba.b);
 }
 
 void	print_objs(t_meta *meta)

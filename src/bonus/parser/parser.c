@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:51:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:05:47 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 14:49:49 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	parser_router(char **temp)
 		parser_plane(temp);
 	else if (!ft_strcmp(temp[0], "cy"))
 		parser_cylinder(temp);
+	else if (!ft_strcmp(temp[0], "co"))
+		parser_cone(temp);
 	else
 		error_handler(TYPE_ERR);
 }
