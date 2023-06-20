@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 20:19:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/21 07:11:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 			camera->forward));
 }
 
-static inline	_setup_thread_pool(t_meta *meta)
+static inline void	_setup_thread_pool(t_meta *meta)
 {
 	const int	height_n = meta->scene.canvas.height / THD_NUM;
 	static bool	initialized = false;
