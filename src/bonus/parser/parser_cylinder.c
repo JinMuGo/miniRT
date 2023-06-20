@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:55:20 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 15:59:51 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static bool	vaildation_cylinder(t_cylinder *cylinder)
 {
 	if (cylinder->type != CY)
 		return (false);
-	if (!check_normal_vec(cylinder->normal_vec3) || !check_rgba(cylinder->rgba))
+	if (!check_normal_vec(cylinder->normal_vec3)
+		|| !check_rgba(cylinder->rgba)
+		|| cylinder->diameter <= 0
+		|| cylinder->height <= 0)
 		return (false);
 	return (true);
 }

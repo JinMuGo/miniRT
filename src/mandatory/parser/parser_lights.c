@@ -6,20 +6,13 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:33:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:06:14 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 16:04:50 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "design_patterns.h"
 #include "utils.h"
-
-// - `L -40.0,50.0,0.0 0.6 10,0,255`
-// - 유형 4개
-// - 식별자
-// - 빛 점의 좌표
-// - [0.0, 1.0] 내의 빛 밝기 비율
-// - (보너스)[0~255]의 RGB 색상
 
 static bool	vaildation_light(t_spot_light *light)
 {
