@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 16:52:05 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/20 20:19:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,18 @@ static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 	canvas->aspect_ratio = (double)height / (double)width;
 }
 
+static inline t_vec3	_camera_judge_up_vector(t_camera *camera)
+{
+	if (is_vec3_same(camera->forward, vec3_init(0, 1, 0)))
+		return (vec3_init(0, 0, 1));
+	if (is_vec3_same(camera->forward, vec3_init(0, -1, 0)))
+		return (vec3_init(0, 0, -1));
+	return (vec3_init(0, 1, 0));
+}
+
 static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
-	const t_vec3	tmp = vec3_init(0, 1, 0);
+	const t_vec3	tmp = _camera_judge_up_vector(camera);
 
 	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
 	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
@@ -39,16 +48,18 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 			camera->forward));
 }
 
-void	_setup_thread_pool(t_meta *meta)
+static inline	_setup_thread_pool(t_meta *meta)
 {
-	static bool initialized = false;
-	const int height_n = meta->scene.canvas.height / THD_NUM;
-	int	i;
+	const int	height_n = meta->scene.canvas.height / THD_NUM;
+	static bool	initialized = false;
+	int			i;
 
-	if (initialized)
-		return ;
-	meta->thd_pool.tids = ft_malloc(sizeof(pthread_t) * THD_NUM);
-	meta->thd_pool.rendrer = ft_malloc(sizeof(t_renderer) * THD_NUM);
+	if (initialized == false)
+	{
+		meta->thd_pool.tids = ft_malloc(sizeof(pthread_t) * THD_NUM);
+		meta->thd_pool.rendrer = ft_malloc(sizeof(t_renderer) * THD_NUM);
+		initialized = true;
+	}
 	i = -1;
 	while (++i < THD_NUM)
 	{
@@ -58,8 +69,6 @@ void	_setup_thread_pool(t_meta *meta)
 		meta->thd_pool.rendrer[i].height = (i + 1) * height_n;
 		meta->thd_pool.rendrer[i].meta = meta;
 	}
-	initialized = true;
-
 }
 
 void	setup_scene(t_meta *meta, int width, int height)
