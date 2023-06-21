@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:09:57 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/21 13:42:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static inline t_rgba	_calc_pixel(
 
 	record.t = 0;
 	if (find_obj_in_pixel(meta->objs, (t_ray *)&ray, &record))
-		return (phong_lighting(meta, &record));
+		return (phong_lighting(meta, &record, &ray));
 	return (rgba_init_int(42, 42, 42, 255));
 }
 
