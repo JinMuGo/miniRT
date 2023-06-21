@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:12:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/21 13:31:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ struct						s_canvas
 struct						s_scene
 {
 	t_canvas				canvas;
-	t_ray					ray;
 };
 
 union						u_obj

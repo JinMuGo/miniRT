@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:36:32 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:27:11 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/21 13:46:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ static inline t_rgba	_specular(t_vec3 record_normal_vec3, t_vec3 light_dir,
 {
 	const double	ksn = 64;
 	const double	ks = 0.5;
-	const t_vec3	view_dir = vec3_unit(vec3_scalar_multi(ray_direction, -1));
-	const t_vec3	reflect_dir = reflect(\
-						vec3_scalar_multi(light_dir, -1), record_normal_vec3);
+	const t_vec3	view_dir = vec3_scalar_multi(ray_direction, -1);
+	const t_vec3	reflect_dir = reflect(light_dir, record_normal_vec3);
 	const double	spec = pow(\
 					fmax(vec3_inner_product(view_dir, reflect_dir), 0.0), ksn);
 
@@ -38,7 +37,7 @@ static inline t_rgba	_specular(t_vec3 record_normal_vec3, t_vec3 light_dir,
 }
 
 static inline t_rgba	_spot_light_get(t_obj *objs, t_spot_light *light,
-		t_record *record, t_ray ray)
+		t_record *record, const t_ray *ray)
 {
 	t_vec3	light_dir;
 	double	light_len;
@@ -51,11 +50,11 @@ static inline t_rgba	_spot_light_get(t_obj *objs, t_spot_light *light,
 	return (rgba_scalar_multi(rgba_plus(\
 			_diffuse(record->normal_vec3, light_dir, light->rgba), \
 			_specular(\
-				record->normal_vec3, light_dir, light->rgba, ray.direction)),
+				record->normal_vec3, light_dir, light->rgba, ray->direction)),
 			light->ratio * LUMEN));
 }
 
-t_rgba	phong_lighting(t_meta *meta, t_record *record)
+t_rgba	phong_lighting(t_meta *meta, t_record *record, const t_ray *ray)
 {
 	t_list	*spot_light;
 	t_rgba	light_rgba;
@@ -67,7 +66,7 @@ t_rgba	phong_lighting(t_meta *meta, t_record *record)
 		light_rgba = rgba_plus(\
 				light_rgba, \
 				_spot_light_get(\
-					meta->objs, spot_light->content, record, meta->scene.ray));
+					meta->objs, spot_light->content, record, ray));
 		spot_light = spot_light->next;
 	}
 	light_rgba = rgba_plus(\
