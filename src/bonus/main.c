@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 15:42:10 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/22 15:24:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,18 @@
 #include "hooks.h"
 #include "thread.h"
 
+void	chec(void)
+{
+	system("leaks miniRT_bonus");
+}
+
 int	main(int ac, char **av)
 {
 	t_meta		*meta;
 
 	if (ac != 2)
 		error_handler(ARGS_ERR);
+	atexit(chec);
 	parser(av[1]);
 	meta = singleton();
 	print_objs(meta);

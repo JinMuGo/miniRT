@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:18:50 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/22 16:04:15 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 	record->normal_vec3 = vec3_scalar_divide(\
 				vec3_minus(record->point, sphere.center_point), sphere.radius);
 	set_face_normal(ray, record);
-	record->rgba = sphere.rgba;
+	if (obj->option)
+	{
+		if (obj->option->type == CB)
+			record->rgba = get_cb_color(sphere.rgba, obj->option, &record->point);
+	}
+	else
+		record->rgba = sphere.rgba;
 	return (obj->type);
 }
