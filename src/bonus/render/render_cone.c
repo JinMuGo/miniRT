@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:14:58 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/22 20:14:54 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/22 22:09:43 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,46 @@ static bool	is_valid_bottom(double t, t_cone *cone, t_ray *ray)
 	return (false);
 }
 
-static double get_bottom_cone(t_cone *cone, t_ray *ray)
-{
-	t_vec3 cone_top = vec3_plus(cone->center_point, vec3_scalar_multi(cone->normal_vec3, cone->height));
-	
-	double bottom_t;
-	
-	bottom_t = vec3_inner_product(
-		vec3_minus(cone_top, ray->origin),
-		vec3_scalar_multi(cone->normal_vec3, -1)
-	) / vec3_inner_product(ray->direction, vec3_scalar_multi(cone->normal_vec3, -1));
-	
-	if (!is_valid_bottom(bottom_t, cone, ray))
+// 수정된 get_base_t 함수
+static double get_base_t(t_cone *cone, t_ray *ray) {
+	// 원뿔의 밑면의 법선 벡터는 원뿔의 direction과 동일
+	t_vec3 plane_normal = cone->normal_vec3;
+
+	// 원뿔의 밑면의 중심점 계산
+	t_vec3 cap_center = vec3_minus(cone->center_point, vec3_scalar_multi(cone->normal_vec3, cone->height));
+
+	// 분자 부분 계산: (p - o) . n
+	double numerator = vec3_inner_product(
+		vec3_minus(cap_center, ray->origin),  // p - o
+		plane_normal                          // n
+	);
+
+	// 분모 부분 계산: d . n
+	double denominator = vec3_inner_product(ray->direction, plane_normal);  // d . n
+
+	// 분모가 0이면 광선이 평면과 평행하므로 교점 없음
+	if (denominator < EPSILON) {
 		return (0);
-	
-	return (bottom_t);
+	}
+
+	// t 값을 계산
+	double base_t = numerator / denominator;
+
+	// t는 광선의 방향 벡터에 곱해지는 스칼라값이므로, 이 값이 음수면 광선이 원뿔을 향하고 있지 않음
+	if (base_t < 0.0) {
+		return (0);
+	}
+
+	// t 값 반환
+	if (!is_valid_bottom(base_t, cone, ray))
+		return (0);
+	return base_t;
 }
+
+
+
+
+
 
 
 
@@ -93,14 +117,15 @@ double	get_cone_dist(t_obj *obj, const t_ray *ray)
 
 	cone = obj->content.cone;
 	infi_t = get_infinite_cone(&cone, (t_ray *)ray);
-	bottom_t = get_bottom_cone(&cone, (t_ray *)ray);
-
+	bottom_t = get_base_t(&cone, (t_ray *)ray);
+	cone.co_type = SIDE;
 	if ((infi_t > 0 && bottom_t <= 0)
 		|| (infi_t > 0 && bottom_t > 0 && infi_t <= bottom_t))
 		return (infi_t);
 	else if (bottom_t > 0)
 	{
 		printf("retturn bottom\n");
+		cone.co_type = BASE;
 		return (bottom_t);
 	}
 	return (0);
