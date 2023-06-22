@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 15:16:20 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/22 19:53:23 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ bool			is_valid_cap(double t, const t_cylinder *cy, const t_ray *ray,
 					t_cy_type type);
 
 // cone
-t_object_type	get_cone_record(t_obj *obj, t_ray *ray, t_record *record);
 double			get_cone_dist(t_obj *obj, const t_ray *ray);
+t_object_type	get_cone_record(t_obj *obj, t_ray *ray, t_record *record);
 
 // ray
 t_ray			ray_from_camera(t_camera *camera, const double u,
