@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 15:30:45 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/22 13:53:39 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_rgba		rgba_min(t_rgba a, t_rgba b);
 double		atod(char *str);
 
 // error.c
-void	error_handler(t_error_type type);
+void		error_handler(t_error_type type);
 
 // objs.c
 void		objsadd_back(t_obj **objs, t_obj *new);
@@ -39,5 +39,6 @@ void		objs_clear(t_obj **objs, void (*del)(void *));
 
 // number.c
 double		clamp(const double x, const double min, const double max);
+float		float_modulo(const float x);
 
 #endif

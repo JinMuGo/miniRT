@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:06:32 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/22 15:12:28 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ bool		check_0_to_180(double data);
 bool		check_rgba(t_rgba rgba);
 bool		check_comma(char *str);
 bool		check_normal_vec(t_vec3 vector);
+bool		vaildation_option(t_obj_option *option);
 
 void		print_ambient(t_meta *meta);
 void		print_camera(t_meta *meta);

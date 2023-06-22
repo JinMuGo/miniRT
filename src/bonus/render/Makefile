@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/20 15:34:42 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/22 16:06:37 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	ray.c \
 		render.c \
+		render_utils.c \
 		thread.c \
 		find_obj.c \
 		render_plane.c \

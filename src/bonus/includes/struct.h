@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 16:51:19 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/22 15:08:13 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ typedef struct s_record		t_record;
 typedef struct s_obj		t_obj;
 typedef struct s_quad_coeff	t_quad_coeff;
 typedef struct s_hooks		t_hooks;
-typedef struct s_renderer t_renderer;
-typedef struct s_thd_pool t_thd_pool;
+typedef struct s_renderer	t_renderer;
+typedef struct s_thd_pool	t_thd_pool;
+typedef struct s_cb			t_cb;
+typedef struct s_obj_option	t_obj_option;
 
 struct						s_quad_coeff
 {
@@ -49,6 +51,25 @@ struct						s_rgba
 	double					g;
 	double					b;
 	double					a;
+};
+
+struct						s_cb
+{
+	t_rgba					rgba;
+	float					degree;
+	float					scale_s;
+	float					scale_t;
+};
+
+union						u_obj_option
+{
+	t_cb					cb;
+};
+
+struct						s_obj_option
+{
+	t_obj_option_type		type;
+	union u_obj_option		op;
 };
 
 struct						s_mlx_assets
@@ -159,6 +180,7 @@ struct						s_obj
 {
 	t_object_type			type;
 	union u_obj				content;
+	t_obj_option			*option;
 	t_obj					*next;
 };
 
@@ -169,7 +191,7 @@ struct						s_hooks
 	double					prev_pos[2];
 };
 
-struct s_renderer
+struct						s_renderer
 {
 	int						x;
 	int						y;
@@ -178,7 +200,7 @@ struct s_renderer
 	t_meta					*meta;
 };
 
-struct s_thd_pool
+struct						s_thd_pool
 {
 	pthread_t				*tids;
 	t_renderer				*rendrer;
