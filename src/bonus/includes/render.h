@@ -14,7 +14,10 @@
 # define RENDER_H
 
 // render
-void			render(t_meta *meta);
+void			*render(void *args);
+
+t_rgba			get_cb_color(const t_rgba rgba, t_obj_option *option,
+					t_point3 *point);
 
 // sphere
 double			get_sphere_dist(t_obj *obj, const t_ray *ray);

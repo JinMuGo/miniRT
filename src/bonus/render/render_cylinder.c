@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:17:21 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/22 16:05:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	if (cylinder.p_type == BOT)
 		record->normal_vec3 = vec3_scalar_multi(cylinder.normal_vec3, -1);
 	set_face_normal(ray, record);
-	record->rgba = cylinder.rgba;
+	if (obj->option)
+	{
+		if (obj->option->type == CB)
+			record->rgba = get_cb_color(cylinder.rgba, obj->option, &record->point);
+	}
+	else
+		record->rgba = cylinder.rgba;
 	return (obj->type);
 }

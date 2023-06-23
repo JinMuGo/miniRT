@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:59:13 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 16:05:10 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	vaildation_sphere(t_sphere *sphere)
 {
 	if (sphere->type != SP)
 		return (false);
-	if (!check_rgba(sphere->rgba))
+	if (!check_rgba(sphere->rgba) || sphere->diameter <= 0)
 		return (false);
 	return (true);
 }

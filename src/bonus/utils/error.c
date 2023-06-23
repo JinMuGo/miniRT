@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:12:25 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/20 15:30:40 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@ static inline void	error_parser(t_error_type type)
 	exit(EXIT_FAILURE);
 }
 
-bool	error_handler(t_error_type type)
+void	error_handler(t_error_type type)
 {
 	if (type == ARGS_ERR)
 		print_error_msg(ERR_ARGS);
 	if (type == OPEN_ERR)
 		print_error_msg(ERR_OPEN);
+	if (type == THD_ERR)
+		print_error_msg(ERR_THD);
 	else
 		error_parser(type);
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }

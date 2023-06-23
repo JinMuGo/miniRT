@@ -19,6 +19,8 @@ include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	ray.c \
 		render.c \
+		render_utils.c \
+		thread.c \
 		find_obj.c \
 		render_plane.c \
 		render_sphere.c \

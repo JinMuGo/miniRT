@@ -17,7 +17,7 @@ endif
 include		$(TOPDIR)/make_config/src/Rules.mk
 include 	$(TOPDIR)/make_config/com/ColorRules.mk
 
-NAME	:=	$(PROJECT_NAME)
+NAME	:=	$(BONUS_NAME)
 
 DIRS	:=	design_patterns \
 			scene \
@@ -38,7 +38,8 @@ HEADS	:=	prt_color.h \
 			struct.h \
 			utils.h \
 			parser.h \
-			hooks.h
+			hooks.h \
+			thread.h
 
 SRCS	:=	main.c
 
