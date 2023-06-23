@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 14:44:42 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/23 15:57:56 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ struct						s_cone
 {
 	t_object_type			type;
 	t_co_type				co_type;
-	t_point3				center_point;
+	t_point3				base_point;
 	t_vec3					normal_vec3;
 	double					radius;
 	double					height;
