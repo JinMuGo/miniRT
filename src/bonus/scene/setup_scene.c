@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/21 07:11:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/25 22:37:55 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,9 @@ static inline void	_setup_canvas(t_canvas *canvas, int width, int height)
 	canvas->aspect_ratio = (double)height / (double)width;
 }
 
-static inline t_vec3	_camera_judge_up_vector(t_camera *camera)
-{
-	if (is_vec3_same(camera->forward, vec3_init(0, 1, 0)))
-		return (vec3_init(0, 0, 1));
-	if (is_vec3_same(camera->forward, vec3_init(0, -1, 0)))
-		return (vec3_init(0, 0, -1));
-	return (vec3_init(0, 1, 0));
-}
-
 static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 {
-	const t_vec3	tmp = _camera_judge_up_vector(camera);
-
-	camera->right = vec3_unit(vec3_cross_product(tmp, camera->forward));
-	camera->up = vec3_unit(vec3_cross_product(camera->forward, camera->right));
+	set_ab_axis_from_c(&camera->right, &camera->up, &camera->forward);
 	camera->viewport_w = tan(degree_to_radian(camera->fov) / 2) * FOCAL_LENGTH
 		* 2;
 	camera->viewport_h = camera->viewport_w * aspect_ratio;

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:03:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 16:06:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/25 21:27:29 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,13 @@ t_rgba	get_cb_color(const t_rgba rgba, t_obj_option *option, t_point3 *point)
 		return (rgba);
 	else
 		return (cb.rgba);
+}
+
+t_rgba	get_img_pixel(mlx_image_t *img, const int u, const int v)
+{
+	const size_t	bpp = sizeof(uint32_t);
+	uint8_t			*color;
+
+	color = img->pixels + ((v * img->width + u) * bpp);
+	return (color_to_rgba(color));
 }

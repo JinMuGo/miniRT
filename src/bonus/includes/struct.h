@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 15:08:13 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/25 22:40:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_hooks		t_hooks;
 typedef struct s_renderer	t_renderer;
 typedef struct s_thd_pool	t_thd_pool;
 typedef struct s_cb			t_cb;
+typedef struct s_bp			t_bp;
 typedef struct s_obj_option	t_obj_option;
 
 struct						s_quad_coeff
@@ -61,9 +62,20 @@ struct						s_cb
 	float					scale_t;
 };
 
+struct						s_bp
+{
+	t_mlx_image_type		type;
+	mlx_image_t				*img;
+	t_rgba					rgba;
+	t_uv					uv;
+	t_vec3					up;
+	t_vec3					right;
+};
+
 union						u_obj_option
 {
 	t_cb					cb;
+	t_bp					bp;
 };
 
 struct						s_obj_option

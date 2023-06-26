@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 13:17:49 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/25 15:54:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,18 @@ typedef enum e_error_type		t_error_type;
 typedef enum e_cy_type			t_cy_type;
 typedef enum e_coeff			t_coeff;
 typedef enum e_obj_option_type	t_obj_option_type;
+typedef enum e_mlx_image_type	t_mlx_image_type;
 
 enum							e_win
 {
 	WIN_WIDTH = 1280,
 	WIN_HEIGHT = 720
+};
+
+enum							e_mlx_image_type
+{
+	XPM,
+	PNG
 };
 
 enum							e_object_type

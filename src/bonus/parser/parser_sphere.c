@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/22 16:17:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/25 18:49:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,44 @@ static inline t_obj_option *_cb_allocator(char **line)
 	return (option);
 }
 
+static inline t_obj_option *_bp_allocator(char **line)
+{
+	const size_t path_len = ft_strlen(line[5]);
+	t_obj_option	*option;
+	mlx_texture_t	*texture;
+
+	texture = NULL;
+	option = ft_malloc(sizeof(t_obj_option));
+	option->type = BP;
+	if (ft_strnstr(line[5], ".xpm42", path_len))
+		option->op.bp.type = XPM;
+	else if (ft_strnstr(line[5], ".png", path_len))
+		option->op.bp.type = PNG;
+	else
+		error_handler(SP_ERR);
+	if (option->op.bp.type == PNG)
+		texture = mlx_load_png(line[5]); // load에러
+	else if (option->op.bp.type == XPM)
+		texture = &mlx_load_xpm42(line[5])->texture;
+	else
+		error_handler(SP_ERR);
+	if (texture == NULL)
+		error_handler(SP_ERR);
+	option->op.bp.img = mlx_texture_to_image(singleton()->mlx_assets.mlx ,texture);
+	mlx_delete_texture(texture);
+	if (option->op.bp.img == NULL)
+		error_handler(SP_ERR);
+	return (option);
+}
+
 static inline t_obj_option	*_option_allocator(char **line)
 {
 	if (!ft_strcmp(line[4], "cb"))
 		return (_cb_allocator(line));
+	else if (!ft_strcmp(line[4], "bp"))
+		return (_bp_allocator(line));
 	else
 		return (NULL);
-	// else if (!ft_strcmp(line[4], "bp"))
-	// 	sphere->option = _bp_allocator(line);
 }
 
 void	parser_sphere(char **line)
@@ -54,7 +84,7 @@ void	parser_sphere(char **line)
 	t_obj			*obj;
 	t_sphere		sphere;
 
-	if (!(len == 4 || len == 9))
+	if (!(len == 4 || len == 6 || len == 9))
 		error_handler(SP_ERR);
 	sphere.type = SP;
 	sphere.center_point = parser_point3(line[1]);

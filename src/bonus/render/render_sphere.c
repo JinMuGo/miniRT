@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 16:04:15 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 09:59:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@ double	get_sphere_dist(t_obj *obj, const t_ray *ray)
 	return (0);
 }
 
+static inline void _set_sphere_uv(t_obj_option *option, t_record *record)
+{
+	const double phi = atan2(-record->normal_vec3.z, record->normal_vec3.x) + M_PI;
+	const double theta = acos(-record->normal_vec3.y);
+
+	option->op.bp.uv.u = phi / (M_PI * 2);
+	option->op.bp.uv.v = theta / M_PI;
+}
+
+static inline t_rgba _get_bp_color(t_bp *bp, t_record *record)
+{
+	const int u = bp->uv.u * bp->img->width;
+	const int v = (1.0 - bp->uv.v) * bp->img->height;
+	int	normal;
+	
+	bp->rgba = get_img_pixel(bp->img, u, v);
+	set_ab_axis_from_c(&bp->right, &bp->up, &record->normal_vec3);
+	bp->rgba = rgba_scalar_minus(rgba_scalar_multi(bp->rgba, 2), 1);
+	record->normal_vec3 = 
+	
+	return (bp->rgba);
+}
+
 t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 {
 	const t_sphere	sphere = obj->content.sphere;
@@ -48,6 +71,11 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 	{
 		if (obj->option->type == CB)
 			record->rgba = get_cb_color(sphere.rgba, obj->option, &record->point);
+		else if (obj->option->type == BP)
+		{
+			_set_sphere_uv(obj->option, record);
+			record->rgba = _get_bp_color(&obj->option->op.bp, record);
+		}
 	}
 	else
 		record->rgba = sphere.rgba;
