@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 20:18:07 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:24:07 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "design_patterns.h"
 #include "utils.h"
 
-static inline void	print_error_msg(char *msg)
+static inline void	print_error_msg(const char *msg)
 {
 	printf("Error\n%s\n", msg);
 }
