@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 16:04:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/23 17:41:37 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ void			get_cylinder_coeff(t_cylinder *cy, t_ray *ray, double *coeff);
 void			get_top_bot_t(t_cylinder *cy, t_ray *ray, double *cap_inter);
 bool			is_valid_cap(double t, const t_cylinder *cy, const t_ray *ray,
 					t_cy_type type);
+
+// cone
+double			get_cone_dist(t_obj *obj, const t_ray *ray);
+t_object_type	get_cone_record(t_obj *obj, t_ray *ray, t_record *record);
+bool			is_valid_base(double t, t_cone *cone, t_ray *ray);
+bool			is_within_cone_height(t_cone *cone, t_ray *ray, double root);
+void			get_cone_coeff(t_cone *cone, t_ray *ray, double *coeff);
 
 // ray
 t_ray			ray_from_camera(t_camera *camera, const double u,

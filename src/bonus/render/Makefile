@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
+#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/22 16:06:37 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/23 17:40:58 by sanghwal         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRCS :=	ray.c \
 		render_plane.c \
 		render_sphere.c \
 		render_cylinder.c \
-		render_cylinder2.c
+		render_cylinder2.c \
+		render_cone.c \
+		render_cone2.c
 
 NAME := render.a
 

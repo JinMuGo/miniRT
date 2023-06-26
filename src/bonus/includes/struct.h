@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 15:08:13 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/23 15:57:56 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_spot_light	t_spot_light;
 typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
+typedef struct s_cone		t_cone;
 typedef struct s_vec3		t_point3;
 typedef struct s_meta		t_meta;
 typedef struct s_record		t_record;
@@ -141,6 +142,17 @@ struct						s_cylinder
 	t_rgba					rgba;
 };
 
+struct						s_cone
+{
+	t_object_type			type;
+	t_co_type				co_type;
+	t_point3				base_point;
+	t_vec3					normal_vec3;
+	double					radius;
+	double					height;
+	t_rgba					rgba;
+};
+
 struct						s_ray
 {
 	t_point3				origin;
@@ -174,6 +186,7 @@ union						u_obj
 	t_sphere				sphere;
 	t_plane					plane;
 	t_cylinder				cylinder;
+	t_cone					cone;
 };
 
 struct						s_obj
