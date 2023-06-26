@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/23 15:57:51 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:18:35 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parser_cone(char **line)
 	t_obj		*obj;
 
 	if (ft_arrlen((void **)line) != 6)
-		error_handler(CY_ERR);
+		error_handler(CO_ERR);
 	cone.type = CO;
 	cone.base_point = parser_point3(line[1]);
 	cone.normal_vec3 = vec3_unit(parser_vec3(line[2]));
@@ -41,8 +41,7 @@ void	parser_cone(char **line)
 	if (!vaildation_cone(&cone))
 	{
 		ft_free_all_arr(line);
-		printf("cone\n");
-		error_handler(CY_ERR);
+		error_handler(CO_ERR);
 	}
 	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));
