@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:51:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 14:49:49 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 21:05:53 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	parser(char *file)
 	char		*line;
 	char		**temp;
 
-	line = 0;
 	if (fd < 0)
 		error_handler(OPEN_ERR);
 	if (!is_rtfile(file))

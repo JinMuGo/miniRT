@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/22 16:17:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 20:59:15 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static bool	vaildation_sphere(t_sphere *sphere)
 	return (true);
 }
 
-static inline t_obj_option *_cb_allocator(char **line)
+static inline t_obj_option	*_cb_allocator(char **line)
 {
-	t_obj_option *option;
+	t_obj_option	*option;
 
 	option = ft_malloc(sizeof(t_obj_option));
 	option->type = CB;
@@ -46,6 +46,15 @@ static inline t_obj_option	*_option_allocator(char **line)
 	// 	sphere->option = _bp_allocator(line);
 }
 
+static inline void	set_sphere_info(t_sphere *sphere, char **line)
+{
+	sphere->type = SP;
+	sphere->center_point = parser_point3(line[1]);
+	sphere->diameter = check_to_double(line[2]);
+	sphere->radius = sphere->diameter / 2;
+	sphere->rgba = parser_rgba(line[3]);
+}
+
 void	parser_sphere(char **line)
 {
 	const int		len = ft_arrlen((void **)line);
@@ -56,11 +65,7 @@ void	parser_sphere(char **line)
 
 	if (!(len == 4 || len == 9))
 		error_handler(SP_ERR);
-	sphere.type = SP;
-	sphere.center_point = parser_point3(line[1]);
-	sphere.diameter = check_to_double(line[2]);
-	sphere.radius = sphere.diameter / 2;
-	sphere.rgba = parser_rgba(line[3]);
+	set_sphere_info(&sphere, line);
 	if (line[4])
 		option = _option_allocator(line);
 	else
