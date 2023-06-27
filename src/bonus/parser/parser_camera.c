@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:53:53 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:31:24 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 
 static bool	vaildation_camera(t_camera cam)
 {
-	if (cam.type != CAM)
-		return (false);
-	if (!check_normal_vec(cam.normal_vec3) || !check_0_to_180(cam.fov))
+	if (cam.type != CAM
+		|| !check_normal_vec(cam.normal_vec3) || !check_0_to_180(cam.fov))
 		return (false);
 	return (true);
 }
@@ -34,7 +33,6 @@ void	parser_camera(char **line)
 	cam.view_point = parser_point3(line[1]);
 	cam.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	cam.fov = check_to_double(line[3]);
-	cam.normal_vec3 = vec3_unit(cam.normal_vec3);
 	cam.pos = cam.view_point;
 	cam.forward = vec3_scalar_multi(cam.normal_vec3, -1);
 	cam.pitch = asin(-cam.forward.y);

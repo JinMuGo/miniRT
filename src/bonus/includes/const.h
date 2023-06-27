@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 16:29:05 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 20:00:14 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define ERR_SP				"Invalid sphere information in file"
 # define ERR_PL				"Invalid plane information in file"
 # define ERR_CY				"Invalid cylinder information in file"
+# define ERR_CO				"Invalid cone information in file"
 # define ERR_POINT			"Invalid point information in file"
 # define ERR_VEC			"Invalid vector information in file"
 # define ERR_RGB			"Invalid RGB information in file"

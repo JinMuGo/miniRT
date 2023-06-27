@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:33:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/20 16:00:19 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:45:11 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 
 static bool	vaildation_light(t_spot_light *light)
 {
-	if (light->type != LIGHT)
-		return (false);
-	if (!check_0_to_1(light->ratio)
+	if (light->type != LIGHT
+		|| !check_0_to_1(light->ratio)
 		|| !check_rgba(light->rgba))
 		return (false);
 	return (true);

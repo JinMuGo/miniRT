@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/22 16:17:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 20:48:55 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 static bool	vaildation_plane(t_plane *plane)
 {
-	if (plane->type != PL)
-		return (false);
-	if (!check_normal_vec(plane->normal_vec3) || !check_rgba(plane->rgba))
+	if (plane->type != PL
+		|| !check_normal_vec(plane->normal_vec3)
+		|| !check_rgba(plane->rgba))
 		return (false);
 	return (true);
 }
 
-static inline t_obj_option *_cb_allocator(char **line)
+static inline t_obj_option	*_cb_allocator(char **line)
 {
-	t_obj_option *option;
+	t_obj_option	*option;
 
 	option = ft_malloc(sizeof(t_obj_option));
 	option->type = CB;
@@ -46,6 +46,14 @@ static inline t_obj_option	*_option_allocator(char **line)
 	// 	sphere->option = _bp_allocator(line);
 }
 
+static inline void	set_plane_info(t_plane *plane, char **line)
+{
+	plane->type = PL;
+	plane->point = parser_point3(line[1]);
+	plane->normal_vec3 = vec3_unit(parser_vec3(line[2]));
+	plane->rgba = parser_rgba(line[3]);
+}
+
 void	parser_plane(char **line)
 {
 	const int		len = ft_arrlen((void **)line);
@@ -56,10 +64,7 @@ void	parser_plane(char **line)
 
 	if (!(len == 4 || len == 9))
 		error_handler(PL_ERR);
-	plane.type = PL;
-	plane.point = parser_point3(line[1]);
-	plane.normal_vec3 = vec3_unit(parser_vec3(line[2]));
-	plane.rgba = parser_rgba(line[3]);
+	set_plane_info(&plane, line);
 	if (line[4])
 		option = _option_allocator(line);
 	else

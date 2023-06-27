@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enum.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 18:28:03 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:13:54 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef enum e_object_type		t_object_type;
 typedef enum e_error_type		t_error_type;
 typedef enum e_cy_type			t_cy_type;
-typedef enum e_co_type		t_co_type;
+typedef enum e_co_type			t_co_type;
 typedef enum e_coeff			t_coeff;
 typedef enum e_obj_option_type	t_obj_option_type;
 
@@ -84,6 +84,7 @@ enum							e_error_type
 	SP_ERR,
 	PL_ERR,
 	CY_ERR,
+	CO_ERR,
 	POINT_ERR,
 	VEC_ERR,
 	RGB_ERR,
