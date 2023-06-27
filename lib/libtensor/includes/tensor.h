@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:49:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/25 23:02:58 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 14:59:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ double					degree_to_radian(double degree);
 
 bool					root_formula(double a, double b, double c,
 							double root[2]);
-
 // vec4_oper
 
 t_vec4					vec4_plus(t_vec4 a, t_vec4 b);
@@ -96,5 +95,12 @@ t_vec4					vec4_scalar_multi(t_vec4 vec4, double scalar);
 
 //  vec4_utils
 t_vec3					vec4_to_vec3(t_vec4 from);
+
+// mat3_init
+t_mat3					mat3_init(t_vec3 a, t_vec3 b, t_vec3 c);
+
+// mat3_oper
+t_vec3					mat3_vec3_multi(const t_mat3 *matrix,
+							const t_vec3 *vec);
 
 #endif
