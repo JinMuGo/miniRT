@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/22 16:05:06 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 20:59:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		if (obj->option->type == CB)
-			record->rgba = get_cb_color(cylinder.rgba, obj->option, &record->point);
+		// _set_cylinder_uv();
+		apply_option(obj->option, record, cylinder.rgba);
 	}
 	else
 		record->rgba = cylinder.rgba;
