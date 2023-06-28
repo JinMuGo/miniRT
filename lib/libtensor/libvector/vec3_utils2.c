@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 21:47:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/25 22:33:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/28 18:01:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static inline t_vec3	_judge_up_vector(t_vec3 vec)
 	return (vec3_init(0, 1, 0));
 }
 
-void	set_ab_axis_from_c(t_vec3 *a, t_vec3 *b, t_vec3 *c)
+void	set_ab_axis_from_c(t_vec3 *a, t_vec3 *b, const t_vec3 *c)
 {
 	const t_vec3 up = _judge_up_vector(*c);
 
