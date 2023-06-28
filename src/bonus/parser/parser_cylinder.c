@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:44:04 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/28 15:58:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,6 @@ static bool	vaildation_cylinder(t_cylinder *cylinder)
 	return (true);
 }
 
-static inline t_obj_option	*_cb_allocator(char **line)
-{
-	t_obj_option	*option;
-
-	option = ft_malloc(sizeof(t_obj_option));
-	option->type = CB;
-	option->op.cb.rgba = parser_rgba(line[7]);
-	option->op.cb.scale_s = check_to_double(line[8]);
-	option->op.cb.scale_t = check_to_double(line[9]);
-	option->op.cb.degree = check_to_double(line[10]);
-	return (option);
-}
-
-static inline t_obj_option	*_option_allocator(char **line)
-{
-	if (!ft_strcmp(line[6], "cb"))
-		return (_cb_allocator(line));
-	else
-		return (NULL);
-	// else if (!ft_strcmp(line[4], "bp"))
-	// 	cylindeer->option = _bp_allocator(line);
-}
-
 static inline void	set_cylinder_info(t_cylinder *cylinder, char **line)
 {
 	cylinder->type = CY;
@@ -63,14 +40,13 @@ void	parser_cylinder(char **line)
 	const int		len = ft_arrlen((void **)line);
 	t_obj_option	*option;
 	t_cylinder		cylinder;
-	t_meta			*meta;
 	t_obj			*obj;
 
-	if (!(len == 6 || len == 11))
+	if (!(len == 6 || len == 8 || len == 10 || len == 11))
 		error_handler(CY_ERR);
 	set_cylinder_info(&cylinder, line);
 	if (line[6])
-		option = _option_allocator(line);
+		option = option_allocator(line, 6, CY_ERR);
 	else
 		option = NULL;
 	if (!vaildation_cylinder(&cylinder) || !vaildation_option(option))
@@ -78,11 +54,10 @@ void	parser_cylinder(char **line)
 		ft_free_all_arr(line);
 		error_handler(CY_ERR);
 	}
-	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = CY;
 	obj->content.cylinder = cylinder;
 	obj->option = option;
 	obj->next = NULL;
-	objsadd_back(&meta->objs, obj);
+	objsadd_back(&singleton()->objs, obj);
 }

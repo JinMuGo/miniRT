@@ -6,7 +6,7 @@
 #    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/20 14:56:34 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/26 20:35:32 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	parser.c \
 		ft_split_whitespace.c \
+		option_allocator.c \
 		parser_ambient.c \
 		parser_camera.c \
 		parser_lights.c \
@@ -32,7 +33,7 @@ SRCS :=	parser.c \
 		parser_utils.c \
 		parser_utils2.c \
 		parser_print.c \
-		parser_print_objs.c
+		parser_print_objs.c \
 
 NAME := parser.a
 

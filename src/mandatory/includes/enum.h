@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enum.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:05:05 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/28 16:32:03 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ enum						e_cy_type
 {
 	TOP,
 	BOT,
-	INF
+	TUBE
 };
 
 enum						e_error_type

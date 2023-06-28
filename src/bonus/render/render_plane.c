@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 16:04:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/27 18:56:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ double	get_plane_dist(t_obj *obj, const t_ray *ray)
 	return (t);
 }
 
+static inline void _set_plane_uv(t_obj_option *option, t_record *record)
+{
+	const double u = fmod(vec3_inner_product(option->op.tx.right, record->point), 1);
+	const double v = fmod(vec3_inner_product(option->op.tx.up, record->point), 1);
+	
+	if (u < 0)
+		option->op.tx.uv.u = u + 1.0;
+	else
+		option->op.tx.uv.u = u;
+	if (v < 0)
+		option->op.tx.uv.v = v + 1.0;
+	else
+		option->op.tx.uv.v = v;
+}
+
 t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record)
 {
 	const t_plane	plane = obj->content.plane;
@@ -42,8 +57,9 @@ t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record)
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		if (obj->option->type == CB)
-			record->rgba = get_cb_color(plane.rgba, obj->option,&record->point);
+		set_ab_axis_from_c(&obj->option->op.tx.right, &obj->option->op.tx.up, &record->normal_vec3);
+		_set_plane_uv(obj->option, record);
+		apply_option(obj->option, record, plane.rgba);
 	}
 	else
 		record->rgba = plane.rgba;

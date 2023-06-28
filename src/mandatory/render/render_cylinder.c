@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:17:21 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/28 16:32:03 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ double	get_cylinder_dist(t_obj *obj, const t_ray *ray)
 
 	cylinder = &(obj->content.cylinder);
 	infinite_t = _calculate_infinite_cylinder_t(cylinder, (t_ray *)ray);
-	cylinder->p_type = INF;
+	cylinder->p_type = TUBE;
 	cap_t = _calculate_cap_cylinder_t(cylinder, (t_ray *)ray);
 	if ((infinite_t > 0 && cap_t <= 0)
 		|| (infinite_t > 0 && cap_t > 0 && infinite_t <= cap_t))
 	{
-		cylinder->p_type = INF;
+		cylinder->p_type = TUBE;
 		return (infinite_t);
 	}
 	else if (cap_t > 0)
@@ -95,7 +95,7 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
-	if (cylinder.p_type == INF)
+	if (cylinder.p_type == TUBE)
 		_get_infi_normal_vec3(cylinder, record);
 	if (cylinder.p_type == TOP)
 		record->normal_vec3 = cylinder.normal_vec3;

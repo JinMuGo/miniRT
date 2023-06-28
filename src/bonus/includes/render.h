@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/23 17:41:37 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:55:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 // render
 void			*render(void *args);
 
-t_rgba			get_cb_color(const t_rgba rgba, t_obj_option *option,
-					t_point3 *point);
+// utils
+void			apply_option(t_obj_option *option, t_record *record,
+					t_rgba origin);
 
 // sphere
 double			get_sphere_dist(t_obj *obj, const t_ray *ray);

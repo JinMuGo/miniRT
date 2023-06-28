@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:48:55 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:43:46 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,6 @@ static bool	vaildation_plane(t_plane *plane)
 	return (true);
 }
 
-static inline t_obj_option	*_cb_allocator(char **line)
-{
-	t_obj_option	*option;
-
-	option = ft_malloc(sizeof(t_obj_option));
-	option->type = CB;
-	option->op.cb.rgba = parser_rgba(line[5]);
-	option->op.cb.scale_s = check_to_double(line[6]);
-	option->op.cb.scale_t = check_to_double(line[7]);
-	option->op.cb.degree = check_to_double(line[8]);
-	return (option);
-}
-
-static inline t_obj_option	*_option_allocator(char **line)
-{
-	if (!ft_strcmp(line[4], "cb"))
-		return (_cb_allocator(line));
-	else
-		return (NULL);
-	// else if (!ft_strcmp(line[4], "bp"))
-	// 	sphere->option = _bp_allocator(line);
-}
-
 static inline void	set_plane_info(t_plane *plane, char **line)
 {
 	plane->type = PL;
@@ -58,15 +35,15 @@ void	parser_plane(char **line)
 {
 	const int		len = ft_arrlen((void **)line);
 	t_obj_option	*option;
-	t_meta			*meta;
 	t_plane			plane;
 	t_obj			*obj;
+	int				idx;
 
-	if (!(len == 4 || len == 9))
+	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(PL_ERR);
 	set_plane_info(&plane, line);
 	if (line[4])
-		option = _option_allocator(line);
+		option = option_allocator(line, 4, PL_ERR);
 	else
 		option = NULL;
 	if (!vaildation_plane(&plane) || !vaildation_option(option))
@@ -74,11 +51,10 @@ void	parser_plane(char **line)
 		ft_free_all_arr(line);
 		error_handler(PL_ERR);
 	}
-	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = PL;
 	obj->content.plane = plane;
 	obj->option = option;
 	obj->next = NULL;
-	objsadd_back(&meta->objs, obj);
+	objsadd_back(&singleton()->objs, obj);
 }

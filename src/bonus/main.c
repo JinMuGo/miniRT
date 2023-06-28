@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 15:12:44 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 21:49:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 	parser(av[1]);
 	meta = singleton();
 	print_objs(meta);
+	print_camera(meta);
 	setup_scene(meta, WIN_WIDTH, WIN_HEIGHT);
 	start_thread_render(meta);
 	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);

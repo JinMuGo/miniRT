@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:00:02 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/22 15:20:05 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 19:09:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ void	objsadd_back(t_obj **objs, t_obj *new)
 	node->next = new;
 }
 
+static inline void	option_clear(t_obj_option *option, void (*del)(void *))
+{
+	if (option->type == TX)
+	{
+		if (option->op.tx.bp)
+			del(option->op.tx.bp);
+	}
+	del(option);
+}
+
 void	objs_clear(t_obj **objs, void (*del)(void *))
 {
 	t_obj	*obj;
@@ -43,7 +53,7 @@ void	objs_clear(t_obj **objs, void (*del)(void *))
 		obj = (*objs)->next;
 		option = (*objs)->option;
 		if (option)
-			del(option);
+			option_clear((*objs)->option, del);
 		del(*objs);
 		*objs = obj;
 	}

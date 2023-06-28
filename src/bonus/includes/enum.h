@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 20:13:54 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/28 16:32:03 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,18 @@ typedef enum e_cy_type			t_cy_type;
 typedef enum e_co_type			t_co_type;
 typedef enum e_coeff			t_coeff;
 typedef enum e_obj_option_type	t_obj_option_type;
+typedef enum e_mlx_image_type	t_mlx_image_type;
 
 enum							e_win
 {
 	WIN_WIDTH = 1080,
 	WIN_HEIGHT = 720
+};
+
+enum							e_mlx_image_type
+{
+	XPM,
+	PNG
 };
 
 enum							e_object_type
@@ -41,7 +48,8 @@ enum							e_object_type
 enum							e_obj_option_type
 {
 	CB = 1,
-	BP
+	BP,
+	TX
 };
 
 enum							e_axis
@@ -62,7 +70,7 @@ enum							e_cy_type
 {
 	TOP,
 	BOT,
-	INF
+	TUBE
 };
 
 

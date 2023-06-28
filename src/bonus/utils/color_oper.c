@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:58:12 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:09:41 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/25 23:08:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ t_rgba	rgba_scalar_divide(t_rgba rgba, double scalar)
 			rgba.a));
 }
 
+t_rgba	rgba_scalar_minus(t_rgba a, double scalar)
+{
+	return (rgba_init_double(a.r - scalar, a.g - scalar, a.b - scalar, 1));
+}
+
 t_rgba	rgba_multi(t_rgba a, t_rgba b)
 {
 	return (rgba_init_double(a.r * b.r, a.g * b.g, a.b * b.b, 1));
@@ -41,6 +46,7 @@ t_rgba	rgba_plus(t_rgba a, t_rgba b)
 {
 	return (rgba_init_double(a.r + b.r, a.g + b.g, a.b + b.b, 1));
 }
+
 
 t_rgba	rgba_min(t_rgba a, t_rgba b)
 {
