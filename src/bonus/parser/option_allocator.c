@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:30:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 20:40:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/28 16:03:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ static inline t_obj_option *_tx_allocator(char **line, int idx, t_error_type err
 t_obj_option	*option_allocator(char **line, int idx, t_error_type err)
 {
 	if (!ft_strcmp(line[idx], "cb"))
-		return (_cb_allocator(line, idx++));
+		return (_cb_allocator(line, ++idx));
 	else if (!ft_strcmp(line[idx], "tx"))
-		return (_tx_allocator(line, idx++, err));
+		return (_tx_allocator(line, idx, err));
 	else
 		return (NULL);
 }

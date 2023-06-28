@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:03:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 21:15:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/28 16:05:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ static inline t_rgba	get_img_pixel(mlx_image_t *img, const int u, const int v)
 
 static inline t_rgba _get_tx_img_color(t_tx *tx, mlx_image_t *img)
 {
-	const int u = tx->uv.u * img->width;
-	const int v = (1.0 - tx->uv.v) * img->height;
-	
+	const int u = clamp(tx->uv.u * img->width, 0, img->width - 1);
+	const int v = clamp((1.0 - tx->uv.v) * img->height, 0, img->height -1);
+
 	return (get_img_pixel(img, u, v));
 }
 
 static inline t_vec3 _normal_mapping(t_tx *tx, t_record *record)
 {
 	const t_mat3 tbn = mat3_init(tx->right, tx->up, record->normal_vec3);
-	const t_rgba bump_rgba = _get_tx_img_color(tx, tx->bp->img); 
+	const t_rgba bump_rgba = _get_tx_img_color(tx, tx->bp->img);
 	const t_rgba rgba = rgba_scalar_minus(rgba_scalar_multi(bump_rgba, 2), 1);
 	const t_vec3 pixel_normal = vec3_init(rgba.r, rgba.g, rgba.b);
 

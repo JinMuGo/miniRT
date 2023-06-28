@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/27 22:46:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/28 15:58:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parser_cylinder(char **line)
 	t_cylinder		cylinder;
 	t_obj			*obj;
 
-	if (!(len == 6 || len == 8 || len == 9 || len == 11))
+	if (!(len == 6 || len == 8 || len == 10 || len == 11))
 		error_handler(CY_ERR);
 	cylinder.type = CY;
 	cylinder.center_point = parser_point3(line[1]);
