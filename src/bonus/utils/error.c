@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/20 15:30:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 20:24:07 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "design_patterns.h"
 #include "utils.h"
 
-static inline void	print_error_msg(char *msg)
+static inline void	print_error_msg(const char *msg)
 {
 	printf("Error\n%s\n", msg);
 }
@@ -32,28 +32,16 @@ static inline void	free_all(void)
 
 static inline void	error_parser(t_error_type type)
 {
-	if (type == AMB_ERR)
-		print_error_msg(ERR_AMB);
-	if (type == LIGHT_ERR)
-		print_error_msg(ERR_LIGHT);
-	if (type == CAM_ERR)
-		print_error_msg(ERR_CAM);
-	if (type == SP_ERR)
-		print_error_msg(ERR_SP);
-	if (type == PL_ERR)
-		print_error_msg(ERR_PL);
-	if (type == CY_ERR)
-		print_error_msg(ERR_CY);
-	if (type == POINT_ERR)
-		print_error_msg(ERR_POINT);
-	if (type == VEC_ERR)
-		print_error_msg(ERR_VEC);
-	if (type == RGB_ERR)
-		print_error_msg(ERR_RGB);
-	if (type == EX_ERR)
-		print_error_msg(ERR_INVALID_EX);
-	if (type == TYPE_ERR)
-		print_error_msg(ERR_INVALID_TYPE);
+	const char	*error_msgs[] = {[ARGS_ERR] = ERR_ARGS, [OPEN_ERR] = ERR_OPEN,
+	[EX_ERR] = ERR_INVALID_EX, [TYPE_ERR] = ERR_INVALID_TYPE,
+	[AMB_ERR] = ERR_AMB, [LIGHT_ERR] = ERR_LIGHT, [CAM_ERR] = ERR_CAM,
+	[SP_ERR] = ERR_SP, [PL_ERR] = ERR_PL, [CY_ERR] = ERR_CY, [CO_ERR] = ERR_CO,
+	[POINT_ERR] = ERR_POINT, [VEC_ERR] = ERR_VEC, [RGB_ERR] = ERR_RGB
+	};
+
+	if (type >= 0 && type < sizeof(error_msgs) / sizeof(error_msgs[0])
+		&& error_msgs[type] != NULL)
+		print_error_msg(error_msgs[type]);
 	free_all();
 	exit(EXIT_FAILURE);
 }

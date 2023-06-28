@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser_sphere.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
 /*   Updated: 2023/06/26 20:31:25 by jgo              ###   ########.fr       */
@@ -23,6 +23,15 @@ static bool	vaildation_sphere(t_sphere *sphere)
 	return (true);
 }
 
+static inline void	set_sphere_info(t_sphere *sphere, char **line)
+{
+	sphere->type = SP;
+	sphere->center_point = parser_point3(line[1]);
+	sphere->diameter = check_to_double(line[2]);
+	sphere->radius = sphere->diameter / 2;
+	sphere->rgba = parser_rgba(line[3]);
+}
+
 void	parser_sphere(char **line)
 {
 	const int		len = ft_arrlen((void **)line);
@@ -32,11 +41,7 @@ void	parser_sphere(char **line)
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(SP_ERR);
-	sphere.type = SP;
-	sphere.center_point = parser_point3(line[1]);
-	sphere.diameter = check_to_double(line[2]);
-	sphere.radius = sphere.diameter / 2;
-	sphere.rgba = parser_rgba(line[3]);
+	set_sphere_info(&sphere, line);
 	if (line[4])
 		option = option_allocator(line, 4, SP_ERR);
 	else

@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
+#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
 #    Updated: 2023/06/26 20:35:32 by jgo              ###   ########.fr        #
@@ -26,6 +26,7 @@ SRCS :=	parser.c \
 		parser_sphere.c \
 		parser_plane.c \
 		parser_cylinder.c \
+		parser_cone.c \
 		parser_point_vec.c \
 		parser_atod.c \
 		parser_rgba.c \

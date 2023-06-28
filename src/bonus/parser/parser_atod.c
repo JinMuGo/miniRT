@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:29:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:07:30 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:28:33 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 double	check_to_double(char *str)
 {
-	int		len;
-	int		i;
-	int		dot_cnt;
+	int	len;
+	int	i;
+	int	dot_cnt;
 
 	len = ft_strlen(str);
 	i = -1;

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
 /*   Updated: 2023/06/26 20:43:46 by jgo              ###   ########.fr       */
@@ -16,11 +16,19 @@
 
 static bool	vaildation_plane(t_plane *plane)
 {
-	if (plane->type != PL)
-		return (false);
-	if (!check_normal_vec(plane->normal_vec3) || !check_rgba(plane->rgba))
+	if (plane->type != PL
+		|| !check_normal_vec(plane->normal_vec3)
+		|| !check_rgba(plane->rgba))
 		return (false);
 	return (true);
+}
+
+static inline void	set_plane_info(t_plane *plane, char **line)
+{
+	plane->type = PL;
+	plane->point = parser_point3(line[1]);
+	plane->normal_vec3 = vec3_unit(parser_vec3(line[2]));
+	plane->rgba = parser_rgba(line[3]);
 }
 
 void	parser_plane(char **line)
@@ -33,11 +41,7 @@ void	parser_plane(char **line)
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(PL_ERR);
-	idx = 1;
-	plane.type = PL;
-	plane.point = parser_point3(line[1]);
-	plane.normal_vec3 = vec3_unit(parser_vec3(line[2]));
-	plane.rgba = parser_rgba(line[3]);
+	set_plane_info(&plane, line);
 	if (line[4])
 		option = option_allocator(line, 4, PL_ERR);
 	else

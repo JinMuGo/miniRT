@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:55:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:10:22 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/26 20:28:13 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@
 
 static bool	vaildation_ambient(t_ambient amb)
 {
-	if (amb.type != AMB)
-		return (false);
-	if (!check_0_to_1(amb.ratio))
-		return (false);
-	if (!check_rgba(amb.rgba))
+	if (amb.type != AMB || !check_0_to_1(amb.ratio) || !check_rgba(amb.rgba))
 		return (false);
 	return (true);
 }
