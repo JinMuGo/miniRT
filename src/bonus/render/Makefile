@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/23 17:40:58 by sanghwal         ###   ########seoul.kr   #
+#    Updated: 2023/06/29 08:09:43 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,17 @@ endif
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
-SRCS :=	ray.c \
-		render.c \
-		render_utils.c \
-		thread.c \
-		find_obj.c \
-		render_plane.c \
-		render_sphere.c \
-		render_cylinder.c \
-		render_cylinder2.c \
-		render_cone.c \
-		render_cone2.c
+SRCS :=	ray_bonus.c \
+		render_bonus.c \
+		render_utils_bonus.c \
+		thread_bonus.c \
+		find_obj_bonus.c \
+		render_plane_bonus.c \
+		render_sphere_bonus.c \
+		render_cylinder_bonus.c \
+		render_cylinder2_bonus.c \
+		render_cone_bonus.c \
+		render_cone2_bonus.c
 
 NAME := render.a
 
