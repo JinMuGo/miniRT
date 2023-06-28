@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:43:46 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/28 20:03:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	parser_plane(char **line)
 	t_obj_option	*option;
 	t_plane			plane;
 	t_obj			*obj;
-	int				idx;
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(PL_ERR);
