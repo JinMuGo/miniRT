@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 14:25:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:25:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_object_type	get_sphere_record(
 {
 	const t_sphere	sphere = obj->content.sphere;
 
-	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 	record->normal_vec3 = vec3_scalar_divide(\
 				vec3_minus(record->point, sphere.center_point), sphere.radius);

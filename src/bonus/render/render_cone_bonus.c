@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:14:58 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 13:37:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:25:20 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ t_object_type	get_cone_record(t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_cone	cone = obj->content.cone;
 
-	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 	if (cone.co_type == SIDE)
 		_get_side_normal_vec3(cone, record);

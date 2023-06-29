@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 13:51:56 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:24:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,6 @@ struct						s_record
 	t_vec3					normal_vec3;
 	double					t;
 	t_rgb					rgb;
-	t_obj					*obj;
 };
 
 struct						s_canvas

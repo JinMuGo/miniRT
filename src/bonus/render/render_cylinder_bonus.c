@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 14:09:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:24:59 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ t_object_type	get_cylinder_record(
 {
 	const t_cylinder	cylinder = obj->content.cylinder;
 
-	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 	if (cylinder.p_type == TUBE)
 		_get_infi_normal_vec3(cylinder, record);
