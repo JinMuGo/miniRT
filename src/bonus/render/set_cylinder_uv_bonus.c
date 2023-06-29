@@ -6,12 +6,12 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:55:48 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 14:14:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 15:49:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "defs.h"
+#include "minirt_bonus.h"
+#include "defs_bonus.h"
 
 static inline void	_set_cylinder_tube_uv(
 	t_obj_option *option, t_record *record, const t_cylinder *cylinder)
