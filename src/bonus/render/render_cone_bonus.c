@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_cone.c                                      :+:      :+:    :+:   */
+/*   render_cone_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:14:58 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/23 17:40:38 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 13:37:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	_get_side_normal_vec3(t_cone cone, t_record *record)
 	vec3_plus(cone.base_point, vec3_scalar_multi(cone.normal_vec3, ac))));
 }
 
-t_object_type	get_cone_record(t_obj *obj, t_ray *ray, t_record *record)
+t_object_type	get_cone_record(t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_cone	cone = obj->content.cone;
 
@@ -91,6 +91,6 @@ t_object_type	get_cone_record(t_obj *obj, t_ray *ray, t_record *record)
 	if (cone.co_type == BASE)
 		record->normal_vec3 = vec3_scalar_multi(cone.normal_vec3, -1);
 	set_face_normal(ray, record);
-	record->rgba = cone.rgba;
+	record->rgb = cone.rgb;
 	return (obj->type);
 }

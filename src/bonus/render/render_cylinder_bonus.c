@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_cylinder.c                                  :+:      :+:    :+:   */
+/*   render_cylinder_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/28 17:56:41 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:09:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,50 +89,8 @@ static void	_get_infi_normal_vec3(t_cylinder cylinder, t_record *record)
 	record->normal_vec3 = vec3_unit(proj_h_to_c);
 }
 
-static inline void _set_cylinder_tube_uv(t_obj_option *option, t_record *record, const t_cylinder *cylinder)
-{
-	const t_point3 center_of_disk = vec3_plus(cylinder->center_point, vec3_scalar_multi(cylinder->normal_vec3, cylinder->height / 2));
-	const t_vec3 r_reverse = vec3_scalar_multi(option->op.tx.right, -1);
-	const t_vec3 p_to_c = vec3_minus(record->point, center_of_disk);
-	const double t = vec3_inner_product(p_to_c, cylinder->normal_vec3) / vec3_inner_product(cylinder->normal_vec3, cylinder->normal_vec3);
-
-	if (vec3_inner_product(option->op.tx.right, record->normal_vec3) > 0)
-		option->op.tx.uv.u =  acos(vec3_inner_product(option->op.tx.right, record->normal_vec3)) / (2 * M_PI);
-	else
-		option->op.tx.uv.u = (M_PI + acos(vec3_inner_product(r_reverse, record->normal_vec3))) / (2 * M_PI);
-	option->op.tx.uv.v = -t / cylinder->height;
-}
-
-static inline void _set_cylinder_cap_uv(t_obj_option *option, t_record *record, const t_cylinder *cylinder)
-{
-	const double u = fmod(vec3_inner_product(option->op.tx.right, record->point) / cylinder->diameter, 1);
-	const double v = fmod(vec3_inner_product(option->op.tx.up, record->point) / cylinder->diameter, 1);
-
-	if (u < 0)
-		option->op.tx.uv.u = u + 1.0;
-	else
-		option->op.tx.uv.u = u;
-	if (v < 0)
-		option->op.tx.uv.v = v + 1.0;
-	else
-		option->op.tx.uv.v = v;
-}
-
-static inline void _set_cylinder_uv(t_obj_option *option, t_record *record, const t_cylinder *cylinder)
-{
-	if (cylinder->p_type == TUBE)
-	{
-		set_ab_axis_from_c(&option->op.tx.right, &option->op.tx.up, &cylinder->normal_vec3);
-		_set_cylinder_tube_uv(option, record, cylinder);
-	}
-	else
-	{
-		set_ab_axis_from_c(&option->op.tx.right, &option->op.tx.up, &record->normal_vec3);
-		_set_cylinder_cap_uv(option, record, cylinder);
-	}
-}
-
-t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
+t_object_type	get_cylinder_record(
+	t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_cylinder	cylinder = obj->content.cylinder;
 
@@ -147,10 +105,10 @@ t_object_type	get_cylinder_record(t_obj *obj, t_ray *ray, t_record *record)
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		_set_cylinder_uv(obj->option, record, &cylinder);
-		apply_option(obj->option, record, cylinder.rgba);
+		set_cylinder_uv(obj->option, record, &cylinder);
+		apply_option(obj->option, record, cylinder.rgb);
 	}
 	else
-		record->rgba = cylinder.rgba;
+		record->rgb = cylinder.rgb;
 	return (obj->type);
 }

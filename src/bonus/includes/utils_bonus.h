@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/25 23:08:11 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 13:48:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,10 @@
 void		destroy(t_meta *meta);
 
 // color.c
-t_rgba		rgba_init_int(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
-t_rgba		rgba_init_double(double r, double g, double b, double a);
-t_rgba		rgba_scalar_minus(t_rgba a, double scalar);
-uint32_t	rgba_to_color(t_rgba rgba);
-t_rgba		color_to_rgba(uint8_t *color);
-t_rgba		rgba_scalar_multi(t_rgba rgba, double scalar);
-t_rgba		rgba_scalar_divide(t_rgba rgba, double scalar);
-t_rgba		rgba_multi(t_rgba a, t_rgba b);
-t_rgba		rgba_plus(t_rgba a, t_rgba b);
-t_rgba		rgba_min(t_rgba a, t_rgba b);
+t_rgb		rgb_init_int(const int r, const int g, const int b);
+uint32_t	rgba_to_color(t_rgb rgb);
+t_rgb		color_to_rgba(uint8_t *color);
+t_rgb		rgba_min(t_rgb a, t_rgb b);
 
 // atod.c
 double		atod(char *str);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_cylinder.c                                  :+:      :+:    :+:   */
+/*   parser_cylinder_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/28 15:58:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	vaildation_cylinder(t_cylinder *cylinder)
 {
 	if (cylinder->type != CY
 		|| !check_normal_vec(cylinder->normal_vec3)
-		|| !check_rgba(cylinder->rgba)
+		|| !check_rgb(&cylinder->rgb)
 		|| cylinder->diameter <= 0
 		|| cylinder->height <= 0)
 		return (false);
@@ -28,11 +28,11 @@ static bool	vaildation_cylinder(t_cylinder *cylinder)
 static inline void	set_cylinder_info(t_cylinder *cylinder, char **line)
 {
 	cylinder->type = CY;
-	cylinder->center_point = parser_point3(line[1]);
-	cylinder->normal_vec3 = vec3_unit(parser_vec3(line[2]));
+	cylinder->center_point = parser_vec3(line[1], POINT_ERR);
+	cylinder->normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
 	cylinder->diameter = check_to_double(line[3]);
 	cylinder->height = check_to_double(line[4]);
-	cylinder->rgba = parser_rgba(line[5]);
+	cylinder->rgb = parser_vec3(line[5], RGB_ERR);
 }
 
 void	parser_cylinder(char **line)

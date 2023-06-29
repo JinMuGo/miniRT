@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/21 13:54:22 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 13:52:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "render_bonus.h"
 #include "light_bonus.h"
 
-static inline t_rgba	_calc_pixel(
+static inline t_rgb	_calc_pixel(
 	t_meta *meta, const double u, const double v)
 {
 	const t_ray		ray = ray_from_camera(&meta->camera, u, v);
@@ -25,26 +25,26 @@ static inline t_rgba	_calc_pixel(
 	record.t = 0;
 	if (find_obj_in_pixel(meta->objs, (t_ray *)&ray, &record))
 		return (phong_lighting(meta, &record, &ray));
-	return (rgba_init_int(42, 42, 42, 255));
+	return (rgb_init_int(42, 42, 42));
 }
 
-static inline t_rgba	_multi_sampling(t_meta *meta, const int x, const int y)
+static inline t_rgb	_multi_sampling(t_meta *meta, const int x, const int y)
 {
 	const t_canvas	canvas = meta->scene.canvas;
-	t_rgba			rgba;
+	t_rgb			rgb;
 	int				i;
 
 	i = -1;
-	rgba = rgba_init_int(0, 0, 0, 255);
+	rgb = rgb_init_int(0, 0, 0);
 	while (++i < SAMPLES_PER_PIXEL)
 	{
-		rgba = rgba_plus(rgba, \
+		rgb = vec3_plus(rgb, \
 				_calc_pixel(meta, \
 				(x + ft_random_double()) / (canvas.width - 1), \
 				(y + ft_random_double()) / (canvas.height -1)));
 	}
-	rgba = rgba_scalar_divide(rgba, SAMPLES_PER_PIXEL);
-	return (rgba);
+	rgb = vec3_scalar_divide(rgb, SAMPLES_PER_PIXEL);
+	return (rgb);
 }
 
 void	*render(void *args)
@@ -60,7 +60,8 @@ void	*render(void *args)
 		while (scene[X] < renderer->width)
 		{
 			mlx_put_pixel(renderer->meta->mlx_assets.img, scene[X], scene[Y],
-				rgba_to_color(_multi_sampling(renderer->meta, scene[X], scene[Y])));
+				rgba_to_color(
+					_multi_sampling(renderer->meta, scene[X], scene[Y])));
 			scene[X]++;
 		}
 		scene[Y]++;

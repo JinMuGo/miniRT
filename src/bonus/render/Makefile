@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/29 08:09:43 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/29 13:58:58 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS :=	ray_bonus.c \
 		render_sphere_bonus.c \
 		render_cylinder_bonus.c \
 		render_cylinder2_bonus.c \
+		set_cylinder_uv_bonus.c \
 		render_cone_bonus.c \
 		render_cone2_bonus.c
 

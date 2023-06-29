@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_plane.c                                     :+:      :+:    :+:   */
+/*   parser_plane_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/28 20:03:49 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	vaildation_plane(t_plane *plane)
 {
 	if (plane->type != PL
 		|| !check_normal_vec(plane->normal_vec3)
-		|| !check_rgba(plane->rgba))
+		|| !check_rgb(&plane->rgb))
 		return (false);
 	return (true);
 }
@@ -26,9 +26,9 @@ static bool	vaildation_plane(t_plane *plane)
 static inline void	set_plane_info(t_plane *plane, char **line)
 {
 	plane->type = PL;
-	plane->point = parser_point3(line[1]);
-	plane->normal_vec3 = vec3_unit(parser_vec3(line[2]));
-	plane->rgba = parser_rgba(line[3]);
+	plane->point = parser_vec3(line[1], POINT_ERR);
+	plane->normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
+	plane->rgb = parser_vec3(line[3], RGB_ERR);
 }
 
 void	parser_plane(char **line)

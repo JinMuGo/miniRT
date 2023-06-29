@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_cone.c                                      :+:      :+:    :+:   */
+/*   parser_cone_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:34:19 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static bool	vaildation_cone(t_cone *cone)
 {
 	if (cone->type != CO
-		|| !check_normal_vec(cone->normal_vec3) || !check_rgba(cone->rgba)
+		|| !check_normal_vec(cone->normal_vec3) || !check_rgb(&cone->rgb)
 		|| cone->radius <= 0 || cone->height <= 0)
 		return (false);
 	return (true);
@@ -33,11 +33,11 @@ void	parser_cone(char **line)
 	if (len != 6)
 		error_handler(CO_ERR);
 	cone.type = CO;
-	cone.base_point = parser_point3(line[1]);
-	cone.normal_vec3 = vec3_unit(parser_vec3(line[2]));
+	cone.base_point = parser_vec3(line[1], POINT_ERR);
+	cone.normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
 	cone.radius = check_to_double(line[3]);
 	cone.height = check_to_double(line[4]);
-	cone.rgba = parser_rgba(line[5]);
+	cone.rgb = parser_vec3(line[5], VEC_ERR);
 	if (!vaildation_cone(&cone))
 	{
 		ft_free_all_arr(line);

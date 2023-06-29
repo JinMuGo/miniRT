@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_plane.c                                     :+:      :+:    :+:   */
+/*   render_plane_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/27 18:56:10 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:12:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ double	get_plane_dist(t_obj *obj, const t_ray *ray)
 	return (t);
 }
 
-static inline void _set_plane_uv(t_obj_option *option, t_record *record)
+static inline void	_set_plane_uv(t_obj_option *option, t_record *record)
 {
-	const double u = fmod(vec3_inner_product(option->op.tx.right, record->point), 1);
-	const double v = fmod(vec3_inner_product(option->op.tx.up, record->point), 1);
-	
+	const double	u = fmod(\
+				vec3_inner_product(option->op.tx.right, record->point), 1);
+	const double	v = fmod(\
+				vec3_inner_product(option->op.tx.up, record->point), 1);
+
 	if (u < 0)
 		option->op.tx.uv.u = u + 1.0;
 	else
@@ -47,9 +49,10 @@ static inline void _set_plane_uv(t_obj_option *option, t_record *record)
 		option->op.tx.uv.v = v;
 }
 
-t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record)
+t_object_type	get_plane_record(t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_plane	plane = obj->content.plane;
+	const t_tx		*tx = &obj->option->op.tx;
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
@@ -57,11 +60,11 @@ t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record)
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		set_ab_axis_from_c(&obj->option->op.tx.right, &obj->option->op.tx.up, &record->normal_vec3);
+		set_ab_axis_from_c(&tx->right, &tx->up, &record->normal_vec3);
 		_set_plane_uv(obj->option, record);
-		apply_option(obj->option, record, plane.rgba);
+		apply_option(obj->option, record, plane.rgb);
 	}
 	else
-		record->rgba = plane.rgba;
+		record->rgb = plane.rgb;
 	return (obj->type);
 }

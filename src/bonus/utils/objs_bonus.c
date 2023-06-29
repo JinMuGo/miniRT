@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objs.c                                             :+:      :+:    :+:   */
+/*   objs_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:00:02 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 19:09:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:15:18 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static inline void	option_clear(t_obj_option *option, void (*del)(void *))
 
 void	objs_clear(t_obj **objs, void (*del)(void *))
 {
-	t_obj	*obj;
-	t_obj_option *option;
+	t_obj			*obj;
+	t_obj_option	*option;
 
 	if (!*objs || !del)
 		return ;

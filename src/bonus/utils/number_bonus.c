@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   number.c                                           :+:      :+:    :+:   */
+/*   number_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 10:56:37 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 14:43:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:15:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double	clamp(const double x, const double min, const double max)
 		return (x);
 }
 
-float float_modulo(const float x) 
-{ 
-    return (x - floorf(x)); 
-} 
+float	float_modulo(const float x)
+{
+	return (x - floorf(x));
+}

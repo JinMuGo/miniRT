@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 12:19:04 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/21 13:54:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 12:21:14 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIGHT_BONUS_H
 
 // phong_lighting.c
-t_rgba	phong_lighting(t_meta *meta, t_record *record, const t_ray *ray);
+t_rgb	phong_lighting(t_meta *meta, t_record *record, const t_ray *ray);
 
 // lighting_utils.c
 t_vec3	reflect(t_vec3 a, t_vec3 b);

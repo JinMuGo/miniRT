@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_sphere.c                                    :+:      :+:    :+:   */
+/*   render_sphere_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 21:07:59 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:13:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,21 @@ double	get_sphere_dist(t_obj *obj, const t_ray *ray)
 	return (0);
 }
 
-static inline void _set_sphere_uv(t_obj_option *option, t_record *record)
+static inline void	_set_sphere_uv(t_obj_option *option, t_record *record)
 {
-	const double phi = atan2(-record->normal_vec3.z, record->normal_vec3.x) + M_PI;
-	const double theta = acos(-record->normal_vec3.y);
+	const double	phi = atan2(\
+				-record->normal_vec3.z, record->normal_vec3.x) + M_PI;
+	const double	theta = acos(-record->normal_vec3.y);
 
 	option->op.tx.uv.u = phi / (M_PI * 2);
 	option->op.tx.uv.v = theta / M_PI;
 }
 
-t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
+t_object_type	get_sphere_record(
+	t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_sphere	sphere = obj->content.sphere;
+	const t_tx		*tx = &obj->option->op.tx;
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
@@ -55,11 +58,11 @@ t_object_type	get_sphere_record(t_obj *obj, t_ray *ray, t_record *record)
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		set_ab_axis_from_c(&obj->option->op.tx.right, &obj->option->op.tx.up, &record->normal_vec3);
+		set_ab_axis_from_c(&tx->right, &tx->up, &record->normal_vec3);
 		_set_sphere_uv(obj->option, record);
-		apply_option(obj->option, record, sphere.rgba);
+		apply_option(obj->option, record, sphere.rgb);
 	}
 	else
-		record->rgba = sphere.rgba;
+		record->rgb = sphere.rgb;
 	return (obj->type);
 }

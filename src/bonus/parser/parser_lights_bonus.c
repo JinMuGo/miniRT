@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_lights.c                                    :+:      :+:    :+:   */
+/*   parser_lights_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:33:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:45:11 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	vaildation_light(t_spot_light *light)
 {
 	if (light->type != LIGHT
 		|| !check_0_to_1(light->ratio)
-		|| !check_rgba(light->rgba))
+		|| !check_rgb(&light->rgb))
 		return (false);
 	return (true);
 }
@@ -32,9 +32,9 @@ void	parser_light(char **line)
 		error_handler(LIGHT_ERR);
 	light = ft_malloc(sizeof(t_spot_light));
 	light->type = LIGHT;
-	light->light_point = parser_point3(line[1]);
+	light->light_point = parser_vec3(line[1], POINT_ERR);
 	light->ratio = check_to_double(line[2]);
-	light->rgba = parser_rgba(line[3]);
+	light->rgb = parser_vec3(line[3], RGB_ERR);
 	meta = singleton();
 	if (!vaildation_light(light))
 	{

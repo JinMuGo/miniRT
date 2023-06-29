@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enum_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/28 16:32:03 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 13:52:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ enum							e_cy_type
 	TUBE
 };
 
-
-enum						e_co_type
+enum							e_co_type
 {
 	SIDE,
 	BASE

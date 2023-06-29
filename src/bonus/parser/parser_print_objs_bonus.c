@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_print_objs.c                                :+:      :+:    :+:   */
+/*   parser_print_objs_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:10:40 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/23 15:57:51 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 13:37:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static inline void	_print_sphere(t_sphere sphere)
 	printf("Center point: %f, %f, %f\n", sphere.center_point.x,
 		sphere.center_point.y, sphere.center_point.z);
 	printf("Diameter: %f\n", sphere.diameter);
-	printf("RGB: %f, %f, %f\n", sphere.rgba.r, sphere.rgba.g, sphere.rgba.b);
+	printf("RGB: %f, %f, %f\n", sphere.rgb.x, sphere.rgb.y, sphere.rgb.z);
 }
 
 static inline void	_print_plane(t_plane plane)
@@ -29,7 +29,7 @@ static inline void	_print_plane(t_plane plane)
 	printf("Point: %f, %f, %f\n", plane.point.x, plane.point.y, plane.point.z);
 	printf("Vec3: %f, %f, %f\n", plane.normal_vec3.x,
 		plane.normal_vec3.y, plane.normal_vec3.z);
-	printf("RGB: %f, %f, %f\n", plane.rgba.r, plane.rgba.g, plane.rgba.b);
+	printf("RGB: %f, %f, %f\n", plane.rgb.x, plane.rgb.y, plane.rgb.z);
 }
 
 static inline void	_print_cylinder(t_cylinder cylinder)
@@ -41,8 +41,8 @@ static inline void	_print_cylinder(t_cylinder cylinder)
 		cylinder.normal_vec3.y, cylinder.normal_vec3.z);
 	printf("diameter: %f\n", cylinder.diameter);
 	printf("height: %f\n", cylinder.height);
-	printf("RGB: %f, %f, %f\n", cylinder.rgba.r, cylinder.rgba.g,
-		cylinder.rgba.b);
+	printf("RGB: %f, %f, %f\n", cylinder.rgb.x, cylinder.rgb.y,
+		cylinder.rgb.z);
 }
 
 static inline void	_print_cone(t_cone cone)
@@ -54,8 +54,8 @@ static inline void	_print_cone(t_cone cone)
 		cone.normal_vec3.y, cone.normal_vec3.z);
 	printf("radius: %f\n", cone.radius);
 	printf("height: %f\n", cone.height);
-	printf("RGB: %f, %f, %f\n", cone.rgba.r, cone.rgba.g,
-		cone.rgba.b);
+	printf("RGB: %f, %f, %f\n", cone.rgb.x, cone.rgb.y,
+		cone.rgb.z);
 }
 
 void	print_objs(t_meta *meta)

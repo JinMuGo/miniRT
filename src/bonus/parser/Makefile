@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/29 08:09:43 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/29 13:40:34 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS :=	parser_bonus.c \
 		parser_cone_bonus.c \
 		parser_point_vec_bonus.c \
 		parser_atod_bonus.c \
-		parser_rgba_bonus.c \
 		parser_utils_bonus.c \
 		parser_utils2_bonus.c \
 		parser_print_bonus.c \

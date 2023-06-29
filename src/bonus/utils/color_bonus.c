@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   color_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/25 21:37:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:17:26 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,45 @@
 #include "minirt_bonus.h"
 #include "utils_bonus.h"
 
-static inline uint32_t	_color_calc(double rgba)
+static inline uint32_t	_color_calc(double rgb)
 {
-	return (0xFF * clamp(rgba, 0.0, 0.999));
+	return (0xFF * clamp(rgb, 0, 1));
 }
 
-uint32_t	rgba_to_color(t_rgba rgba)
+uint32_t	rgba_to_color(t_rgb rgb)
 {
-	return (_color_calc(rgba.r) << 24 |
-			_color_calc(rgba.g) << 16 |
-			_color_calc(rgba.b) << 8 |
-			_color_calc(rgba.a));
+	return (_color_calc(rgb.x) << 24
+		| _color_calc(rgb.y) << 16
+		| _color_calc(rgb.z) << 8
+		| 255);
 }
 
-t_rgba	rgba_init_int(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+t_rgb	rgb_init_int(const int r, const int g, const int b)
 {
-	const t_rgba rgba = {
+	const t_rgb	rgb = {
 		(double)r / 0xFF,
 		(double)g / 0xFF,
-		(double)b / 0xFF,
-		(double)a / 0xFF};
-	return (rgba);
+		(double)b / 0xFF};
+
+	return (rgb);
 }
 
-t_rgba	rgba_init_double(double r, double g, double b, double a)
+t_rgb	rgba_min(t_rgb a, t_rgb b)
 {
-	const t_rgba	rgba = {r, g, b, a};
-	
-	return (rgba);
+	if (a.x > b.x)
+		a.x = b.x;
+	if (a.y > b.y)
+		a.y = b.y;
+	if (a.z > b.z)
+		a.z = b.z;
+	return (a);
 }
 
-t_rgba	color_to_rgba(uint8_t *color)
+t_rgb	color_to_rgba(uint8_t *color)
 {
-	const uint8_t r = *color++;
-	const uint8_t g = *color++;
-	const uint8_t b = *color++;
+	const uint8_t	r = *color++;
+	const uint8_t	g = *color++;
+	const uint8_t	b = *color++;
 
-	return (rgba_init_int(r, g, b, 0xFF));
+	return (rgb_init_int(r, g, b));
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong_lighting.c                                   :+:      :+:    :+:   */
+/*   phong_lighting_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:36:32 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/21 13:56:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 13:48:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 #include "render_bonus.h"
 #include "utils_bonus.h"
 
-static inline t_rgba	_diffuse(t_vec3 record_normal_vec3, t_vec3 light_dir,
-		t_rgba light_rgba)
+static inline t_rgb	_diffuse(t_vec3 record_normal_vec3, t_vec3 light_dir,
+		t_rgb light_rgb)
 {
-	return (rgba_scalar_multi(light_rgba,
+	return (vec3_scalar_multi(light_rgb,
 			fmax(vec3_inner_product(record_normal_vec3, light_dir), 0.0)));
 }
 
-static inline t_rgba	_specular(t_vec3 record_normal_vec3, t_vec3 light_dir,
-		t_rgba light_rgba, t_vec3 ray_direction)
+static inline t_rgb	_specular(t_vec3 record_normal_vec3, t_vec3 light_dir,
+		t_rgb light_rgb, t_vec3 ray_direction)
 {
 	const double	ksn = 64;
 	const double	ks = 0.5;
@@ -33,10 +33,10 @@ static inline t_rgba	_specular(t_vec3 record_normal_vec3, t_vec3 light_dir,
 	const double	spec = pow(\
 					fmax(vec3_inner_product(view_dir, reflect_dir), 0.0), ksn);
 
-	return (rgba_scalar_multi(rgba_scalar_multi(light_rgba, ks), spec));
+	return (vec3_scalar_multi(vec3_scalar_multi(light_rgb, ks), spec));
 }
 
-static inline t_rgba	_spot_light_get(t_obj *objs, t_spot_light *light,
+static inline t_rgb	_spot_light_get(t_obj *objs, t_spot_light *light,
 		t_record *record, const t_ray *ray)
 {
 	t_vec3	light_dir;
@@ -46,32 +46,32 @@ static inline t_rgba	_spot_light_get(t_obj *objs, t_spot_light *light,
 	light_len = vec3_length(light_dir);
 	light_dir = vec3_unit(light_dir);
 	if (in_shadow(objs, record, light_dir, light_len))
-		return (rgba_init_int(0, 0, 0, 255));
-	return (rgba_scalar_multi(rgba_plus(\
-			_diffuse(record->normal_vec3, light_dir, light->rgba), \
+		return (rgb_init_int(0, 0, 0));
+	return (vec3_scalar_multi(vec3_plus(\
+			_diffuse(record->normal_vec3, light_dir, light->rgb), \
 			_specular(\
-				record->normal_vec3, light_dir, light->rgba, ray->direction)),
+				record->normal_vec3, light_dir, light->rgb, ray->direction)),
 			light->ratio * LUMEN));
 }
 
-t_rgba	phong_lighting(t_meta *meta, t_record *record, const t_ray *ray)
+t_rgb	phong_lighting(t_meta *meta, t_record *record, const t_ray *ray)
 {
 	t_list	*spot_light;
-	t_rgba	light_rgba;
+	t_rgb	light_rgb;
 
 	spot_light = meta->spot_lights;
-	light_rgba = rgba_init_int(0, 0, 0, 255);
+	light_rgb = rgb_init_int(0, 0, 0);
 	while (spot_light)
 	{
-		light_rgba = rgba_plus(\
-				light_rgba, \
+		light_rgb = vec3_plus(\
+				light_rgb, \
 				_spot_light_get(\
 					meta->objs, spot_light->content, record, ray));
 		spot_light = spot_light->next;
 	}
-	light_rgba = rgba_plus(\
-				light_rgba, \
-				rgba_scalar_multi(meta->ambient.rgba, meta->ambient.ratio));
-	return (rgba_min(rgba_init_int(0xFF, 0xFF, 0xFF, 0xFF),
-			rgba_multi(light_rgba, record->rgba)));
+	light_rgb = vec3_plus(\
+				light_rgb, \
+				vec3_scalar_multi(meta->ambient.rgb, meta->ambient.ratio));
+	return (rgba_min(rgb_init_int(0xFF, 0xFF, 0xFF),
+			vec3_multi(light_rgb, record->rgb)));
 }

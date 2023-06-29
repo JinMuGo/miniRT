@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_sphere.c                                    :+:      :+:    :+:   */
+/*   parser_sphere_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:31:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	vaildation_sphere(t_sphere *sphere)
 {
 	if (sphere->type != SP)
 		return (false);
-	if (!check_rgba(sphere->rgba) || sphere->diameter <= 0)
+	if (!check_rgb(&sphere->rgb) || sphere->diameter <= 0)
 		return (false);
 	return (true);
 }
@@ -26,10 +26,10 @@ static bool	vaildation_sphere(t_sphere *sphere)
 static inline void	set_sphere_info(t_sphere *sphere, char **line)
 {
 	sphere->type = SP;
-	sphere->center_point = parser_point3(line[1]);
+	sphere->center_point = parser_vec3(line[1], POINT_ERR);
 	sphere->diameter = check_to_double(line[2]);
 	sphere->radius = sphere->diameter / 2;
-	sphere->rgba = parser_rgba(line[3]);
+	sphere->rgb = parser_vec3(line[3], RGB_ERR);
 }
 
 void	parser_sphere(char **line)
