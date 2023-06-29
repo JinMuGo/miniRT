@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:11:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
-static bool	vaildation_sphere(t_sphere *sphere)
+static bool	_vaildation_sphere(t_sphere *sphere)
 {
 	if (sphere->type != SP)
 		return (false);
@@ -23,7 +23,7 @@ static bool	vaildation_sphere(t_sphere *sphere)
 	return (true);
 }
 
-static inline void	set_sphere_info(t_sphere *sphere, char **line)
+static inline void	_set_sphere_info(t_sphere *sphere, char **line)
 {
 	sphere->type = SP;
 	sphere->center_point = parser_vec3(line[1], POINT_ERR);
@@ -41,12 +41,9 @@ void	parser_sphere(char **line)
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(SP_ERR);
-	set_sphere_info(&sphere, line);
-	if (line[4])
-		option = option_allocator(line, 4, SP_ERR);
-	else
-		option = NULL;
-	if (!vaildation_sphere(&sphere) || !vaildation_option(option))
+	_set_sphere_info(&sphere, line);
+	option = option_allocator(line, 4, SP_ERR);
+	if (!_vaildation_sphere(&sphere) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);
 		error_handler(SP_ERR);

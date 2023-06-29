@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:11:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
-static bool	vaildation_plane(t_plane *plane)
+static bool	_vaildation_plane(t_plane *plane)
 {
 	if (plane->type != PL
 		|| !check_normal_vec(plane->normal_vec3)
@@ -23,7 +23,7 @@ static bool	vaildation_plane(t_plane *plane)
 	return (true);
 }
 
-static inline void	set_plane_info(t_plane *plane, char **line)
+static inline void	_set_plane_info(t_plane *plane, char **line)
 {
 	plane->type = PL;
 	plane->point = parser_vec3(line[1], POINT_ERR);
@@ -40,12 +40,9 @@ void	parser_plane(char **line)
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(PL_ERR);
-	set_plane_info(&plane, line);
-	if (line[4])
-		option = option_allocator(line, 4, PL_ERR);
-	else
-		option = NULL;
-	if (!vaildation_plane(&plane) || !vaildation_option(option))
+	_set_plane_info(&plane, line);
+	option = option_allocator(line, 4, PL_ERR);
+	if (!_vaildation_plane(&plane) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);
 		error_handler(PL_ERR);

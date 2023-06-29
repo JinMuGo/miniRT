@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:30:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 14:19:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:10:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static inline int	check_bump_file_name(const char *origin, const char *path)
 }
 
 static inline void	_bp_allocator(
-	t_tx *tx, t_error_type err, const char *origin, const char *path)
+		t_tx *tx, t_error_type err, const char *origin, const char *path)
 {
 	const char	*origin_file_name = ft_strrchr(origin, '/');
 	const char	*path_file_name = ft_strrchr(path, '/');
@@ -54,8 +54,8 @@ static inline t_obj_option	*_cb_allocator(char **line, int idx)
 	return (option);
 }
 
-static inline	t_obj_option	*_tx_allocator(
-	char **line, int idx, t_error_type err)
+static inline t_obj_option	*_tx_allocator(
+		char **line, int idx, t_error_type err)
 {
 	const char		*tx_path = line[++idx];
 	t_obj_option	*option;
@@ -72,7 +72,9 @@ static inline	t_obj_option	*_tx_allocator(
 
 t_obj_option	*option_allocator(char **line, int idx, t_error_type err)
 {
-	if (!ft_strcmp(line[idx], "cb"))
+	if (line[idx] == NULL)
+		return (NULL);
+	else if (!ft_strcmp(line[idx], "cb"))
 		return (_cb_allocator(line, ++idx));
 	else if (!ft_strcmp(line[idx], "tx"))
 		return (_tx_allocator(line, idx, err));

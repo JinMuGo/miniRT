@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 16:10:56 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
-static bool	vaildation_cylinder(t_cylinder *cylinder)
+static bool	_vaildation_cylinder(t_cylinder *cylinder)
 {
 	if (cylinder->type != CY
 		|| !check_normal_vec(cylinder->normal_vec3)
@@ -25,7 +25,7 @@ static bool	vaildation_cylinder(t_cylinder *cylinder)
 	return (true);
 }
 
-static inline void	set_cylinder_info(t_cylinder *cylinder, char **line)
+static inline void	_set_cylinder_info(t_cylinder *cylinder, char **line)
 {
 	cylinder->type = CY;
 	cylinder->center_point = parser_vec3(line[1], POINT_ERR);
@@ -44,12 +44,9 @@ void	parser_cylinder(char **line)
 
 	if (!(len == 6 || len == 8 || len == 10 || len == 11))
 		error_handler(CY_ERR);
-	set_cylinder_info(&cylinder, line);
-	if (line[6])
-		option = option_allocator(line, 6, CY_ERR);
-	else
-		option = NULL;
-	if (!vaildation_cylinder(&cylinder) || !vaildation_option(option))
+	_set_cylinder_info(&cylinder, line);
+	option = option_allocator(line, 6, CY_ERR);
+	if (!_vaildation_cylinder(&cylinder) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);
 		error_handler(CY_ERR);
