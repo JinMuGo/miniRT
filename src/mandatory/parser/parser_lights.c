@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:33:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/20 16:04:50 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 15:34:26 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "design_patterns.h"
 #include "utils.h"
 
-static bool	vaildation_light(t_spot_light *light)
+static bool	_vaildation_light(t_spot_light *light)
 {
 	if (light->type != LIGHT)
 		return (false);
@@ -37,7 +37,7 @@ void	parser_light(char **line)
 	light->ratio = check_to_double(line[2]);
 	light->rgba = parser_rgba(line[3]);
 	meta = singleton();
-	if (!vaildation_light(light) || meta->spot_lights != NULL)
+	if (!_vaildation_light(light) || meta->spot_lights != NULL)
 	{
 		free(light);
 		ft_free_all_arr(line);

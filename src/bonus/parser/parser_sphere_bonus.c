@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 14:35:06 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 15:35:52 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
-static bool	vaildation_sphere(t_sphere *sphere)
+static bool	_vaildation_sphere(t_sphere *sphere)
 {
 	if (sphere->type != SP)
 		return (false);
@@ -23,7 +23,7 @@ static bool	vaildation_sphere(t_sphere *sphere)
 	return (true);
 }
 
-static inline void	set_sphere_info(t_sphere *sphere, char **line)
+static inline void	_set_sphere_info(t_sphere *sphere, char **line)
 {
 	sphere->type = SP;
 	sphere->center_point = parser_point3(line[1]);
@@ -41,9 +41,9 @@ void	parser_sphere(char **line)
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(SP_ERR);
-	set_sphere_info(&sphere, line);
+	_set_sphere_info(&sphere, line);
 	option = option_allocator(line, 4, SP_ERR);
-	if (!vaildation_sphere(&sphere) || !vaildation_option(option))
+	if (!_vaildation_sphere(&sphere) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);
 		error_handler(SP_ERR);

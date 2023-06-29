@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/20 16:05:10 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 15:36:27 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include "design_patterns.h"
 
-static bool	vaildation_sphere(t_sphere *sphere)
+static bool	_vaildation_sphere(t_sphere *sphere)
 {
 	if (sphere->type != SP)
 		return (false);
@@ -23,28 +23,32 @@ static bool	vaildation_sphere(t_sphere *sphere)
 	return (true);
 }
 
+static inline void	_set_sphere_info(t_sphere *sphere, char **line)
+{
+	sphere->type = SP;
+	sphere->center_point = parser_point3(line[1]);
+	sphere->diameter = check_to_double(line[2]);
+	sphere->radius = sphere->diameter / 2;
+	sphere->rgba = parser_rgba(line[3]);
+}
+
 void	parser_sphere(char **line)
 {
-	t_meta		*meta;
-	t_obj		*obj;
-	t_sphere	sphere;
+	const int		len = ft_arrlen((void **)line);
+	t_obj			*obj;
+	t_sphere		sphere;
 
-	if (ft_arrlen((void **)line) != 4)
+	if (!(len == 4))
 		error_handler(SP_ERR);
-	sphere.type = SP;
-	sphere.center_point = parser_point3(line[1]);
-	sphere.diameter = check_to_double(line[2]);
-	sphere.radius = sphere.diameter / 2;
-	sphere.rgba = parser_rgba(line[3]);
-	if (!vaildation_sphere(&sphere))
+	_set_sphere_info(&sphere, line);
+	if (!_vaildation_sphere(&sphere))
 	{
 		ft_free_all_arr(line);
 		error_handler(SP_ERR);
 	}
-	meta = singleton();
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = SP;
 	obj->content.sphere = sphere;
 	obj->next = NULL;
-	objsadd_back(&meta->objs, obj);
+	objsadd_back(&singleton()->objs, obj);
 }

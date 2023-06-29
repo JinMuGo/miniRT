@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:57:53 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 15:34:50 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils.h"
 #include "design_patterns.h"
 
-static bool	vaildation_plane(t_plane *plane)
+static bool	_vaildation_plane(t_plane *plane)
 {
 	if (plane->type != PL)
 		return (false);
@@ -35,7 +35,7 @@ void	parser_plane(char **line)
 	plane.point = parser_point3(line[1]);
 	plane.normal_vec3 = vec3_unit(parser_vec3(line[2]));
 	plane.rgba = parser_rgba(line[3]);
-	if (!vaildation_plane(&plane))
+	if (!_vaildation_plane(&plane))
 	{
 		ft_free_all_arr(line);
 		error_handler(PL_ERR);

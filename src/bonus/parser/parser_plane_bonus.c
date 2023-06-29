@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 14:43:39 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 15:40:24 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
-static bool	vaildation_plane(t_plane *plane)
+static bool	_vaildation_plane(t_plane *plane)
 {
 	if (plane->type != PL
 		|| !check_normal_vec(plane->normal_vec3)
@@ -23,7 +23,7 @@ static bool	vaildation_plane(t_plane *plane)
 	return (true);
 }
 
-static inline void	set_plane_info(t_plane *plane, char **line)
+static inline void	_set_plane_info(t_plane *plane, char **line)
 {
 	plane->type = PL;
 	plane->point = parser_point3(line[1]);
@@ -40,9 +40,9 @@ void	parser_plane(char **line)
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(PL_ERR);
-	set_plane_info(&plane, line);
+	_set_plane_info(&plane, line);
 	option = option_allocator(line, 4, PL_ERR);
-	if (!vaildation_plane(&plane) || !vaildation_option(option))
+	if (!_vaildation_plane(&plane) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);
 		error_handler(PL_ERR);

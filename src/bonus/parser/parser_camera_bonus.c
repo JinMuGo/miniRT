@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_camera.c                                    :+:      :+:    :+:   */
+/*   parser_camera_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:31:24 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 15:26:32 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
-static bool	vaildation_camera(t_camera cam)
+static bool	_vaildation_camera(t_camera cam)
 {
 	if (cam.type != CAM
 		|| !check_normal_vec(cam.normal_vec3) || !check_0_to_180(cam.fov))
@@ -38,7 +38,7 @@ void	parser_camera(char **line)
 	cam.pitch = asin(-cam.forward.y);
 	cam.yaw = atan2(cam.forward.x, cam.forward.z);
 	meta = singleton();
-	if (!vaildation_camera(cam) || meta->camera.type == CAM)
+	if (!_vaildation_camera(cam) || meta->camera.type == CAM)
 	{
 		ft_free_all_arr(line);
 		error_handler(CAM_ERR);
