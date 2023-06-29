@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:30:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 14:42:12 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 15:07:27 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static inline t_obj_option	*_tx_allocator(
 	option->type = TX;
 	open_mlx_image(&option->op.tx.img, err, tx_path);
 	if (line[++idx] && !ft_strcmp(line[idx], "bp"))
-		_bp_allocator(&option->op.tx, SP_ERR,tx_path, line[++idx]);
+		_bp_allocator(&option->op.tx, SP_ERR, tx_path, line[++idx]);
 	else
 		option->op.tx.bp = NULL;
 	return (option);
