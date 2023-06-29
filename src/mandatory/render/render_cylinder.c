@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 08:55:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 10:14:39 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ static void	_get_infi_normal_vec3(t_cylinder cylinder, t_record *record)
 	record->normal_vec3 = vec3_unit(proj_h_to_c);
 }
 
-t_object_type	get_cylinder_record(t_obj *obj, const t_ray *ray, t_record *record)
+t_object_type	get_cylinder_record(
+	t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_cylinder	cylinder = obj->content.cylinder;
 

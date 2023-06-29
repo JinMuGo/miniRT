@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 08:55:10 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 10:14:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ double	get_sphere_dist(t_obj *obj, const t_ray *ray)
 	return (0);
 }
 
-t_object_type	get_sphere_record(t_obj *obj, const t_ray *ray, t_record *record)
+t_object_type	get_sphere_record(
+	t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_sphere	sphere = obj->content.sphere;
 
