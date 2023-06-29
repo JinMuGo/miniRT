@@ -6,14 +6,14 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/22 16:29:09 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:26:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONST_H
 # define CONST_H
 
-# include "color.h"
+# include "color_bonus.h"
 
 # define FOCAL_LENGTH 1.0
 # define LUMEN 3

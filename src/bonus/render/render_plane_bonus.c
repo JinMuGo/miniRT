@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 14:12:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:25:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static inline void	_set_plane_uv(t_obj_option *option, t_record *record)
 t_object_type	get_plane_record(t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_plane	plane = obj->content.plane;
-	const t_tx		*tx = &obj->option->op.tx;
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
@@ -60,7 +59,10 @@ t_object_type	get_plane_record(t_obj *obj, const t_ray *ray, t_record *record)
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		set_ab_axis_from_c(&tx->right, &tx->up, &record->normal_vec3);
+		set_ab_axis_from_c(\
+			&obj->option->op.tx.right,
+			&obj->option->op.tx.up,
+			&record->normal_vec3);
 		_set_plane_uv(obj->option, record);
 		apply_option(obj->option, record, plane.rgb);
 	}

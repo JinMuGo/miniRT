@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 14:13:52 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:25:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_object_type	get_sphere_record(
 	t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_sphere	sphere = obj->content.sphere;
-	const t_tx		*tx = &obj->option->op.tx;
 
 	record->obj = obj;
 	record->point = ray_at(ray, record->t);
@@ -58,7 +57,10 @@ t_object_type	get_sphere_record(
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		set_ab_axis_from_c(&tx->right, &tx->up, &record->normal_vec3);
+		set_ab_axis_from_c(\
+			&obj->option->op.tx.right,
+			&obj->option->op.tx.up,
+			&record->normal_vec3);
 		_set_sphere_uv(obj->option, record);
 		apply_option(obj->option, record, sphere.rgb);
 	}
