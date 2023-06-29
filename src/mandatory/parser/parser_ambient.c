@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_ambient.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:55:28 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:10:22 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 09:59:15 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	vaildation_ambient(t_ambient amb)
 		return (false);
 	if (!check_0_to_1(amb.ratio))
 		return (false);
-	if (!check_rgba(amb.rgba))
+	if (!check_rgb(&amb.rgb))
 		return (false);
 	return (true);
 }
@@ -34,7 +34,7 @@ void	parser_ambient(char **line)
 		error_handler(AMB_ERR);
 	amb.type = AMB;
 	amb.ratio = check_to_double(line[1]);
-	amb.rgba = parser_rgba(line[2]);
+	amb.rgb = parser_vec3(line[2], RGB_ERR);
 	meta = singleton();
 	if (!vaildation_ambient(amb) || meta->ambient.type == AMB)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:18:42 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:21:22 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 08:38:36 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	print_ambient(t_meta *meta)
 	printf("===ambient===\n");
 	printf("Type: %d\n", meta->ambient.type);
 	printf("Ratio: %f\n", meta->ambient.ratio);
-	printf("RGB: %f, %f, %f\n", meta->ambient.rgba.r, meta->ambient.rgba.g,
-		meta->ambient.rgba.b);
+	printf("RGB: %f, %f, %f\n", meta->ambient.rgb.x, meta->ambient.rgb.y,
+		meta->ambient.rgb.z);
 }
 
 void	print_camera(t_meta *meta)
@@ -47,8 +47,8 @@ void	print_light(t_meta *meta)
 		printf("Light point: %f, %f, %f\n", light->light_point.x,
 			light->light_point.y, light->light_point.z);
 		printf("Ratio: %f\n", light->ratio);
-		printf("RGB: %f, %f, %f\n", light->rgba.r, light->rgba.g,
-			light->rgba.b);
+		printf("RGB: %f, %f, %f\n", light->rgb.x, light->rgb.y,
+			light->rgb.z);
 		current = current->next;
 	}
 }

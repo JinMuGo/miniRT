@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_camera.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:48:14 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:53:53 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 08:36:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	parser_camera(char **line)
 	if (ft_arrlen((void **)line) != 4)
 		error_handler(CAM_ERR);
 	cam.type = CAM;
-	cam.view_point = parser_point3(line[1]);
-	cam.normal_vec3 = vec3_unit(parser_vec3(line[2]));
+	cam.view_point = parser_vec3(line[1], POINT_ERR);
+	cam.normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
 	cam.fov = check_to_double(line[3]);
 	cam.normal_vec3 = vec3_unit(cam.normal_vec3);
 	cam.pos = cam.view_point;

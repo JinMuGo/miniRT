@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:19:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/16 18:06:36 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 08:53:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static inline t_get_obj_record	_obj_record_func_classifier(t_object_type type)
 }
 
 // obj, cam.pos, ray.direction
-bool	find_obj_in_pixel(t_obj *objs, t_ray *ray, t_record *record)
+bool	find_obj_in_pixel(t_obj *objs, const t_ray *ray, t_record *record)
 {
 	t_obj			*obj;
 	double			calc_t;

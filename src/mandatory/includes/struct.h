@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/21 13:31:21 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 08:28:41 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "minirt.h"
 
 typedef struct s_mlx_assets	t_mlx_assets;
-typedef struct s_rgba		t_rgba;
+typedef struct s_vec3		t_rgb;
 typedef struct s_ambient	t_ambient;
 typedef struct s_ray		t_ray;
 typedef struct s_canvas		t_canvas;
@@ -41,14 +41,6 @@ struct						s_quad_coeff
 	double					c;
 };
 
-struct						s_rgba
-{
-	double					r;
-	double					g;
-	double					b;
-	double					a;
-};
-
 struct						s_mlx_assets
 {
 	mlx_t					*mlx;
@@ -59,7 +51,7 @@ struct						s_ambient
 {
 	t_object_type			type;
 	double					ratio;
-	t_rgba					rgba;
+	t_rgb					rgb;
 };
 
 struct						s_camera
@@ -87,7 +79,7 @@ struct						s_spot_light
 	t_object_type			type;
 	t_point3				light_point;
 	double					ratio;
-	t_rgba					rgba;
+	t_rgb					rgb;
 };
 
 struct						s_sphere
@@ -96,7 +88,7 @@ struct						s_sphere
 	t_point3				center_point;
 	double					diameter;
 	double					radius;
-	t_rgba					rgba;
+	t_rgb					rgb;
 };
 
 struct						s_plane
@@ -104,7 +96,7 @@ struct						s_plane
 	t_object_type			type;
 	t_point3				point;
 	t_vec3					normal_vec3;
-	t_rgba					rgba;
+	t_rgb					rgb;
 };
 
 struct						s_cylinder
@@ -115,7 +107,7 @@ struct						s_cylinder
 	t_vec3					normal_vec3;
 	double					diameter;
 	double					height;
-	t_rgba					rgba;
+	t_rgb					rgb;
 };
 
 struct						s_ray
@@ -129,7 +121,7 @@ struct						s_record
 	t_point3				point;
 	t_vec3					normal_vec3;
 	double					t;
-	t_rgba					rgba;
+	t_rgb					rgb;
 	t_obj					*obj;
 };
 
