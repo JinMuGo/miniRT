@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_cylinder.c                                  :+:      :+:    :+:   */
+/*   parser_cylinder_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/28 15:58:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:41:22 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void	parser_cylinder(char **line)
 	if (!(len == 6 || len == 8 || len == 10 || len == 11))
 		error_handler(CY_ERR);
 	set_cylinder_info(&cylinder, line);
-	if (line[6])
-		option = option_allocator(line, 6, CY_ERR);
-	else
-		option = NULL;
+	option = option_allocator(line, 6, CY_ERR);
 	if (!vaildation_cylinder(&cylinder) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);

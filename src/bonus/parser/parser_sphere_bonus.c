@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_sphere.c                                    :+:      :+:    :+:   */
+/*   parser_sphere_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:31:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:35:06 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	parser_sphere(char **line)
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(SP_ERR);
 	set_sphere_info(&sphere, line);
-	if (line[4])
-		option = option_allocator(line, 4, SP_ERR);
-	else
-		option = NULL;
+	option = option_allocator(line, 4, SP_ERR);
 	if (!vaildation_sphere(&sphere) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_plane.c                                     :+:      :+:    :+:   */
+/*   parser_plane_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/28 20:03:49 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:43:39 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ void	parser_plane(char **line)
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
 		error_handler(PL_ERR);
 	set_plane_info(&plane, line);
-	if (line[4])
-		option = option_allocator(line, 4, PL_ERR);
-	else
-		option = NULL;
+	option = option_allocator(line, 4, PL_ERR);
 	if (!vaildation_plane(&plane) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);

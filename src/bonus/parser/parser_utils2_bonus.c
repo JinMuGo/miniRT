@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils2.c                                    :+:      :+:    :+:   */
+/*   parser_utils2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:47:06 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:44:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 14:45:06 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ bool	vaildation_option(t_obj_option *option)
 
 void	open_mlx_image(t_mlx_image *img, t_error_type err, const char *path)
 {
-	const size_t path_len = ft_strlen(path);
-	const size_t xpm_start = path_len - 6;
-	const size_t png_start = path_len - 4;
-	mlx_texture_t *texture;
+	const size_t	path_len = ft_strlen(path);
+	const size_t	xpm_start = path_len - 6;
+	const size_t	png_start = path_len - 4;
+	mlx_texture_t	*texture;
 
 	if (ft_strnstr(path + xpm_start, ".xpm42", 6))
 		img->type = XPM;
@@ -51,7 +51,7 @@ void	open_mlx_image(t_mlx_image *img, t_error_type err, const char *path)
 		img->type = PNG;
 	else
 		error_handler(err);
-	texture = NULL;	
+	texture = NULL;
 	if (img->type == PNG)
 		texture = mlx_load_png(path);
 	else if (img->type == XPM)
@@ -60,7 +60,7 @@ void	open_mlx_image(t_mlx_image *img, t_error_type err, const char *path)
 		error_handler(err);
 	if (texture == NULL)
 		error_handler(err);
-	img->img = mlx_texture_to_image(singleton()->mlx_assets.mlx ,texture);
+	img->img = mlx_texture_to_image(singleton()->mlx_assets.mlx, texture);
 	mlx_delete_texture(texture);
 	if (img->img == NULL)
 		error_handler(err);
