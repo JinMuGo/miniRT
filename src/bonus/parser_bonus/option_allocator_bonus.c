@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_allocator_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:30:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 15:36:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:36:25 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ t_obj_option	*option_allocator(char **line, int idx, t_error_type err)
 	else if (!ft_strcmp(line[idx], "tx"))
 		return (_tx_allocator(line, idx, err));
 	else
-		return (NULL);
+		error_handler(OPT_ERR);
+	return (NULL);
 }

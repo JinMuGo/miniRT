@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 11:11:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 20:05:18 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static bool	_vaildation_plane(t_plane *plane)
 {
 	if (plane->type != PL
 		|| !check_normal_vec(plane->normal_vec3)
-		|| !check_rgb(&plane->rgb))
+		|| !check_rgb(&plane->rgb)
+		|| plane->scale <= 0 || plane->scale > 100)
 		return (false);
 	return (true);
 }
@@ -30,6 +31,10 @@ static inline void	_set_plane_info(t_plane *plane, char **line)
 	plane->point = parser_vec3(line[1], POINT_ERR);
 	plane->normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
 	plane->rgb = parser_vec3(line[3], RGB_ERR);
+	if (line[4])
+		plane->scale = check_to_double(line[4]);
+	else
+		plane->scale = 42;
 }
 
 static inline t_obj	*_set_obj_info(t_plane plane, t_obj_option *option)
@@ -52,10 +57,13 @@ void	parser_plane(char **line)
 	t_obj_option	*option;
 	t_plane			plane;
 
-	if (!(len == 4 || len == 6 || len == 8 || len == 9))
+	if (!(len == 4 || len == 7 || len == 9 || len == 10))
 		error_handler(PL_ERR);
 	_set_plane_info(&plane, line);
-	option = option_allocator(line, 4, PL_ERR);
+	if (len != 4)
+		option = option_allocator(line, 5, PL_ERR);
+	else
+		option = NULL;
 	if (!_vaildation_plane(&plane) || !vaildation_option(option))
 	{
 		ft_free_all_arr(line);

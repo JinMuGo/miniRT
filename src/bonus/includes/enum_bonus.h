@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enum_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 13:52:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:34:09 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ enum							e_error_type
 	POINT_ERR,
 	VEC_ERR,
 	RGB_ERR,
-	THD_ERR
+	THD_ERR,
+	OPT_ERR
 };
 
 #endif
