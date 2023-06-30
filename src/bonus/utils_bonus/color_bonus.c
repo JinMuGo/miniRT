@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 14:17:26 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 20:14:13 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ uint32_t	rgba_to_color(t_rgb rgb)
 	return (_color_calc(rgb.x) << 24
 		| _color_calc(rgb.y) << 16
 		| _color_calc(rgb.z) << 8
-		| 255);
+		| 0xFF);
 }
 
 t_rgb	rgb_init_int(const int r, const int g, const int b)
