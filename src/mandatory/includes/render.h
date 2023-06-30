@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:52:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 08:56:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:46:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void			render(t_meta *meta);
 
 // sphere
 double			get_sphere_dist(t_obj *obj, const t_ray *ray);
-t_object_type	get_sphere_record(t_obj *obj, const t_ray *ray,
+t_object_type	set_sphere_record(t_obj *obj, const t_ray *ray,
 					t_record *record);
 
 // plane
 double			get_plane_dist(t_obj *obj, const t_ray *ray);
-t_object_type	get_plane_record(t_obj *obj, const t_ray *ray,
+t_object_type	set_plane_record(t_obj *obj, const t_ray *ray,
 					t_record *record);
 
 // cylinder
 double			get_cylinder_dist(t_obj *obj, const t_ray *ray);
-t_object_type	get_cylinder_record(t_obj *obj, const t_ray *ray,
+t_object_type	set_cylinder_record(t_obj *obj, const t_ray *ray,
 					t_record *record);
 bool			is_valid_height(double t, t_cylinder *cy, t_ray *ray);
 void			get_cylinder_coeff(t_cylinder *cy, t_ray *ray, double *coeff);

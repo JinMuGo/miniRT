@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 13:52:32 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:20:54 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static inline t_rgb	_calc_pixel(
 	t_record		record;
 
 	record.t = 0;
-	if (find_obj_in_pixel(meta->objs, (t_ray *)&ray, &record))
+	if (find_obj_in_pixel(meta->objs, &ray, &record))
 		return (phong_lighting(meta, &record, &ray));
 	return (rgb_init_int(42, 42, 42));
 }
@@ -43,8 +43,7 @@ static inline t_rgb	_multi_sampling(t_meta *meta, const int x, const int y)
 				(x + ft_random_double()) / (canvas.width - 1), \
 				(y + ft_random_double()) / (canvas.height -1)));
 	}
-	rgb = vec3_scalar_divide(rgb, SAMPLES_PER_PIXEL);
-	return (rgb);
+	return (vec3_scalar_divide(rgb, SAMPLES_PER_PIXEL));
 }
 
 void	*render(void *args)

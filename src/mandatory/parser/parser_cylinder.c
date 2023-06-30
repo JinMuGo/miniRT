@@ -6,12 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 16:12:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:46:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "utils.h"
+#include "render.h"
 #include "design_patterns.h"
 
 static bool	_vaildation_cylinder(t_cylinder *cylinder)
@@ -52,6 +53,8 @@ void	parser_cylinder(char **line)
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = CY;
 	obj->content.cylinder = cylinder;
+	obj->get_t = get_cylinder_dist;
+	obj->set_r = set_cylinder_record;
 	obj->next = NULL;
 	objsadd_back(&singleton()->objs, obj);
 }

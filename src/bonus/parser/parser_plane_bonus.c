@@ -6,12 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 16:11:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:45:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_bonus.h"
 #include "utils_bonus.h"
+#include "render_bonus.h"
 #include "design_patterns_bonus.h"
 
 static bool	_vaildation_plane(t_plane *plane)
@@ -50,6 +51,8 @@ void	parser_plane(char **line)
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = PL;
 	obj->content.plane = plane;
+	obj->get_t = get_plane_dist;
+	obj->set_r = set_plane_record;
 	obj->option = option;
 	obj->next = NULL;
 	objsadd_back(&singleton()->objs, obj);

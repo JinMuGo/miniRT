@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 09:30:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:20:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,4 @@ void	render(t_meta *meta)
 		}
 		scene[Y]++;
 	}
-	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
 }

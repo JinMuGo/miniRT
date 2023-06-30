@@ -6,12 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:47:27 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_bonus.h"
 #include "utils_bonus.h"
+#include "render_bonus.h"
 #include "design_patterns_bonus.h"
 
 static bool	vaildation_cone(t_cone *cone)
@@ -47,6 +48,8 @@ void	parser_cone(char **line)
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = CO;
 	obj->content.cone = cone;
+	obj->get_t = get_cone_dist;
+	obj->set_r = set_cone_record;
 	obj->next = NULL;
 	objsadd_back(&meta->objs, obj);
 }

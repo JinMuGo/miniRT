@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 16:25:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:44:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static inline void	_set_sphere_uv(t_obj_option *option, t_record *record)
 	option->op.tx.uv.v = theta / M_PI;
 }
 
-t_object_type	get_sphere_record(
+t_object_type	set_sphere_record(
 	t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_sphere	sphere = obj->content.sphere;

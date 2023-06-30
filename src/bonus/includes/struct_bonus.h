@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 16:24:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:43:23 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ typedef struct s_cb			t_cb;
 typedef struct s_bp			t_bp;
 typedef struct s_tx			t_tx;
 typedef struct s_obj_option	t_obj_option;
+
+typedef double			(*t_get_obj_dist)(t_obj *, const t_ray *);
+typedef t_object_type	(*t_get_obj_record)(t_obj *, const t_ray *, t_record *);
 
 struct						s_quad_coeff
 {
@@ -202,6 +205,8 @@ union						u_obj
 struct						s_obj
 {
 	t_object_type			type;
+	t_get_obj_dist			get_t;
+	t_get_obj_record		set_r;
 	union u_obj				content;
 	t_obj_option			*option;
 	t_obj					*next;

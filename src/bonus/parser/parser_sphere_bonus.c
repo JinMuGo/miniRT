@@ -6,12 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 16:11:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:44:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_bonus.h"
 #include "utils_bonus.h"
+#include "render_bonus.h"
 #include "design_patterns_bonus.h"
 
 static bool	_vaildation_sphere(t_sphere *sphere)
@@ -51,6 +52,8 @@ void	parser_sphere(char **line)
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = SP;
 	obj->content.sphere = sphere;
+	obj->get_t = get_sphere_dist;
+	obj->set_r = set_sphere_record;
 	obj->option = option;
 	obj->next = NULL;
 	objsadd_back(&singleton()->objs, obj);
