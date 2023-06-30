@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/05/27 23:09:54 by jgo              ###   ########.fr        #
+#    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
+#    Updated: 2023/06/10 09:37:06 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,7 @@ endif
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
-SRCS :=	canvas.c \
-		scene.c \
-		object_create.c
+SRCS :=	setup_scene.c
 
 NAME := scene.a
 

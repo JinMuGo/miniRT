@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 21:25:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:39:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,116 +16,162 @@
 # include "enum.h"
 # include "minirt.h"
 
-typedef struct s_vec3		t_vec3;
-typedef struct s_vec3		t_point3;
-typedef struct s_vec3		t_color3;
+typedef struct s_mlx_assets	t_mlx_assets;
+typedef struct s_vec3		t_rgb;
+typedef struct s_ambient	t_ambient;
 typedef struct s_ray		t_ray;
-typedef struct s_camera		t_camera;
 typedef struct s_canvas		t_canvas;
-typedef struct s_sphere		t_sphere;
-typedef struct s_hit_record	t_hit_record;
-typedef struct s_object		t_object;
-typedef struct s_light		t_light;
+typedef struct s_camera		t_camera;
 typedef struct s_scene		t_scene;
-
-typedef struct s_mlx		t_mlx;
-typedef struct s_img		t_img;
+typedef struct s_spot_light	t_spot_light;
+typedef struct s_sphere		t_sphere;
+typedef struct s_plane		t_plane;
+typedef struct s_cylinder	t_cylinder;
+typedef struct s_vec3		t_point3;
 typedef struct s_meta		t_meta;
+typedef struct s_record		t_record;
+typedef struct s_obj		t_obj;
+typedef struct s_quad_coeff	t_quad_coeff;
+typedef struct s_hooks		t_hooks;
 
-struct						s_vec3
+typedef double				(*t_get_obj_dist)(t_obj *, const t_ray *);
+typedef t_object_type		(*t_get_obj_record)(t_obj *, const t_ray *,
+			t_record *);
+
+struct						s_quad_coeff
 {
-	double					x;
-	double					y;
-	double					z;
+	double					a;
+	double					b;
+	double					c;
 };
 
-struct						s_ray
+struct						s_mlx_assets
 {
-	t_point3				orig;
-	t_vec3					dir;
+	mlx_t					*mlx;
+	mlx_image_t				*img;
+};
+
+struct						s_ambient
+{
+	t_object_type			type;
+	double					ratio;
+	t_rgb					rgb;
 };
 
 struct						s_camera
 {
-	t_point3 orig;        // 카메라 원점(위치)
-	double viewport_h;    // 뷰포트 세로길이
-	double viewport_w;    // 뷰포트 가로길이
-	t_vec3 horizontal;    // 수평길이 벡터
-	t_vec3 vertical;      // 수직길이 벡터
-	double focal_len;     // focal length
-	t_point3 left_bottom; // 왼쪽 아래 코너점
+	t_object_type			type;
+	t_point3				view_point;
+	t_vec3					normal_vec3;
+	t_vec3					forward;
+	t_vec3					up;
+	t_vec3					right;
+	double					fov;
+	double					viewport_h;
+	double					viewport_w;
+	t_vec3					horizontal;
+	t_vec3					vertical;
+	double					focal_len;
+	t_point3				left_bottom;
+	double					pitch;
+	double					yaw;
+	t_vec3					pos;
 };
 
-struct						s_canvas
+struct						s_spot_light
 {
-	int width;           //canvas width
-	int height;          //canvas height;
-	double aspect_ratio; //종횡비
+	t_object_type			type;
+	t_point3				light_point;
+	double					ratio;
+	t_rgb					rgb;
 };
 
 struct						s_sphere
 {
-	t_point3				center;
+	t_object_type			type;
+	t_point3				center_point;
+	double					diameter;
 	double					radius;
-	double					radius2;
+	t_rgb					rgb;
 };
 
-struct						s_hit_record
-{
-	t_point3 p;    // 교점의 좌표
-	t_vec3 normal; // 교점에서의 법선
-	double					tmin;
-	double					tmax;
-	double t; // 광선의 원점과 교점 사이의 거리.
-	bool					front_face;
-	t_color3				albedo;
-};
-
-struct						s_object
+struct						s_plane
 {
 	t_object_type			type;
-	void					*element;
-	void					*next;
-	t_color3				albedo;
+	t_point3				point;
+	t_vec3					normal_vec3;
+	t_rgb					rgb;
 };
 
-struct						s_light
+struct						s_cylinder
+{
+	t_object_type			type;
+	t_cy_type				p_type;
+	t_point3				center_point;
+	t_vec3					normal_vec3;
+	double					diameter;
+	double					height;
+	t_rgb					rgb;
+};
+
+struct						s_ray
 {
 	t_point3				origin;
-	t_color3				light_color;
-	double					bright_ratio;
+	t_vec3					direction;
+};
+
+struct						s_record
+{
+	t_point3				point;
+	t_vec3					normal_vec3;
+	double					t;
+	t_rgb					rgb;
+};
+
+struct						s_canvas
+{
+	int						width;
+	int						height;
+	double					aspect_ratio;
 };
 
 struct						s_scene
 {
 	t_canvas				canvas;
-	t_camera				camera;
-	t_object				*world;
-	t_object				*light;
-	t_color3				ambient; // 8.4에서 설명할 요소
-	t_ray					ray;
-	t_hit_record			rec;
 };
 
-struct						s_img
+union						u_obj
 {
-	void					*img;
-	char					*addr;
-	int						bpp;
-	int						line;
-	int						endian;
+	t_sphere				sphere;
+	t_plane					plane;
+	t_cylinder				cylinder;
 };
 
-struct						s_mlx
+struct						s_obj
 {
-	void					*mlx;
-	void					*win;
-	t_img					img;
+	t_object_type			type;
+	t_get_obj_dist			get_t;
+	t_get_obj_record		set_r;
+	union u_obj				content;
+	t_obj					*next;
+};
+
+struct						s_hooks
+{
+	bool					mouse_left;
+	bool					mouse_right;
+	double					prev_pos[2];
 };
 
 struct						s_meta
 {
-	t_mlx					mlx;
+	t_mlx_assets			mlx_assets;
+	t_ambient				ambient;
+	t_scene					scene;
+	t_camera				camera;
+	t_hooks					hooks;
+	t_list					*spot_lights;
+	t_obj					*objs;
 };
 
 #endif

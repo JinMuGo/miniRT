@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/05/28 16:54:15 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/29 08:43:34 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,11 @@ include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	destroy.c \
-		hooks.c \
-		vec3_utils.c \
-		object_utils.c
+		color.c \
+		atod.c \
+		objs.c \
+		error.c \
+		number.c
 
 NAME := utils.a
 

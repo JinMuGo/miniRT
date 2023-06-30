@@ -6,27 +6,45 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/05/25 18:20:03 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/30 14:42:16 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
-		TOPDIR = $(abspath ../../)
+	TOPDIR	:= $(abspath ../../)
 endif
 
-include $(TOPDIR)/make_config/src/Rules.mk
-include $(TOPDIR)/make_config/com/ColorRules.mk
+include		$(TOPDIR)/make_config/src/Rules.mk
+include 	$(TOPDIR)/make_config/com/ColorRules.mk
 
-NAME = $(PROJECT_NAME)
+NAME	:=	$(BONUS_NAME)
 
-DIRS = 
-LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))
+DIRS	:=	design_patterns_bonus \
+			scene_bonus \
+			utils_bonus \
+			parser_bonus \
+			render_bonus \
+			light_bonus \
+			hooks_bonus
 
-HEADS =
-SRCS = main.c
+LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
-OBJS = $(SRCS:.c=.o)
-DEPS = $(SRCS:.c=.d)
--include $(DEPS)
+HEADS	:=	prt_color_bonus.h \
+			const_bonus.h \
+			defs_bonus.h \
+			design_patterns_bonus.h \
+			enum_bonus.h \
+			minirt_bonus.h \
+			struct_bonus.h \
+			utils_bonus.h \
+			parser_bonus.h \
+			hooks_bonus.h \
+			thread_bonus.h
 
-include $(TOPDIR)/make_config/src/Recipes.mk
+SRCS	:=	main_bonus.c
+
+OBJS	:=	$(SRCS:.c=.o)
+DEPS 	:=	$(SRCS:.c=.d)
+
+-include	$(DEPS)
+include		$(TOPDIR)/make_config/src/BonusRecipes.mk

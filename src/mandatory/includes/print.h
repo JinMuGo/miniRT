@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:03:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/27 22:58:20 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/11 15:22:12 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "stdio.h"
 # include "struct.h"
 
-void    write_color(t_color3 pixel_color);
+// void	write_color(t_color3 pixel_color);
 
 #endif

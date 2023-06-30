@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/05/28 16:45:37 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 10:05:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,24 @@
 
 # include "defs.h"
 
-t_vec3		vec3(double x, double y, double z);
-t_point3	point3(double x, double y, double z);
-t_point3	color3(double r, double g, double b);
-void		vset(t_vec3 *vec, double x, double y, double z);
-double		vlength2(t_vec3 vec);
-double		vlength(t_vec3 vec);
-t_vec3		vplus(t_vec3 vec, t_vec3 vec2);
-t_vec3		vplus_(t_vec3 vec, double x, double y, double z);
-t_vec3		vminus(t_vec3 vec, t_vec3 vec2);
-t_vec3		vminus_(t_vec3 vec, double x, double y, double z);
-t_vec3		vmult(t_vec3 vec, double t);
-t_vec3		vmult_(t_vec3 vec, t_vec3 vec2);
-t_vec3		vdivide(t_vec3 vec, double t);
-double		vdot(t_vec3 vec, t_vec3 vec2);
-t_vec3		vcross(t_vec3 vec, t_vec3 vec2);
-t_vec3		vunit(t_vec3 vec);
-t_vec3		vmin(t_vec3 vec1, t_vec3 vec2);
+void		destroy(t_meta *meta);
 
-void		oadd(t_object **list, t_object *new);
-t_object	*olast(t_object *list);
+// color.c
+t_rgb		rgba_init_int(const int r, const int g, const int b);
+uint32_t	rgba_to_color(t_rgb rgb);
+t_rgb		rgba_min(t_rgb a, t_rgb b);
 
-int			destroy(t_meta *meta);
-void		hooks(t_meta *meta);
+// atod.c
+double		atod(char *str);
+
+// error.c
+bool		error_handler(t_error_type type);
+
+// objs.c
+void		objsadd_back(t_obj **objs, t_obj *new);
+void		objs_clear(t_obj **objs, void (*del)(void *));
+
+// number.c
+double		clamp(const double x, const double min, const double max);
 
 #endif
