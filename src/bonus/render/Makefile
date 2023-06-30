@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 14:55:11 by sanghwal          #+#    #+#              #
-#    Updated: 2023/06/29 13:58:58 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/30 13:03:43 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ include $(TOPDIR)/make_config/src/Rules.mk
 
 SRCS :=	ray_bonus.c \
 		render_bonus.c \
-		render_utils_bonus.c \
+		apply_option_bonus.c \
 		thread_bonus.c \
 		find_obj_bonus.c \
 		render_plane_bonus.c \
