@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:00:17 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 10:44:51 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 11:11:23 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,24 @@ static inline void	_set_sphere_info(t_sphere *sphere, char **line)
 	sphere->rgb = parser_vec3(line[3], RGB_ERR);
 }
 
+static inline t_obj	*_set_obj_info(t_sphere sphere, t_obj_option *option)
+{
+	t_obj			*obj;
+
+	obj = ft_malloc(sizeof(t_obj));
+	obj->type = SP;
+	obj->content.sphere = sphere;
+	obj->get_t = get_sphere_dist;
+	obj->set_r = set_sphere_record;
+	obj->option = option;
+	obj->next = NULL;
+	return (obj);
+}
+
 void	parser_sphere(char **line)
 {
 	const int		len = ft_arrlen((void **)line);
 	t_obj_option	*option;
-	t_obj			*obj;
 	t_sphere		sphere;
 
 	if (!(len == 4 || len == 6 || len == 8 || len == 9))
@@ -49,12 +62,5 @@ void	parser_sphere(char **line)
 		ft_free_all_arr(line);
 		error_handler(SP_ERR);
 	}
-	obj = ft_malloc(sizeof(t_obj));
-	obj->type = SP;
-	obj->content.sphere = sphere;
-	obj->get_t = get_sphere_dist;
-	obj->set_r = set_sphere_record;
-	obj->option = option;
-	obj->next = NULL;
-	objsadd_back(&singleton()->objs, obj);
+	objsadd_back(&singleton()->objs, _set_obj_info(sphere, option));
 }

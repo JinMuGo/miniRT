@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 16:50:54 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 10:46:31 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 11:13:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,23 @@ static inline void	_set_cylinder_info(t_cylinder *cylinder, char **line)
 	cylinder->rgb = parser_vec3(line[5], RGB_ERR);
 }
 
+static inline t_obj	*_set_obj_info(t_cylinder cylinder)
+{
+	t_obj			*obj;
+
+	obj = ft_malloc(sizeof(t_obj));
+	obj->type = CY;
+	obj->content.cylinder = cylinder;
+	obj->get_t = get_cylinder_dist;
+	obj->set_r = set_cylinder_record;
+	obj->next = NULL;
+	return (obj);
+}
+
 void	parser_cylinder(char **line)
 {
 	const int		len = ft_arrlen((void **)line);
 	t_cylinder		cylinder;
-	t_obj			*obj;
 
 	if (!(len == 6))
 		error_handler(CY_ERR);
@@ -50,11 +62,5 @@ void	parser_cylinder(char **line)
 		ft_free_all_arr(line);
 		error_handler(CY_ERR);
 	}
-	obj = ft_malloc(sizeof(t_obj));
-	obj->type = CY;
-	obj->content.cylinder = cylinder;
-	obj->get_t = get_cylinder_dist;
-	obj->set_r = set_cylinder_record;
-	obj->next = NULL;
-	objsadd_back(&singleton()->objs, obj);
+	objsadd_back(&singleton()->objs, _set_obj_info(cylinder));
 }
