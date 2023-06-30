@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:30:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 16:10:45 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 15:36:29 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static inline void	_bp_allocator(
 	const char	*origin_file_name = ft_strrchr(origin, '/');
 	const char	*path_file_name = ft_strrchr(path, '/');
 
-	if (check_bump_file_name(origin_file_name, path_file_name))
+	if (origin_file_name == NULL || path_file_name == NULL
+		|| check_bump_file_name(origin_file_name, path_file_name))
 		error_handler(err);
 	tx->bp = ft_malloc(sizeof(t_mlx_image));
 	open_mlx_image(tx->bp, err, path);

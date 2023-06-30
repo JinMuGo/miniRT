@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 11:15:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 15:20:42 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	parser_cone(char **line)
 	_set_cone_info(&cone, line);
 	option = option_allocator(line, 6, CO_ERR);
 	if (!vaildation_cone(&cone) || !vaildation_option(option)
-		|| option->type == TX)
+		|| (option && option->type == TX))
 	{
 		ft_free_all_arr(line);
 		error_handler(CO_ERR);
