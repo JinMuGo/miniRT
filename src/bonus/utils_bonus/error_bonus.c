@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 20:24:07 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/30 19:35:15 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	error_handler(t_error_type type)
 		print_error_msg(ERR_OPEN);
 	if (type == THD_ERR)
 		print_error_msg(ERR_THD);
+	if (type == OPT_ERR)
+		print_error_msg(ERR_OPT);
 	else
 		error_parser(type);
 	exit(EXIT_FAILURE);

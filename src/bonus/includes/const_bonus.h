@@ -6,7 +6,7 @@
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 20:00:14 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/30 19:34:51 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 # define ERR_LINE_LEN		"Each line has a different length"
 # define ERR_ALLOCATE		"Memory allocation failed"
 # define ERR_INVALID_EX		"Invalid file Extension"
-# define ERR_INVALID_TYPE 	"Invaild type in file"
-# define ERR_THD 			"Error occured during pthread function"
+# define ERR_INVALID_TYPE	"Invaild type in file"
+# define ERR_THD			"Error occured during pthread function"
+# define ERR_OPT			"Invaild option in file"
 
 #endif

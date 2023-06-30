@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_atod.c                                      :+:      :+:    :+:   */
+/*   parser_atod_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:29:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/26 20:28:33 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/30 19:14:27 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ double	check_to_double(char *str)
 	int	i;
 	int	dot_cnt;
 
+	if (str == NULL)
+		return (0);
 	len = ft_strlen(str);
 	i = -1;
 	dot_cnt = 0;
