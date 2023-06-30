@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 10:44:51 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 13:43:40 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,14 @@ t_object_type	set_sphere_record(
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		set_ab_axis_from_c(\
-			&obj->option->op.tx.right,
-			&obj->option->op.tx.up,
-			&record->normal_vec3);
-		_set_sphere_uv(obj->option, record);
+		if (obj->option->type == TX)
+		{
+			set_ab_axis_from_c(\
+				&obj->option->op.tx.right,
+				&obj->option->op.tx.up,
+				&record->normal_vec3);
+			_set_sphere_uv(obj->option, record);
+		}
 		apply_option(obj->option, record, sphere.rgb);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 10:45:52 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 13:42:23 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,14 @@ t_object_type	set_plane_record(t_obj *obj, const t_ray *ray, t_record *record)
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		set_ab_axis_from_c(\
-			&obj->option->op.tx.right,
-			&obj->option->op.tx.up,
-			&record->normal_vec3);
-		_set_plane_uv(obj->option, record);
+		if (obj->option->type == TX)
+		{
+			set_ab_axis_from_c(\
+				&obj->option->op.tx.right,
+				&obj->option->op.tx.up,
+				&record->normal_vec3);
+			_set_plane_uv(obj->option, record);
+		}
 		apply_option(obj->option, record, plane.rgb);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 20:08:34 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 10:46:31 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 13:44:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ t_object_type	set_cylinder_record(
 	set_face_normal(ray, record);
 	if (obj->option)
 	{
-		set_cylinder_uv(obj->option, record, &cylinder);
+		if (obj->option->type == TX)
+			set_cylinder_uv(obj->option, record, &cylinder);
 		apply_option(obj->option, record, cylinder.rgb);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:14:58 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 10:47:27 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 13:46:58 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ t_object_type	set_cone_record(t_obj *obj, const t_ray *ray, t_record *record)
 	if (cone.co_type == BASE)
 		record->normal_vec3 = vec3_scalar_multi(cone.normal_vec3, -1);
 	set_face_normal(ray, record);
-	record->rgb = cone.rgb;
+	if (obj->option)
+		apply_option(obj->option, record, cone.rgb);
+	else
+		record->rgb = cone.rgb;
 	return (obj->type);
 }
