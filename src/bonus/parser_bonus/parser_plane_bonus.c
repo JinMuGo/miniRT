@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_plane_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 19:38:09 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/30 20:05:18 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static inline void	_set_plane_info(t_plane *plane, char **line)
 	plane->point = parser_vec3(line[1], POINT_ERR);
 	plane->normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
 	plane->rgb = parser_vec3(line[3], RGB_ERR);
-	plane->scale = check_to_double(line[4]);
+	if (line[4])
+		plane->scale = check_to_double(line[4]);
+	else
+		plane->scale = 42;
 }
 
 static inline t_obj	*_set_obj_info(t_plane plane, t_obj_option *option)
@@ -54,11 +57,11 @@ void	parser_plane(char **line)
 	t_obj_option	*option;
 	t_plane			plane;
 
-	if (!(len == 4 || len == 7 || len == 9))
+	if (!(len == 4 || len == 7 || len == 9 || len == 10))
 		error_handler(PL_ERR);
 	_set_plane_info(&plane, line);
 	if (len != 4)
-	option = option_allocator(line, 5, PL_ERR);
+		option = option_allocator(line, 5, PL_ERR);
 	else
 		option = NULL;
 	if (!_vaildation_plane(&plane) || !vaildation_option(option))

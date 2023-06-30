@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 13:42:23 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:54:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ double	get_plane_dist(t_obj *obj, const t_ray *ray)
 	return (t);
 }
 
-static inline void	_set_plane_uv(t_obj_option *option, t_record *record)
+static inline void	_set_plane_uv(
+	t_obj_option *option, t_record *record, const double scale)
 {
 	const double	u = fmod(\
-				vec3_inner_product(option->op.tx.right, record->point), 1);
+				vec3_inner_product(\
+				option->op.tx.right, record->point) / scale, 1);
 	const double	v = fmod(\
-				vec3_inner_product(option->op.tx.up, record->point), 1);
+				vec3_inner_product(\
+				option->op.tx.up, record->point) / scale, 1);
 
 	if (u < 0)
 		option->op.tx.uv.u = u + 1.0;
@@ -64,7 +67,7 @@ t_object_type	set_plane_record(t_obj *obj, const t_ray *ray, t_record *record)
 				&obj->option->op.tx.right,
 				&obj->option->op.tx.up,
 				&record->normal_vec3);
-			_set_plane_uv(obj->option, record);
+			_set_plane_uv(obj->option, record, plane.scale);
 		}
 		apply_option(obj->option, record, plane.rgb);
 	}
