@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:45:43 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:26:12 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ static inline void	_key_hooks(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE)
 		destroy(meta);
 	camera_key_hooks(keydata, meta);
-	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
-	render(meta);
+	if (keydata.action == MLX_RELEASE)
+	{
+		setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
+		render(meta);
+	}
 }
 
 static inline void	_resize_hook(int32_t width, int32_t height, void *param)

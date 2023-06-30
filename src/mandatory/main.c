@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:24:19 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/30 20:13:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int ac, char **av)
 		return (error_handler(ARGS_ERR));
 	parser(av[1]);
 	meta = singleton();
-	print_objs(meta);
 	setup_scene(meta, WIN_WIDTH, WIN_HEIGHT);
 	render(meta);
+	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
 	hooks(meta);
 	mlx_loop(meta->mlx_assets.mlx);
 	destroy(meta);

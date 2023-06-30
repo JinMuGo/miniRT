@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:29:33 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/10 09:42:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 10:00:44 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 bool	check_0_to_1(double data)
 {
-	return (data >= 0.0 && data <= 1.0);
+	return (0.0 <= data && data <= 1.0);
 }
 
-bool	check_rgba(t_rgba rgba)
+bool	check_rgb(t_rgb *rgb)
 {
-	return ((rgba.r >= 0.0 && rgba.r <= 255.0) \
-		&& (rgba.g >= 0.0 && rgba.g <= 255.0) \
-		&& (rgba.b >= 0.0 && rgba.b <= 255.0) \
-		&& (rgba.a >= 0.0 && rgba.a <= 255.0));
+	return (check_0_to_1(rgb->x) && check_0_to_1(rgb->y)
+		&& check_0_to_1(rgb->z));
 }
 
 bool	check_minus1_to_1(double data)

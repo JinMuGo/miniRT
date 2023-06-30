@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/28 20:03:39 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/30 14:42:16 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,29 +19,29 @@ include 	$(TOPDIR)/make_config/com/ColorRules.mk
 
 NAME	:=	$(BONUS_NAME)
 
-DIRS	:=	design_patterns \
-			scene \
-			utils \
-			parser \
-			render \
-			light \
-			hooks
+DIRS	:=	design_patterns_bonus \
+			scene_bonus \
+			utils_bonus \
+			parser_bonus \
+			render_bonus \
+			light_bonus \
+			hooks_bonus
 
 LIBS	:=	$(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
-HEADS	:=	prt_color.h \
-			const.h \
-			defs.h \
-			design_patterns.h \
-			enum.h \
-			minirt.h \
-			struct.h \
-			utils.h \
-			parser.h \
-			hooks.h \
-			thread.h
+HEADS	:=	prt_color_bonus.h \
+			const_bonus.h \
+			defs_bonus.h \
+			design_patterns_bonus.h \
+			enum_bonus.h \
+			minirt_bonus.h \
+			struct_bonus.h \
+			utils_bonus.h \
+			parser_bonus.h \
+			hooks_bonus.h \
+			thread_bonus.h
 
-SRCS	:=	main.c
+SRCS	:=	main_bonus.c
 
 OBJS	:=	$(SRCS:.c=.o)
 DEPS 	:=	$(SRCS:.c=.d)

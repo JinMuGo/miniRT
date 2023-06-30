@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:43:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 17:29:31 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:45:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ double	get_plane_dist(t_obj *obj, const t_ray *ray)
 	return (t);
 }
 
-t_object_type	get_plane_record(t_obj *obj, t_ray *ray, t_record *record)
+t_object_type	set_plane_record(t_obj *obj, const t_ray *ray, t_record *record)
 {
 	const t_plane	plane = obj->content.plane;
 
-	record->obj = obj;
 	record->point = ray_at(ray, record->t);
 	record->normal_vec3 = plane.normal_vec3;
 	set_face_normal(ray, record);
-	record->rgba = plane.rgba;
+	record->rgb = plane.rgb;
 	return (obj->type);
 }

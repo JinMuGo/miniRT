@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_point_vec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:24:25 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 20:38:35 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/06/29 09:56:20 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,21 @@ double	get_point(char *str, int *i)
 	return (res);
 }
 
-t_point3	parser_point3(char *str)
+t_vec3	parser_vec3(char *str, t_error_type err)
 {
 	int	i;
 
 	if (!check_comma(str))
-		error_handler(POINT_ERR);
+		error_handler(err);
 	i = 0;
-	return (vec3_init(
-			get_point(str, &i),
-			get_point(str, &i),
-			get_point(str, &i)));
-}
-
-t_vec3	parser_vec3(char *str)
-{
-	int	i;
-
-	if (!check_comma(str))
-		error_handler(VEC_ERR);
-	i = 0;
-	return (vec3_init(
-			get_point(str, &i),
-			get_point(str, &i),
-			get_point(str, &i)));
+	if (err == RGB_ERR)
+		return (rgba_init_int(
+				get_point(str, &i),
+				get_point(str, &i),
+				get_point(str, &i)));
+	else
+		return (vec3_init(
+				get_point(str, &i),
+				get_point(str, &i),
+				get_point(str, &i)));
 }

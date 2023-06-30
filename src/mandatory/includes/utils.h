@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:09:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 10:05:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,9 @@
 void		destroy(t_meta *meta);
 
 // color.c
-t_rgba		rgba_init_int(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-t_rgba		rgba_init_double(double r, double g, double b, double a);
-uint32_t	rgba_to_color(t_rgba rgba);
-t_rgba		rgba_scalar_multi(t_rgba rgba, double scalar);
-t_rgba		rgba_scalar_divide(t_rgba rgba, double scalar);
-t_rgba		rgba_multi(t_rgba a, t_rgba b);
-t_rgba		rgba_plus(t_rgba a, t_rgba b);
-t_rgba		rgba_min(t_rgba a, t_rgba b);
+t_rgb		rgba_init_int(const int r, const int g, const int b);
+uint32_t	rgba_to_color(t_rgb rgb);
+t_rgb		rgba_min(t_rgb a, t_rgb b);
 
 // atod.c
 double		atod(char *str);

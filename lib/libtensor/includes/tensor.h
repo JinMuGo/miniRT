@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 18:49:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/28 18:01:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:26:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ t_vec3					vec3_scale(t_vec3 vec3, float s);
 bool					is_vec3_same(t_vec3 a, t_vec3 b);
 
 // utils2
-void					set_ab_axis_from_c(t_vec3 *a, t_vec3 *b, const t_vec3 *c);
+void					set_ab_axis_from_c(t_vec3 *a, t_vec3 *b,
+							const t_vec3 *c);
 
 double					degree_to_radian(double degree);
 

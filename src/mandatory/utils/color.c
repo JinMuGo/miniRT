@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/18 17:58:27 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/29 10:05:56 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,36 @@
 #include "defs.h"
 #include "utils.h"
 
-static inline uint32_t	_color_calc(double rgba)
+static inline uint32_t	_color_calc(const float rgb)
 {
-	return (0xFF * clamp(rgba, 0.0, 0.999));
+	return (0xFF * clamp(rgb, 0.0, 1));
 }
 
-uint32_t	rgba_to_color(t_rgba rgba)
+uint32_t	rgba_to_color(t_rgb rgb)
 {
-	return (_color_calc(rgba.r) << 24 | \
-			_color_calc(rgba.g) << 16 | \
-			_color_calc(rgba.b) << 8 | \
-			_color_calc(rgba.a));
+	return (_color_calc(rgb.x) << 24 | \
+			_color_calc(rgb.y) << 16 | \
+			_color_calc(rgb.z) << 8 | \
+			0xFF);
 }
 
-t_rgba	rgba_init_int(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
+t_rgb	rgba_init_int(const int r, const int g, const int b)
 {
-	const t_rgba	rgba = {
-		(double)r / 0xFF,
-		(double)g / 0xFF,
-		(double)b / 0xFF,
-		(double)a / 0xFF};
+	const t_rgb	rgb = {
+		(float)r / 0xFF,
+		(float)g / 0xFF,
+		(float)b / 0xFF};
 
-	return (rgba);
+	return (rgb);
 }
 
-t_rgba	rgba_init_double(double r, double g, double b, double a)
+t_rgb	rgba_min(t_rgb a, t_rgb b)
 {
-	const t_rgba	rgba = {r, g, b, a};
-
-	return (rgba);
+	if (a.x > b.x)
+		a.x = b.x;
+	if (a.y > b.y)
+		a.y = b.y;
+	if (a.z > b.z)
+		a.z = b.z;
+	return (a);
 }

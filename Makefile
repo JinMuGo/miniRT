@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 20:10:46 by jgo               #+#    #+#              #
-#    Updated: 2023/06/06 18:04:10 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/30 20:11:41 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,6 @@ all bonus clean fclean re:
 	$(MAKE) TOPDIR=`pwd` -C src $@
 
 norm:
-	norminette src/
+	norminette src/ lib/
 
 .PHONY: all clean fclean re bonus norm

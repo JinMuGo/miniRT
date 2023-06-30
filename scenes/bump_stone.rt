@@ -1,0 +1,6 @@
+A 0.2 255,255,255
+
+C 0,0,5 0,0,-1 90
+L 0,10,3 0.6 255,255,255
+
+sp 0,0,0 5 100,100,24 tx ./scenes/textures/stone.png bp ./scenes/bumps/stone_bump.png
