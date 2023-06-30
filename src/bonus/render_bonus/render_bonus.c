@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 10:20:54 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 14:57:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static inline t_rgb	_multi_sampling(t_meta *meta, const int x, const int y)
 		rgb = vec3_plus(rgb, \
 				_calc_pixel(meta, \
 				(x + ft_random_double()) / (canvas.width - 1), \
-				(y + ft_random_double()) / (canvas.height -1)));
+				(y + ft_random_double()) / (canvas.height - 1)));
 	}
 	return (vec3_scalar_divide(rgb, SAMPLES_PER_PIXEL));
 }
