@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_print_objs_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:10:40 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 13:37:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:18:39 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static inline void	_print_plane(t_plane plane)
 	printf("Vec3: %f, %f, %f\n", plane.normal_vec3.x,
 		plane.normal_vec3.y, plane.normal_vec3.z);
 	printf("RGB: %f, %f, %f\n", plane.rgb.x, plane.rgb.y, plane.rgb.z);
+	printf("Scale: %f\n", plane.scale);
 }
 
 static inline void	_print_cylinder(t_cylinder cylinder)
