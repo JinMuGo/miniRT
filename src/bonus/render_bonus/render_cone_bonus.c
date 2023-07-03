@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:14:58 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 13:46:58 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:44:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "defs_bonus.h"
 #include "render_bonus.h"
 
-static double	get_cone_side(t_cone *cone, t_ray *ray)
+static double	_get_cone_side(t_cone *cone, t_ray *ray)
 {
 	double	coeff[3];
 	double	root[2];
@@ -29,7 +29,7 @@ static double	get_cone_side(t_cone *cone, t_ray *ray)
 	return (0);
 }
 
-static double	get_cone_base(t_cone *cone, t_ray *ray)
+static double	_get_cone_base(t_cone *cone, t_ray *ray)
 {
 	const t_vec3	pc = vec3_minus(ray->origin, cone->base_point);
 	const double	denom = vec3_inner_product(\
@@ -54,8 +54,8 @@ double	get_cone_dist(t_obj *obj, const t_ray *ray)
 	double	base_t;
 
 	cone = &(obj->content.cone);
-	side_t = get_cone_side(cone, (t_ray *)ray);
-	base_t = get_cone_base(cone, (t_ray *)ray);
+	side_t = _get_cone_side(cone, (t_ray *)ray);
+	base_t = _get_cone_base(cone, (t_ray *)ray);
 	cone->co_type = SIDE;
 	if ((side_t > 0 && base_t <= 0)
 		|| (side_t > 0 && base_t > 0 && side_t <= base_t))

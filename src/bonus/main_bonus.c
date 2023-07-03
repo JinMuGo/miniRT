@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:56:18 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:42:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "hooks_bonus.h"
 #include "thread_bonus.h"
 
-static bool	is_rtfile(char *file)
+static bool	_is_rtfile(char *file)
 {
 	char	*ext;
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		error_handler(ARGS_ERR);
-	if (!is_rtfile(av[1]))
+	if (!_is_rtfile(av[1]))
 		error_handler(EX_ERR);
 	parser(av[1]);
 	meta = singleton();

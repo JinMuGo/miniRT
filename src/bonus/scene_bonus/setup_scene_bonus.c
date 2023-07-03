@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:25:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/29 12:16:20 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:45:09 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static inline void	_setup_camera(t_camera *camera, double aspect_ratio)
 static inline void	_setup_thread_pool(t_meta *meta)
 {
 	const int	height_n = meta->scene.canvas.height / THD_NUM;
-	static bool	initialized = false;
+	static bool	_initialized = false;
 	int			i;
 
-	if (initialized == false)
+	if (_initialized == false)
 	{
 		meta->thd_pool.tids = ft_malloc(sizeof(pthread_t) * THD_NUM);
 		meta->thd_pool.rendrer = ft_malloc(sizeof(t_renderer) * THD_NUM);
-		initialized = true;
+		_initialized = true;
 	}
 	i = -1;
 	while (++i < THD_NUM)
