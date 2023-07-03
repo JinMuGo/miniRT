@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:03:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 17:43:56 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:48:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ static inline t_rgb	_get_cb_color(
 static inline t_rgb	_get_img_pixel(mlx_image_t *img, const int u, const int v)
 {
 	const size_t	bpp = sizeof(uint32_t);
-	const uint8_t	*color = img->pixels + ((v * img->width + u) * bpp);
+	uint8_t			*color;
 
+	color = img->pixels + ((v * img->width + u) * bpp);
 	return (color_to_rgba(color));
 }
 
