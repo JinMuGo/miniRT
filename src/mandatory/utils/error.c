@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/18 20:12:25 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/07/03 14:52:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "defs.h"
 #include "design_patterns.h"
+#include "minirt.h"
 #include "utils.h"
 
 static inline void	print_error_msg(char *msg)
@@ -27,6 +27,10 @@ static inline void	free_all(void)
 	meta = singleton();
 	ft_lstclear(&meta->spot_lights, free);
 	objs_clear(&meta->objs, free);
+	mlx_delete_image(meta->mlx_assets.mlx, meta->mlx_assets.img);
+	mlx_terminate(meta->mlx_assets.mlx);
+	if (meta->fd != -1)
+		close(meta->fd);
 	free(meta);
 }
 
@@ -50,21 +54,21 @@ static inline void	error_parser(t_error_type type)
 		print_error_msg(ERR_VEC);
 	if (type == RGB_ERR)
 		print_error_msg(ERR_RGB);
-	if (type == EX_ERR)
-		print_error_msg(ERR_INVALID_EX);
 	if (type == TYPE_ERR)
 		print_error_msg(ERR_INVALID_TYPE);
 	free_all();
 	exit(EXIT_FAILURE);
 }
 
-bool	error_handler(t_error_type type)
+void	error_handler(t_error_type type)
 {
 	if (type == ARGS_ERR)
 		print_error_msg(ERR_ARGS);
-	if (type == OPEN_ERR)
+	else if (type == EX_ERR)
+		print_error_msg(ERR_INVALID_EX);
+	else if (type == OPEN_ERR)
 		print_error_msg(ERR_OPEN);
 	else
 		error_parser(type);
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
