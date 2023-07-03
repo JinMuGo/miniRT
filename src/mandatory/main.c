@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 20:13:01 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/03 14:59:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,26 @@
 #include "render.h"
 #include "hooks.h"
 
+static bool	is_rtfile(char *file)
+{
+	char	*ext;
+
+	ext = ft_strrchr(file, '.');
+	if (!ext || ext == file)
+		return (false);
+	if (ft_strcmp(ext, ".rt"))
+		return (false);
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
-	t_meta		*meta;
+	t_meta	*meta;
 
 	if (ac != 2)
-		return (error_handler(ARGS_ERR));
+		error_handler(ARGS_ERR);
+	if (!is_rtfile(av[1]))
+		error_handler(EX_ERR);
 	parser(av[1]);
 	meta = singleton();
 	setup_scene(meta, WIN_WIDTH, WIN_HEIGHT);

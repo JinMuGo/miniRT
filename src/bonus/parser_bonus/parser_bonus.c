@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:51:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/26 21:05:53 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/07/03 14:59:11 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include "parser_bonus.h"
 #include "utils_bonus.h"
-
-static bool	is_rtfile(char *file)
-{
-	char	*ext;
-
-	ext = ft_strrchr(file, '.');
-	if (!ext || ext == file)
-		return (false);
-	if (ft_strcmp(ext, ".rt"))
-		return (false);
-	return (true);
-}
+#include "design_patterns_bonus.h"
 
 static void	parser_router(char **temp)
 {
@@ -48,14 +37,15 @@ static void	parser_router(char **temp)
 
 void	parser(char *file)
 {
-	const int	fd = open(file, O_RDONLY);
+	int			fd;
 	char		*line;
 	char		**temp;
 
+	line = NULL;
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_handler(OPEN_ERR);
-	if (!is_rtfile(file))
-		error_handler(EX_ERR);
+	singleton()->fd = fd;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -71,4 +61,5 @@ void	parser(char *file)
 		ft_free_all_arr(temp);
 		line = get_next_line(fd);
 	}
+	close(fd);
 }
