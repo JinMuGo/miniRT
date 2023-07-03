@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:57:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:44:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "design_patterns_bonus.h"
 #include "utils_bonus.h"
 
-static inline void	print_error_msg(const char *msg)
+static inline void	_print_error_msg(const char *msg)
 {
 	printf("Error\n%s\n", msg);
 }
 
-static inline void	free_all(void)
+static inline void	_free_all(void)
 {
 	t_meta	*meta;
 
@@ -34,7 +34,7 @@ static inline void	free_all(void)
 	free(meta);
 }
 
-static inline void	error_parser(t_error_type type)
+static inline void	_error_parser(t_error_type type)
 {
 	const char	*error_msgs[] = {[ARGS_ERR] = ERR_ARGS, [OPEN_ERR] = ERR_OPEN,
 	[EX_ERR] = ERR_INVALID_EX, [TYPE_ERR] = ERR_INVALID_TYPE,
@@ -46,20 +46,20 @@ static inline void	error_parser(t_error_type type)
 
 	if (type >= 0 && type < sizeof(error_msgs) / sizeof(error_msgs[0])
 		&& error_msgs[type] != NULL)
-		print_error_msg(error_msgs[type]);
-	free_all();
+		_print_error_msg(error_msgs[type]);
+	_free_all();
 	exit(EXIT_FAILURE);
 }
 
 void	error_handler(t_error_type type)
 {
 	if (type == ARGS_ERR)
-		print_error_msg(ERR_ARGS);
+		_print_error_msg(ERR_ARGS);
 	else if (type == EX_ERR)
-		print_error_msg(ERR_INVALID_EX);
+		_print_error_msg(ERR_INVALID_EX);
 	else if (type == OPEN_ERR)
-		print_error_msg(ERR_OPEN);
+		_print_error_msg(ERR_OPEN);
 	else
-		error_parser(type);
+		_error_parser(type);
 	exit(EXIT_FAILURE);
 }

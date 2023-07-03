@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:51:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:59:11 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:43:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
-static void	parser_router(char **temp)
+static void	_parser_router(char **temp)
 {
 	if (!ft_strcmp(temp[0], "A"))
 		parser_ambient(temp);
@@ -56,7 +56,7 @@ void	parser(char *file)
 			continue ;
 		}
 		temp = ft_split_whitespace(line);
-		parser_router(temp);
+		_parser_router(temp);
 		free(line);
 		ft_free_all_arr(temp);
 		line = get_next_line(fd);
