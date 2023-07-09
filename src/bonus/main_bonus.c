@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 17:42:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:43:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 		error_handler(ARGS_ERR);
 	if (!_is_rtfile(av[1]))
 		error_handler(EX_ERR);
-	parser(av[1]);
+	parser(open(av[1], O_RDONLY));
 	meta = singleton();
 	setup_scene(meta, WIN_WIDTH, WIN_HEIGHT);
 	start_thread_render(meta);

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 13:49:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:43:58 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "defs_bonus.h"
 
-void			parser(char *file);
+void			parser(const int fd);
 
 // utils
 char			**ft_split_whitespace(char const *s);

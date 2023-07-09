@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 17:46:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:40:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static inline void	_error_parser(t_error_type type)
 		_print_error_msg(ERR_RGB);
 	if (type == TYPE_ERR)
 		_print_error_msg(ERR_INVALID_TYPE);
+	if (type == MAN_ERR)
+		_print_error_msg(ERR_MAN);
 	_free_all();
 	exit(EXIT_FAILURE);
 }

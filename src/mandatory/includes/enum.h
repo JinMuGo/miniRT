@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:12:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/28 16:32:03 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:40:14 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ enum						e_error_type
 	CY_ERR,
 	POINT_ERR,
 	VEC_ERR,
-	RGB_ERR
+	RGB_ERR,
+	MAN_ERR
 };
 
 #endif

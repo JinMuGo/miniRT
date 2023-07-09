@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:56:30 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/29 10:11:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:41:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "defs.h"
 
-void	parser(char *file);
+void	parser(const int fd);
 char	**ft_split_whitespace(char const *s);
 
 void	parser_ambient(char **line);

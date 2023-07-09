@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:51:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:50:32 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:41:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ static void	parser_router(char **temp)
 		error_handler(TYPE_ERR);
 }
 
-void	parser(char *file)
+static bool	_check_mandatory_element(t_meta *meta)
 {
-	int			fd;
+	return (meta->camera.type == NONE);
+}
+
+void	parser(const int fd)
+{
 	char		*line;
 	char		**temp;
 
 	line = NULL;
-	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_handler(OPEN_ERR);
 	singleton()->fd = fd;
@@ -60,4 +63,6 @@ void	parser(char *file)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	if (_check_mandatory_element(singleton()))
+		error_handler(MAN_ERR);
 }

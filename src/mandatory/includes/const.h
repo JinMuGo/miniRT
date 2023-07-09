@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 10:39:15 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:40:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@
 # define ERR_ALLOCATE		"Memory allocation failed"
 # define ERR_INVALID_EX		"Invalid file Extension"
 # define ERR_INVALID_TYPE 	"Invaild type in file"
+# define ERR_MAN		 	"The mandatory element is missing"
 
 #endif

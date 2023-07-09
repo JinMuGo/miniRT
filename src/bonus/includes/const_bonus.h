@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   const_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 19:34:51 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/07/09 14:45:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@
 # define ERR_INVALID_TYPE	"Invaild type in file"
 # define ERR_THD			"Error occured during pthread function"
 # define ERR_OPT			"Invaild option in file"
+# define ERR_MAN		 	"The mandatory element is missing"
 
 #endif
