@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:51:52 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 20:05:18 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 11:07:28 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static bool	_vaildation_plane(t_plane *plane)
 	if (plane->type != PL
 		|| !check_normal_vec(plane->normal_vec3)
 		|| !check_rgb(&plane->rgb)
-		|| plane->scale <= 0 || plane->scale > 100)
+		|| plane->scale <= 0 || plane->scale > 100
+		|| fabs(1 - vec3_length(plane->normal_vec3)) > EPSILON)
 		return (false);
 	return (true);
 }
@@ -29,7 +30,7 @@ static inline void	_set_plane_info(t_plane *plane, char **line)
 {
 	plane->type = PL;
 	plane->point = parser_vec3(line[1], POINT_ERR);
-	plane->normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
+	plane->normal_vec3 = parser_vec3(line[2], VEC_ERR);
 	plane->rgb = parser_vec3(line[3], RGB_ERR);
 	if (line[4])
 		plane->scale = check_to_double(line[4]);

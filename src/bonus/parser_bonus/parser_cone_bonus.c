@@ -6,20 +6,20 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/07/03 17:43:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 11:11:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_bonus.h"
-#include "utils_bonus.h"
 #include "render_bonus.h"
+#include "utils_bonus.h"
 #include "design_patterns_bonus.h"
 
 static bool	_vaildation_cone(t_cone *cone)
 {
-	if (cone->type != CO
-		|| !check_normal_vec(cone->normal_vec3) || !check_rgb(&cone->rgb)
-		|| cone->radius <= 0 || cone->height <= 0)
+	if (cone->type != CO || !check_normal_vec(cone->normal_vec3)
+		|| !check_rgb(&cone->rgb) || cone->radius <= 0 || cone->height <= 0
+		|| fabs(1 - vec3_length(cone->normal_vec3)) > EPSILON)
 		return (false);
 	return (true);
 }
@@ -28,7 +28,7 @@ static inline void	_set_cone_info(t_cone *cone, char **line)
 {
 	cone->type = CO;
 	cone->base_point = parser_vec3(line[1], POINT_ERR);
-	cone->normal_vec3 = vec3_unit(parser_vec3(line[2], VEC_ERR));
+	cone->normal_vec3 = parser_vec3(line[2], VEC_ERR);
 	cone->radius = check_to_double(line[3]);
 	cone->height = check_to_double(line[4]);
 	cone->rgb = parser_vec3(line[5], RGB_ERR);
@@ -36,7 +36,7 @@ static inline void	_set_cone_info(t_cone *cone, char **line)
 
 static inline t_obj	*_set_obj_info(t_cone cone, t_obj_option *option)
 {
-	t_obj			*obj;
+	t_obj	*obj;
 
 	obj = ft_malloc(sizeof(t_obj));
 	obj->type = CO;
@@ -58,8 +58,8 @@ void	parser_cone(char **line)
 		error_handler(CO_ERR);
 	_set_cone_info(&cone, line);
 	option = option_allocator(line, 6, CO_ERR);
-	if (!_vaildation_cone(&cone) || !vaildation_option(option)
-		|| (option && option->type == TX))
+	if (!_vaildation_cone(&cone) || !vaildation_option(option) || (option
+			&& option->type == TX))
 	{
 		ft_free_all_arr(line);
 		error_handler(CO_ERR);
