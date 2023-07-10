@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/10 11:32:22 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 14:16:39 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 
 static inline void	_key_hooks(mlx_key_data_t keydata, void *param)
 {
-	t_meta	*meta;
+	const t_vec3	*init_forward_pos = get_init_forward_pos();
+	t_meta			*meta;
 
 	meta = param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		destroy(meta);
-	camera_key_hooks(keydata, meta);
+	camera_key_hooks(&keydata, meta, init_forward_pos[0], init_forward_pos[1]);
 	if (keydata.action == MLX_RELEASE)
 	{
 		setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
@@ -65,7 +66,7 @@ static inline void	_mouse_hooks(
 		meta->hooks.mouse_right = false;
 }
 
-static inline void	_mouse_cursor(double xpos, double ypos, void *param)
+static inline void	_cursor_hooks(double xpos, double ypos, void *param)
 {
 	const double	pos[2] = {xpos, ypos};
 	t_meta			*meta;
@@ -80,8 +81,9 @@ static inline void	_mouse_cursor(double xpos, double ypos, void *param)
 
 void	hooks(t_meta *meta)
 {
+	get_init_forward_pos();
 	mlx_resize_hook(meta->mlx_assets.mlx, _resize_hook, meta);
 	mlx_key_hook(meta->mlx_assets.mlx, _key_hooks, meta);
 	mlx_mouse_hook(meta->mlx_assets.mlx, _mouse_hooks, meta);
-	mlx_cursor_hook(meta->mlx_assets.mlx, _mouse_cursor, meta);
+	mlx_cursor_hook(meta->mlx_assets.mlx, _cursor_hooks, meta);
 }
