@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/09 14:40:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 11:31:28 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@
 # define ERR_INVALID_EX		"Invalid file Extension"
 # define ERR_INVALID_TYPE 	"Invaild type in file"
 # define ERR_MAN		 	"The mandatory element is missing"
+# define ERR_HOOK		 	"Error Occur during hook process"
 
 #endif

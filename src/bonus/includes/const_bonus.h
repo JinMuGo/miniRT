@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:11:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/09 14:45:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 11:33:37 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@
 # define ERR_THD			"Error occured during pthread function"
 # define ERR_OPT			"Invaild option in file"
 # define ERR_MAN		 	"The mandatory element is missing"
+# define ERR_HOOK		 	"Error Occur during hook process"
 
 #endif

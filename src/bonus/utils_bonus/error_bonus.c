@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/09 14:45:22 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 11:37:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static inline void	_error_parser(t_error_type type)
 	[AMB_ERR] = ERR_AMB, [LIGHT_ERR] = ERR_LIGHT, [CAM_ERR] = ERR_CAM,
 	[SP_ERR] = ERR_SP, [PL_ERR] = ERR_PL, [CY_ERR] = ERR_CY, [CO_ERR] = ERR_CO,
 	[POINT_ERR] = ERR_POINT, [VEC_ERR] = ERR_VEC, [RGB_ERR] = ERR_RGB,
-	[THD_ERR] = ERR_THD, [OPT_ERR] = ERR_OPT, [MAN_ERR] = ERR_MAN
+	[THD_ERR] = ERR_THD, [OPT_ERR] = ERR_OPT, [MAN_ERR] = ERR_MAN,
+	[HOOK_ERR] = ERR_HOOK
 	};
 
 	if (type >= 0 && type < sizeof(error_msgs) / sizeof(error_msgs[0])
 		&& error_msgs[type] != NULL)
 		_print_error_msg(error_msgs[type]);
 	_free_all();
-	exit(EXIT_FAILURE);
 }
 
 void	error_handler(t_error_type type)

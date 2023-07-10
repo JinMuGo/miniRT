@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_bonus.c                                     :+:      :+:    :+:   */
+/*   hooks_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 14:35:56 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/10 11:35:02 by jgo              ###   ########.fr       */
+/*   Created: 2023/07/10 13:16:51 by jgo               #+#    #+#             */
+/*   Updated: 2023/07/10 14:14:36 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "defs_bonus.h"
 #include "minirt_bonus.h"
-#include "render_bonus.h"
-#include "utils_bonus.h"
+#include "defs_bonus.h"
+#include "design_patterns_bonus.h"
 
-void	start_thread_render(t_meta *meta)
+t_vec3	*get_init_forward_pos(void)
 {
-	int	i;
+	static t_vec3	_init_forward_pos[2];
+	static bool		_initialized = false;
+	t_meta			*meta;
 
-	i = -1;
-	while (++i < THD_NUM)
+	if (_initialized == false)
 	{
-		if (pthread_create(meta->thd_pool.tids + i, NULL, render,
-				meta->thd_pool.rendrer + i))
-			return (error_handler(THD_ERR));
+		meta = singleton();
+		_init_forward_pos[0] = meta->camera.forward;
+		_init_forward_pos[1] = meta->camera.pos;
+		_initialized = true;
 	}
-	i = -1;
-	while (++i < THD_NUM)
-		pthread_join(meta->thd_pool.tids[i], NULL);
-	printf("finish thread render! with: %d threads\n", THD_NUM);
+	return (_init_forward_pos);
 }
