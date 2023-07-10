@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:52:57 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/09 14:40:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 11:37:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ static inline void	_error_parser(t_error_type type)
 		_print_error_msg(ERR_INVALID_TYPE);
 	if (type == MAN_ERR)
 		_print_error_msg(ERR_MAN);
+	if (type == HOOK_ERR)
+		_print_error_msg(ERR_HOOK);
 	_free_all();
-	exit(EXIT_FAILURE);
 }
 
 void	error_handler(t_error_type type)

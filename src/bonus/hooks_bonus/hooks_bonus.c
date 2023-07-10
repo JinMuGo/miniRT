@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/30 19:23:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/10 11:33:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ static inline void	_resize_hook(int32_t width, int32_t height, void *param)
 	t_meta	*meta;
 
 	meta = param;
+	printf("resize hook width: %d height: %d\n", width, height);
+	if (mlx_resize_image(meta->mlx_assets.img, width, height) == false)
+		error_handler(HOOK_ERR);
 	setup_scene(meta, width, height);
 	start_thread_render(meta);
 }
