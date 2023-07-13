@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:38:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 17:10:51 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 21:32:29 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	destroy(t_meta *meta)
 	mlx_del(meta->mlx_assets.mlx);
 	ft_lstclear(&meta->spot_lights, free);
 	objs_clear(&meta->objs, free);
+	free(meta->thd_pool.rendrer);
+	free(meta->thd_pool.tids);
 	free(meta);
 	exit(EXIT_SUCCESS);
 }
