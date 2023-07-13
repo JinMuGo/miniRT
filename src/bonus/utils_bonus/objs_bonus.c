@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   objs_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:00:02 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/07/03 17:44:43 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 22:40:10 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include "defs_bonus.h"
 #include "parser_bonus.h"
+#include "design_patterns_bonus.h"
 
 void	objsadd_back(t_obj **objs, t_obj *new)
 {
@@ -35,8 +36,14 @@ static inline void	_option_clear(t_obj_option *option, void (*del)(void *))
 {
 	if (option->type == TX)
 	{
+		mlx_destroy_image(singleton()->mlx_assets.mlx, option->op.tx.img.texture->img.img);
+		del(option->op.tx.img.texture);
 		if (option->op.tx.bp)
+		{
+			mlx_destroy_image(singleton()->mlx_assets.mlx, option->op.tx.bp->texture->img.img);
+			del(option->op.tx.bp->texture);
 			del(option->op.tx.bp);
+		}
 	}
 	del(option);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:47:06 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/07/13 17:27:59 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 22:26:33 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	open_mlx_image(t_mlx_image *img, t_error_type err, const char *path)
 	texture = ft_malloc(sizeof(t_texture));
 	if (img->type == PNG)
 		texture->img.img = mlx_png_file_to_image(singleton()->mlx_assets.mlx,
-				(char *)path, &texture->width, &texture->height);
+				(char *)path, &texture->width, &texture->height); // 이후에 leak 발생
 	else if (img->type == XPM)
 		texture->img.img = mlx_xpm_file_to_image(singleton()->mlx_assets.mlx,
 				(char *)path, &texture->width, &texture->height);
