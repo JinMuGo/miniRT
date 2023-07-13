@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/29 08:43:34 by jgo              ###   ########.fr        #
+#    Updated: 2023/07/13 12:42:39 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS :=	destroy.c \
 		atod.c \
 		objs.c \
 		error.c \
-		number.c
+		number.c \
+		pixel.c
 
 NAME := utils.a
 

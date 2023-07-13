@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:47:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/12 18:52:11 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:42:41 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <stdlib.h>
 
 # include "tensor.h"
-# include "MLX42.h"
 # include "libft.h"
+# include "mlx.h"
+# include "mlx_key_map.h"
+# include "mlx_event.h"
 
 #endif

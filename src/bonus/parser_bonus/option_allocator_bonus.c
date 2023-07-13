@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:30:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 17:43:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 17:12:22 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static inline void	_bp_allocator(
 		error_handler(err);
 	tx->bp = ft_malloc(sizeof(t_mlx_image));
 	open_mlx_image(tx->bp, err, path);
-	if (tx->img.img->width != tx->bp->img->width
-		&& tx->img.img->height != tx->bp->img->height)
+	if (tx->img.texture->width != tx->bp->texture->width
+		&& tx->img.texture->height != tx->bp->texture->height)
 		error_handler(err);
 }
 

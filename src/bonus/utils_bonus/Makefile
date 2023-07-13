@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/06/30 14:43:22 by jgo              ###   ########.fr        #
+#    Updated: 2023/07/13 17:10:10 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS :=	destroy_bonus.c \
 		atod_bonus.c \
 		objs_bonus.c \
 		error_bonus.c \
-		number_bonus.c
+		number_bonus.c \
+		pixel_bonus.c
 
 NAME := utils_bonus.a
 

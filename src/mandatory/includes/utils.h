@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:53:01 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 13:31:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 # include "defs.h"
 
-void		destroy(t_meta *meta);
+int			destroy(t_meta *meta);
+
+// pixel.c
+void		my_pixel_put(t_mlx_assets *mlx_assets, const uint32_t x,
+				const uint32_t y, const uint32_t color);
 
 // color.c
 t_rgb		rgba_init_int(const int r, const int g, const int b);

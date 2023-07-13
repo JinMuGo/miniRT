@@ -6,17 +6,22 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 16:31:18 by jgo               #+#    #+#             */
-/*   Updated: 2023/06/06 18:20:58 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 11:10:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "defs.h"
+#include "minirt.h"
 
 static inline void	_init_mlx_assets(t_mlx_assets *mlx_assets)
 {
-	mlx_assets->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "miniRT", true);
-	mlx_assets->img = mlx_new_image(mlx_assets->mlx, WIN_WIDTH, WIN_HEIGHT);
+	mlx_assets->mlx = mlx_init();
+	mlx_assets->win = mlx_new_window(mlx_assets->mlx, WIN_WIDTH, WIN_HEIGHT,
+			"miniRT");
+	mlx_assets->img.img = mlx_new_image(mlx_assets->mlx, WIN_WIDTH, WIN_HEIGHT);
+	mlx_assets->img.addr = mlx_get_data_addr(mlx_assets->img.img,
+			&mlx_assets->img.bits_per_pixel, &mlx_assets->img.line_length,
+			&mlx_assets->img.endian);
 }
 
 t_meta	*singleton(void)

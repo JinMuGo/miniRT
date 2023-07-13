@@ -6,13 +6,16 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:16:51 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/10 14:14:54 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:45:17 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "defs.h"
 #include "design_patterns.h"
+#include "hooks.h"
+#include "render.h"
+#include "scene.h"
 
 t_vec3	*get_init_forward_pos(void)
 {
@@ -28,4 +31,16 @@ t_vec3	*get_init_forward_pos(void)
 		_initialized = true;
 	}
 	return (_init_forward_pos);
+}
+
+int	mouse_move(int xpos, int ypos, t_meta *meta)
+{
+	const int	pos[2] = {xpos, ypos};
+
+	if (meta->hooks.mouse_left == false)
+		return (0);
+	camera_mouse_hooks(pos, meta);
+	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
+	render(meta);
+	return (0);
 }

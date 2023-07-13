@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:26:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 11:09:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_record		t_record;
 typedef struct s_obj		t_obj;
 typedef struct s_quad_coeff	t_quad_coeff;
 typedef struct s_hooks		t_hooks;
+typedef struct s_img		t_img;
 
 typedef double				(*t_get_obj_dist)(t_obj *, const t_ray *);
 typedef t_object_type		(*t_get_obj_record)(t_obj *, const t_ray *,
@@ -45,10 +46,20 @@ struct						s_quad_coeff
 	double					c;
 };
 
+struct						s_img
+{
+	void					*img;
+	char					*addr;
+	int						bits_per_pixel;
+	int						line_length;
+	int						endian;
+};
+
 struct						s_mlx_assets
 {
-	mlx_t					*mlx;
-	mlx_image_t				*img;
+	void					*mlx;
+	void					*win;
+	t_img					img;
 };
 
 struct						s_ambient

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/10 14:16:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:46:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,73 +17,65 @@
 #include "scene.h"
 #include "utils.h"
 
-static inline void	_key_hooks(mlx_key_data_t keydata, void *param)
+static inline int	_key_press(int keydata, t_meta *meta)
+{
+	if (keydata == MLX_KEY_ESC)
+		destroy(meta);
+	camera_key_hooks(keydata, meta);
+	return (0);
+}
+
+static inline int	_key_release(int keydata, t_meta *meta)
 {
 	const t_vec3	*init_forward_pos = get_init_forward_pos();
-	t_meta			*meta;
 
-	meta = param;
-	if (keydata.key == MLX_KEY_ESCAPE)
+	if (keydata == MLX_KEY_ESC)
 		destroy(meta);
-	camera_key_hooks(&keydata, meta, init_forward_pos[0], init_forward_pos[1]);
-	if (keydata.action == MLX_RELEASE)
+	if (keydata == MLX_KEY_R)
+		meta->camera.forward = init_forward_pos[0];
+	if (keydata == MLX_KEY_F)
+		meta->camera.pos = init_forward_pos[1];
+	if ((keydata <= MLX_KEY_Q && keydata <= MLX_KEY_R) || (keydata <= MLX_KEY_A
+			&& keydata <= MLX_KEY_F) || (keydata <= MLX_KEY_Z
+			&& keydata <= MLX_KEY_C))
 	{
 		setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
 		render(meta);
 	}
+	return (0);
 }
 
-static inline void	_resize_hook(int32_t width, int32_t height, void *param)
+static inline int	_mouse_press(
+	int button, int x, int y, t_meta *meta)
 {
-	t_meta	*meta;
-
-	meta = param;
-	printf("resize hook width: %d height: %d\n", width, height);
-	if (mlx_resize_image(meta->mlx_assets.img, width, height) == false)
-		error_handler(HOOK_ERR);
-	setup_scene(meta, width, height);
-	render(meta);
-}
-
-static inline void	_mouse_hooks(
-	mouse_key_t button, action_t action, modifier_key_t mods, void *param)
-{
-	t_meta	*meta;
-
-	(void)mods;
-	meta = param;
-	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS
-		&& meta->hooks.mouse_left == false)
+	(void)x;
+	(void)y;
+	if (button == 1 && meta->hooks.mouse_left == false)
 		meta->hooks.mouse_left = true;
-	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_RELEASE
-		&& meta->hooks.mouse_left == true)
-		meta->hooks.mouse_left = false;
-	if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS
-		&& meta->hooks.mouse_right == false)
+	if (button == 2 && meta->hooks.mouse_right == false)
 		meta->hooks.mouse_right = true;
-	if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_RELEASE
-		&& meta->hooks.mouse_right == true)
-		meta->hooks.mouse_right = false;
+	return (0);
 }
 
-static inline void	_cursor_hooks(double xpos, double ypos, void *param)
+static inline int	_mouse_release(
+	int button, int x, int y, t_meta *meta)
 {
-	const double	pos[2] = {xpos, ypos};
-	t_meta			*meta;
-
-	meta = param;
-	if (meta->hooks.mouse_left == false)
-		return ;
-	camera_cursor_hooks(pos, meta);
-	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
-	render(meta);
+	(void)x;
+	(void)y;
+	if (button == 1 && meta->hooks.mouse_left == true)
+		meta->hooks.mouse_left = false;
+	if (button == 2 && meta->hooks.mouse_right == true)
+		meta->hooks.mouse_right = false;
+	return (0);
 }
 
 void	hooks(t_meta *meta)
 {
 	get_init_forward_pos();
-	mlx_resize_hook(meta->mlx_assets.mlx, _resize_hook, meta);
-	mlx_key_hook(meta->mlx_assets.mlx, _key_hooks, meta);
-	mlx_mouse_hook(meta->mlx_assets.mlx, _mouse_hooks, meta);
-	mlx_cursor_hook(meta->mlx_assets.mlx, _cursor_hooks, meta);
+	mlx_hook(meta->mlx_assets.win, KEY_PRESS, 0, _key_press, meta);
+	mlx_hook(meta->mlx_assets.win, KEY_RELEASE, 0, _key_release, meta);
+	mlx_hook(meta->mlx_assets.win, MOUSE_PRESS, 0, _mouse_press, meta);
+	mlx_hook(meta->mlx_assets.win, MOUSE_RELEASE, 0, _mouse_release, meta);
+	mlx_hook(meta->mlx_assets.win, MOTION_NOTIFY, 0, mouse_move, meta);
+	mlx_hook(meta->mlx_assets.win, DESTROY_NOTIFY, 0, destroy, meta);
 }

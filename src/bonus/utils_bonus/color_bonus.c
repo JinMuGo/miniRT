@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:10:08 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/06/30 20:14:13 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 20:25:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ static inline uint32_t	_color_calc(double rgb)
 
 uint32_t	rgba_to_color(t_rgb rgb)
 {
-	return (_color_calc(rgb.x) << 24
-		| _color_calc(rgb.y) << 16
-		| _color_calc(rgb.z) << 8
-		| 0xFF);
+	return (_color_calc(rgb.x) << 16 | \
+			_color_calc(rgb.y) << 8 | \
+			_color_calc(rgb.z));
 }
 
 t_rgb	rgb_init_int(const int r, const int g, const int b)
@@ -45,14 +44,28 @@ t_rgb	rgba_min(t_rgb a, t_rgb b)
 		a.y = b.y;
 	if (a.z > b.z)
 		a.z = b.z;
+
 	return (a);
 }
 
-t_rgb	color_to_rgba(uint8_t *color)
+t_rgb	color_to_rgba(char *color, const int endian)
 {
-	const uint8_t	r = *color++;
-	const uint8_t	g = *color++;
-	const uint8_t	b = *color++;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 
+	if (endian)
+	{
+		color++;
+		r = *color++;
+		g = *color++;
+		b = *color++;
+	}
+	else
+	{
+		b = *color++;
+		g = *color++;
+		r = *color++;
+	}
 	return (rgb_init_int(r, g, b));
 }

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:30:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 17:10:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_cb			t_cb;
 typedef struct s_bp			t_bp;
 typedef struct s_tx			t_tx;
 typedef struct s_obj_option	t_obj_option;
+typedef struct s_img		t_img;
+typedef struct s_texture	t_texture;
 
 typedef double				(*t_get_obj_dist)(t_obj *, const t_ray *);
 typedef t_object_type		(*t_get_obj_record)(t_obj *, const t_ray *,
@@ -64,7 +66,7 @@ struct						s_cb
 struct						s_mlx_image
 {
 	t_mlx_image_type		type;
-	mlx_image_t				*img;
+	t_texture				*texture;
 };
 
 struct						s_tx
@@ -88,10 +90,27 @@ struct						s_obj_option
 	union u_obj_option		op;
 };
 
+struct						s_img
+{
+	void					*img;
+	char					*addr;
+	int						bits_per_pixel;
+	int						line_length;
+	int						endian;
+};
+
+struct						s_texture
+{
+	t_img					img;
+	int						width;
+	int						height;
+};
+
 struct						s_mlx_assets
 {
-	mlx_t					*mlx;
-	mlx_image_t				*img;
+	void					*mlx;
+	void					*win;
+	t_img					img;
 };
 
 struct						s_ambient

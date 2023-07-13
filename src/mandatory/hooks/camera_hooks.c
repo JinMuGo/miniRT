@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:18:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/10 14:16:14 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 12:31:17 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static inline void	_update_camera_forward(
 	camera->forward = vec3;
 }
 
-void	camera_cursor_hooks(const double pos[2], t_meta *meta)
+void	camera_mouse_hooks(const int pos[2], t_meta *meta)
 {
 	const double	camera_speed = 0.12;
 
@@ -44,31 +44,26 @@ void	camera_cursor_hooks(const double pos[2], t_meta *meta)
 	meta->hooks.prev_pos[Y] = pos[Y];
 }
 
-void	camera_key_hooks(mlx_key_data_t *keydata, t_meta *meta,
-		const t_vec3 init_forward, const t_vec3 init_pos)
+void	camera_key_hooks(const int keydata, t_meta *meta)
 {
 	const double	camera_speed = 0.05;
 
-	if (keydata->key == MLX_KEY_W)
+	if (keydata == MLX_KEY_W)
 		meta->camera.pos = vec3_minus(meta->camera.pos,
 				vec3_scalar_multi(meta->camera.forward, camera_speed));
-	if (keydata->key == MLX_KEY_S)
+	if (keydata == MLX_KEY_S)
 		meta->camera.pos = vec3_plus(meta->camera.pos,
 				vec3_scalar_multi(meta->camera.forward, camera_speed));
-	if (keydata->key == MLX_KEY_D)
+	if (keydata == MLX_KEY_D)
 		meta->camera.pos = vec3_plus(meta->camera.pos,
 				vec3_scalar_multi(meta->camera.right, camera_speed));
-	if (keydata->key == MLX_KEY_A)
+	if (keydata == MLX_KEY_A)
 		meta->camera.pos = vec3_minus(meta->camera.pos,
 				vec3_scalar_multi(meta->camera.right, camera_speed));
-	if (keydata->key == MLX_KEY_E)
+	if (keydata == MLX_KEY_E)
 		meta->camera.pos = vec3_minus(meta->camera.pos,
 				vec3_scalar_multi(meta->camera.up, camera_speed));
-	if (keydata->key == MLX_KEY_Q)
+	if (keydata == MLX_KEY_Q)
 		meta->camera.pos = vec3_plus(meta->camera.pos,
 				vec3_scalar_multi(meta->camera.up, camera_speed));
-	if (keydata->key == MLX_KEY_R && keydata->action == MLX_RELEASE)
-		meta->camera.forward = init_forward;
-	if (keydata->key == MLX_KEY_F && keydata->action == MLX_RELEASE)
-		meta->camera.pos = init_pos;
 }

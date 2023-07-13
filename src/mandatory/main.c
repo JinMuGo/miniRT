@@ -6,18 +6,18 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:49:19 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/09 14:43:12 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 14:13:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "defs.h"
 #include "design_patterns.h"
-#include "utils.h"
-#include "scene.h"
+#include "hooks.h"
+#include "minirt.h"
 #include "parser.h"
 #include "render.h"
-#include "hooks.h"
+#include "scene.h"
+#include "utils.h"
 
 static bool	_is_rtfile(char *file)
 {
@@ -43,7 +43,8 @@ int	main(int ac, char **av)
 	meta = singleton();
 	setup_scene(meta, WIN_WIDTH, WIN_HEIGHT);
 	render(meta);
-	mlx_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.img, 0, 0);
+	mlx_put_image_to_window(meta->mlx_assets.mlx, meta->mlx_assets.win,
+		meta->mlx_assets.img.img, 0, 0);
 	hooks(meta);
 	mlx_loop(meta->mlx_assets.mlx);
 	destroy(meta);

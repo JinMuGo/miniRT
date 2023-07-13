@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:03:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 17:48:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/13 20:09:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ static inline t_rgb	_get_cb_color(
 		return (cb.rgb);
 }
 
-static inline t_rgb	_get_img_pixel(mlx_image_t *img, const int u, const int v)
+static inline t_rgb	_get_img_pixel(t_texture *img, const int u, const int v)
 {
-	const size_t	bpp = sizeof(uint32_t);
-	uint8_t			*color;
+	const int offset = v * img->img.line_length + u * img->img.bits_per_pixel / 8;
 
-	color = img->pixels + ((v * img->width + u) * bpp);
-	return (color_to_rgba(color));
+	return (color_to_rgba(img->img.addr + offset, img->img.endian));
 }
 
-static inline t_rgb	_get_tx_img_color(t_tx *tx, mlx_image_t *img)
+static inline t_rgb	_get_tx_img_color(t_tx *tx, t_texture *img)
 {
 	const int	u = clamp(tx->uv.u * img->width, 0, img->width - 1);
 	const int	v = clamp((1.0 - tx->uv.v) * img->height, 0, img->height -1);
@@ -50,7 +48,7 @@ static inline t_rgb	_get_tx_img_color(t_tx *tx, mlx_image_t *img)
 static inline t_vec3	_normal_mapping(t_tx *tx, t_record *record)
 {
 	const t_mat3	tbn = mat3_init(tx->right, tx->up, record->normal_vec3);
-	const t_rgb		bump_rgba = _get_tx_img_color(tx, tx->bp->img);
+	const t_rgb		bump_rgba = _get_tx_img_color(tx, tx->bp->texture);
 	const t_rgb		rgb = vec3_scalar_minus(vec3_scalar_multi(bump_rgba, 2), 1);
 	const t_vec3	pixel_normal = vec3_init(rgb.x, rgb.y, rgb.z);
 
@@ -63,7 +61,7 @@ void	apply_option(t_obj_option *option, t_record *record, t_rgb origin)
 		record->rgb = _get_cb_color(origin, option, &record->point);
 	else if (option->type == TX)
 	{
-		record->rgb = _get_tx_img_color(&option->op.tx, option->op.tx.img.img);
+		record->rgb = _get_tx_img_color(&option->op.tx, option->op.tx.img.texture);
 		if (option->op.tx.bp)
 			record->normal_vec3 = _normal_mapping(&option->op.tx, record);
 	}
