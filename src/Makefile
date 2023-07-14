@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:42:33 by jgo               #+#    #+#              #
-#    Updated: 2023/06/19 09:45:09 by jgo              ###   ########.fr        #
+#    Updated: 2023/07/15 06:44:03 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ endif
 
 include $(TOPDIR)/make_config/src/Rules.mk
 include $(TOPDIR)/make_config/com/ColorRules.mk
+include $(TOPDIR)/make_config/com/Funcs.mk
+include $(TOPDIR)/make_config/com/Flags.mk
 
 all : 
 	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR) $@

@@ -6,6 +6,8 @@ ifndef TOPDIR
 endif
 
 include $(TOPDIR)/make_config/com/ColorRules.mk
+include $(TOPDIR)/make_config/com/Funcs.mk
+include $(TOPDIR)/make_config/com/Flags.mk
 include $(TOPDIR)/make_config/ext/Rules.mk
 
 NOM=libmlx.a

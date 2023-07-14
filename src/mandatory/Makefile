@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/06/16 16:34:44 by jgo              ###   ########.fr        #
+#    Updated: 2023/07/15 06:44:36 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ ifndef TOPDIR
 endif
 
 include		$(TOPDIR)/make_config/src/Rules.mk
+include		$(TOPDIR)/make_config/com/Funcs.mk
+include		$(TOPDIR)/make_config/com/Flags.mk
 include 	$(TOPDIR)/make_config/com/ColorRules.mk
 
 NAME	:=	$(PROJECT_NAME)
