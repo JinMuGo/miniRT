@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:03:21 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 20:09:06 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 11:16:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static inline t_rgb	_get_cb_color(
 
 static inline t_rgb	_get_img_pixel(t_texture *img, const int u, const int v)
 {
-	const int offset = v * img->img.line_length + u * img->img.bits_per_pixel / 8;
+	const int	offset = v * img->img.line_length + u
+		* img->img.bits_per_pixel / 8;
 
 	return (color_to_rgba(img->img.addr + offset, img->img.endian));
 }
@@ -61,7 +62,8 @@ void	apply_option(t_obj_option *option, t_record *record, t_rgb origin)
 		record->rgb = _get_cb_color(origin, option, &record->point);
 	else if (option->type == TX)
 	{
-		record->rgb = _get_tx_img_color(&option->op.tx, option->op.tx.img.texture);
+		record->rgb = _get_tx_img_color(
+				&option->op.tx, option->op.tx.img.texture);
 		if (option->op.tx.bp)
 			record->normal_vec3 = _normal_mapping(&option->op.tx, record);
 	}

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:18:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 17:21:28 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 11:07:57 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static inline void	_update_camera_forward(
 
 void	camera_mouse_hooks(const int pos[2], t_meta *meta)
 {
-	const double	camera_speed = 0.12;
+	const double	camera_speed = 0.05;
 
 	meta->camera.yaw -= (pos[X] - meta->hooks.prev_pos[X]) * camera_speed;
 	meta->camera.pitch -= (pos[Y] - meta->hooks.prev_pos[Y]) * camera_speed;
@@ -46,7 +46,7 @@ void	camera_mouse_hooks(const int pos[2], t_meta *meta)
 
 void	camera_key_hooks(const int keydata, t_meta *meta)
 {
-	const double	camera_speed = 0.05;
+	const double	camera_speed = 0.10;
 
 	if (keydata == MLX_KEY_W)
 		meta->camera.pos = vec3_minus(meta->camera.pos,

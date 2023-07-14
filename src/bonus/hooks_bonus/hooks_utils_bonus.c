@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:16:51 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 17:22:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 11:07:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "hooks_bonus.h"
 #include "render_bonus.h"
 #include "scene_bonus.h"
+#include "thread_bonus.h"
 
 t_vec3	*get_init_forward_pos(void)
 {
@@ -40,7 +41,5 @@ int	mouse_move(int xpos, int ypos, t_meta *meta)
 	if (meta->hooks.mouse_left == false)
 		return (0);
 	camera_mouse_hooks(pos, meta);
-	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
-	render(meta);
 	return (0);
 }

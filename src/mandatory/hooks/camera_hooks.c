@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:18:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 12:31:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 10:31:59 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	camera_mouse_hooks(const int pos[2], t_meta *meta)
 
 void	camera_key_hooks(const int keydata, t_meta *meta)
 {
-	const double	camera_speed = 0.05;
+	const double	camera_speed = 0.10;
 
 	if (keydata == MLX_KEY_W)
 		meta->camera.pos = vec3_minus(meta->camera.pos,

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:33:26 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 19:27:36 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 11:17:36 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static inline void	_set_color(char *offset, const int endian,
 void	my_pixel_put(t_mlx_assets *mlx_assets, const uint32_t x,
 		const uint32_t y, const uint32_t color)
 {
-	const int	offset = y * mlx_assets->img.line_length + x * mlx_assets->img.bits_per_pixel / 8;
+	const int	offset = y * mlx_assets->img.line_length + x
+		* mlx_assets->img.bits_per_pixel / 8;
 
 	if (_invalid_dot(x, y))
 		return ;

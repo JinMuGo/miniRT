@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:08:41 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 16:46:06 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 11:18:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static inline int	_key_release(int keydata, t_meta *meta)
 		meta->camera.forward = init_forward_pos[0];
 	if (keydata == MLX_KEY_F)
 		meta->camera.pos = init_forward_pos[1];
-	if ((keydata <= MLX_KEY_Q && keydata <= MLX_KEY_R) || (keydata <= MLX_KEY_A
-			&& keydata <= MLX_KEY_F) || (keydata <= MLX_KEY_Z
+	if ((MLX_KEY_Q <= keydata && keydata <= MLX_KEY_R) || (MLX_KEY_A <= keydata
+			&& keydata <= MLX_KEY_F) || (MLX_KEY_Z <= keydata
 			&& keydata <= MLX_KEY_C))
 	{
 		setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
@@ -66,6 +66,8 @@ static inline int	_mouse_release(
 		meta->hooks.mouse_left = false;
 	if (button == 2 && meta->hooks.mouse_right == true)
 		meta->hooks.mouse_right = false;
+	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
+	render(meta);
 	return (0);
 }
 

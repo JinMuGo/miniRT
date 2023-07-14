@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objs_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:00:02 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/07/13 22:40:10 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/07/14 11:17:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ static inline void	_option_clear(t_obj_option *option, void (*del)(void *))
 {
 	if (option->type == TX)
 	{
-		mlx_destroy_image(singleton()->mlx_assets.mlx, option->op.tx.img.texture->img.img);
+		mlx_destroy_image(
+			singleton()->mlx_assets.mlx, option->op.tx.img.texture->img.img);
 		del(option->op.tx.img.texture);
 		if (option->op.tx.bp)
 		{
-			mlx_destroy_image(singleton()->mlx_assets.mlx, option->op.tx.bp->texture->img.img);
+			mlx_destroy_image(
+				singleton()->mlx_assets.mlx,
+				option->op.tx.bp->texture->img.img);
 			del(option->op.tx.bp->texture);
 			del(option->op.tx.bp);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:47:06 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/07/13 22:26:33 by sanghwal         ###   ########seoul.kr  */
+/*   Updated: 2023/07/14 11:14:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ bool	vaildation_option(t_obj_option *option)
 void	open_mlx_image(t_mlx_image *img, t_error_type err, const char *path)
 {
 	const size_t	start = ft_strlen(path) - 4;
-	t_texture		*texture;
 
 	if (ft_strnstr(path + start, ".xpm", 4))
 		img->type = XPM;
@@ -49,21 +48,20 @@ void	open_mlx_image(t_mlx_image *img, t_error_type err, const char *path)
 		img->type = PNG;
 	else
 		error_handler(err);
-	texture = ft_malloc(sizeof(t_texture));
+	img->texture = ft_malloc(sizeof(t_texture));
 	if (img->type == PNG)
-		texture->img.img = mlx_png_file_to_image(singleton()->mlx_assets.mlx,
-				(char *)path, &texture->width, &texture->height); // 이후에 leak 발생
+		img->texture->img.img = mlx_png_file_to_image(
+				singleton()->mlx_assets.mlx,
+				(char *)path, &img->texture->width, &img->texture->height);
 	else if (img->type == XPM)
-		texture->img.img = mlx_xpm_file_to_image(singleton()->mlx_assets.mlx,
-				(char *)path, &texture->width, &texture->height);
+		img->texture->img.img = mlx_xpm_file_to_image(
+				singleton()->mlx_assets.mlx,
+				(char *)path, &img->texture->width, &img->texture->height);
 	else
 		error_handler(err);
-	if (texture->img.img == NULL)
-	{
-		free(texture);
+	if (img->texture->img.img == NULL)
 		error_handler(err);
-	}
-	texture->img.addr = mlx_get_data_addr(texture->img.img,
-			&texture->img.bits_per_pixel, &texture->img.line_length, &texture->img.endian);
-	img->texture = texture;
+	img->texture->img.addr = mlx_get_data_addr(img->texture->img.img,
+			&img->texture->img.bits_per_pixel,
+			&img->texture->img.line_length, &img->texture->img.endian);
 }

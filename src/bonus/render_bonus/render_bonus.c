@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:18:25 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 14:37:27 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 11:15:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	*render(void *args)
 		while (scene[X] < renderer->width)
 		{
 			my_pixel_put(&renderer->meta->mlx_assets, scene[X], scene[Y],
-				rgba_to_color(_multi_sampling(renderer->meta, scene[X], scene[Y])));
+				rgba_to_color(
+					_multi_sampling(renderer->meta, scene[X], scene[Y])));
 			scene[X]++;
 		}
 		scene[Y]++;

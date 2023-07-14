@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:16:51 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/13 16:45:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/07/14 11:02:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,5 @@ int	mouse_move(int xpos, int ypos, t_meta *meta)
 	if (meta->hooks.mouse_left == false)
 		return (0);
 	camera_mouse_hooks(pos, meta);
-	setup_scene(meta, meta->scene.canvas.width, meta->scene.canvas.height);
-	render(meta);
 	return (0);
 }
