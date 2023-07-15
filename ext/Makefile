@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:42:33 by jgo               #+#    #+#              #
-#    Updated: 2023/07/15 06:44:03 by jgo              ###   ########.fr        #
+#    Updated: 2023/07/15 09:45:04 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ include $(TOPDIR)/make_config/ext/Rules.mk
 LIBS := mlx_opengl
 
 $(LIBS):
-	$(MAKE) -C $@
+	$(MAKE) -C $@ $(J)
 
 all bonus:
 	$(Q)$(call color_printf,$(YELLOW),$(PROJECT_NAME),🎯 Start compiling)

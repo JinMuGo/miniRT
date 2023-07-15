@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/07/15 06:44:03 by jgo              ###   ########.fr        #
+#    Updated: 2023/07/15 09:38:28 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ endif
 
 include $(TOPDIR)/make_config/com/ColorRules.mk
 include $(TOPDIR)/make_config/com/Funcs.mk
-include $(TOPDIR)/make_config/com/Flags.mk
 include $(TOPDIR)/make_config/src/Rules.mk
+include $(TOPDIR)/make_config/com/Flags.mk
 
 SRCS :=	destroy_bonus.c \
 		color_bonus.c \
