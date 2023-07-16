@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:36:50 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/07/03 17:43:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 15:20:42 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "render_bonus.h"
 #include "design_patterns_bonus.h"
 
-static bool	_vaildation_cone(t_cone *cone)
+static bool	vaildation_cone(t_cone *cone)
 {
 	if (cone->type != CO
 		|| !check_normal_vec(cone->normal_vec3) || !check_rgb(&cone->rgb)
@@ -58,7 +58,7 @@ void	parser_cone(char **line)
 		error_handler(CO_ERR);
 	_set_cone_info(&cone, line);
 	option = option_allocator(line, 6, CO_ERR);
-	if (!_vaildation_cone(&cone) || !vaildation_option(option)
+	if (!vaildation_cone(&cone) || !vaildation_option(option)
 		|| (option && option->type == TX))
 	{
 		ft_free_all_arr(line);

@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_bonus.c                                     :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:51:08 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 17:43:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/26 21:05:53 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include "parser_bonus.h"
 #include "utils_bonus.h"
-#include "design_patterns_bonus.h"
 
-static void	_parser_router(char **temp)
+static bool	is_rtfile(char *file)
+{
+	char	*ext;
+
+	ext = ft_strrchr(file, '.');
+	if (!ext || ext == file)
+		return (false);
+	if (ft_strcmp(ext, ".rt"))
+		return (false);
+	return (true);
+}
+
+static void	parser_router(char **temp)
 {
 	if (!ft_strcmp(temp[0], "A"))
 		parser_ambient(temp);
@@ -37,15 +48,14 @@ static void	_parser_router(char **temp)
 
 void	parser(char *file)
 {
-	int			fd;
+	const int	fd = open(file, O_RDONLY);
 	char		*line;
 	char		**temp;
 
-	line = NULL;
-	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_handler(OPEN_ERR);
-	singleton()->fd = fd;
+	if (!is_rtfile(file))
+		error_handler(EX_ERR);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -56,10 +66,9 @@ void	parser(char *file)
 			continue ;
 		}
 		temp = ft_split_whitespace(line);
-		_parser_router(temp);
+		parser_router(temp);
 		free(line);
 		ft_free_all_arr(temp);
 		line = get_next_line(fd);
 	}
-	close(fd);
 }

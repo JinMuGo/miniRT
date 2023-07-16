@@ -6,13 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:13:07 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/07/03 17:45:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/18 16:30:55 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs.h"
 
-static double	_integer_part(char *str, int len)
+static double	integer_part(char *str, int len)
 {
 	double	temp_d;
 	char	*temp_s;
@@ -33,7 +33,7 @@ static double	_integer_part(char *str, int len)
 	return (temp_d);
 }
 
-static double	_fractional_part(char *str)
+static double	fractional_part(char *str)
 {
 	double	temp_d;
 	int		i;
@@ -57,8 +57,8 @@ double	atod(char *str)
 	if (str[0] == '-')
 		sign = -1;
 	if (dot == NULL || *(dot + 1) == '\0')
-		return (_integer_part(str, ft_strlen(str)));
-	temp1 = _integer_part(str, dot - str) * sign;
-	temp2 = _fractional_part(dot + 1);
+		return (integer_part(str, ft_strlen(str)));
+	temp1 = integer_part(str, dot - str) * sign;
+	temp2 = fractional_part(dot + 1);
 	return ((temp1 + temp2) * sign);
 }

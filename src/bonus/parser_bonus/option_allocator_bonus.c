@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_allocator_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: sanghwal <sanghwal@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 20:30:54 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 17:43:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:36:25 by sanghwal         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "parser_bonus.h"
 #include "utils_bonus.h"
 
-static inline int	_check_bump_file_name(const char *origin, const char *path)
+static inline int	check_bump_file_name(const char *origin, const char *path)
 {
 	const char	*tmp = ft_remove_suffix(origin);
 	const char	*s1 = ft_strjoin(tmp, "_bump");
@@ -33,7 +33,7 @@ static inline void	_bp_allocator(
 	const char	*path_file_name = ft_strrchr(path, '/');
 
 	if (origin_file_name == NULL || path_file_name == NULL
-		|| _check_bump_file_name(origin_file_name, path_file_name))
+		|| check_bump_file_name(origin_file_name, path_file_name))
 		error_handler(err);
 	tx->bp = ft_malloc(sizeof(t_mlx_image));
 	open_mlx_image(tx->bp, err, path);

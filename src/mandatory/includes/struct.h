@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:08:43 by jgo               #+#    #+#             */
-/*   Updated: 2023/07/03 14:26:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/06/30 10:39:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,6 @@ struct						s_meta
 	t_hooks					hooks;
 	t_list					*spot_lights;
 	t_obj					*objs;
-	int						fd;
 };
 
 #endif
